@@ -24,6 +24,8 @@ class DashboardRepository:
         query = self.db.query(func.count(Product.id))
         if tenant_id is not None:
             query = query.filter(Product.tenant_id == tenant_id)
+        else:
+            query = query.join(Tenant, Tenant.id == Product.tenant_id).filter(Tenant.status.in_([TenantStatus.ACTIVE, TenantStatus.SUSPENDED]))
         return int(query.scalar() or 0)
 
     def low_stock_products(self, tenant_id: UUID) -> int:
@@ -50,18 +52,24 @@ class DashboardRepository:
         query = self.db.query(func.coalesce(func.sum(Product.quantity), 0))
         if tenant_id is not None:
             query = query.filter(Product.tenant_id == tenant_id)
+        else:
+            query = query.join(Tenant, Tenant.id == Product.tenant_id).filter(Tenant.status.in_([TenantStatus.ACTIVE, TenantStatus.SUSPENDED]))
         return int(query.scalar() or 0)
 
     def total_suppliers(self, tenant_id: UUID | None = None) -> int:
         query = self.db.query(func.count(Supplier.id))
         if tenant_id is not None:
             query = query.filter(Supplier.tenant_id == tenant_id)
+        else:
+            query = query.join(Tenant, Tenant.id == Supplier.tenant_id).filter(Tenant.status.in_([TenantStatus.ACTIVE, TenantStatus.SUSPENDED]))
         return int(query.scalar() or 0)
 
     def total_purchase_orders(self, tenant_id: UUID | None = None) -> int:
         query = self.db.query(func.count(PurchaseOrder.id))
         if tenant_id is not None:
             query = query.filter(PurchaseOrder.tenant_id == tenant_id)
+        else:
+            query = query.join(Tenant, Tenant.id == PurchaseOrder.tenant_id).filter(Tenant.status.in_([TenantStatus.ACTIVE, TenantStatus.SUSPENDED]))
         return int(query.scalar() or 0)
 
     def total_warehouses(self, tenant_id: UUID) -> int:
@@ -127,6 +135,8 @@ class DashboardRepository:
         query = self.db.query(func.count(PurchaseOrder.id)).filter(PurchaseOrder.status == status)
         if tenant_id is not None:
             query = query.filter(PurchaseOrder.tenant_id == tenant_id)
+        else:
+            query = query.join(Tenant, Tenant.id == PurchaseOrder.tenant_id).filter(Tenant.status.in_([TenantStatus.ACTIVE, TenantStatus.SUSPENDED]))
         return int(query.scalar() or 0)
 
     def supplier_activity(self, tenant_id: UUID, limit: int = 6) -> list[dict[str, int | str]]:
@@ -196,6 +206,8 @@ class DashboardRepository:
         )
         if tenant_id is not None:
             query = query.filter(InventoryTransaction.tenant_id == tenant_id)
+        else:
+            query = query.join(Tenant, Tenant.id == InventoryTransaction.tenant_id).filter(Tenant.status.in_([TenantStatus.ACTIVE, TenantStatus.SUSPENDED]))
         stock_in, stock_out, adjustment = query.one()
         return {
             "stock_in": int(stock_in or 0),
@@ -403,7 +415,7 @@ class DashboardRepository:
         )
 
     def total_tenants(self) -> int:
-        return int(self.db.query(func.count(Tenant.id)).scalar() or 0)
+        return int(self.db.query(func.count(Tenant.id)).filter(Tenant.status.in_([TenantStatus.ACTIVE, TenantStatus.SUSPENDED])).scalar() or 0)
 
     def active_tenants(self) -> int:
         return int(
@@ -414,7 +426,14 @@ class DashboardRepository:
         )
 
     def total_users(self) -> int:
-        return int(self.db.query(func.count(User.id)).scalar() or 0)
+        from sqlalchemy import or_
+        return int(
+            self.db.query(func.count(User.id))
+            .outerjoin(Tenant, Tenant.id == User.tenant_id)
+            .filter(or_(User.tenant_id.is_(None), Tenant.status.in_([TenantStatus.ACTIVE, TenantStatus.SUSPENDED])))
+            .scalar()
+            or 0
+        )
 
     def tenant_summaries(self) -> list[dict]:
         products = (
@@ -453,6 +472,7 @@ class DashboardRepository:
                 func.coalesce(users.c.active_users, 0),
                 activity.c.last_activity_at,
             )
+            .filter(Tenant.status.in_([TenantStatus.ACTIVE, TenantStatus.SUSPENDED]))
             .outerjoin(products, products.c.tenant_id == Tenant.id)
             .outerjoin(users, users.c.tenant_id == Tenant.id)
             .outerjoin(activity, activity.c.tenant_id == Tenant.id)
@@ -481,7 +501,8 @@ class DashboardRepository:
     def low_stock_tenant_count(self) -> int:
         return int(
             self.db.query(func.count(func.distinct(Product.tenant_id)))
-            .filter(Product.quantity <= 10, Product.tenant_id.isnot(None))
+            .join(Tenant, Tenant.id == Product.tenant_id)
+            .filter(Product.quantity <= 10, Product.tenant_id.isnot(None), Tenant.status.in_([TenantStatus.ACTIVE, TenantStatus.SUSPENDED]))
             .scalar()
             or 0
         )
@@ -489,7 +510,8 @@ class DashboardRepository:
     def tenants_with_products(self) -> int:
         return int(
             self.db.query(func.count(func.distinct(Product.tenant_id)))
-            .filter(Product.tenant_id.isnot(None))
+            .join(Tenant, Tenant.id == Product.tenant_id)
+            .filter(Product.tenant_id.isnot(None), Tenant.status.in_([TenantStatus.ACTIVE, TenantStatus.SUSPENDED]))
             .scalar()
             or 0
         )
@@ -498,9 +520,11 @@ class DashboardRepository:
         cutoff = datetime.now(UTC) - timedelta(days=days)
         return int(
             self.db.query(func.count(func.distinct(InventoryTransaction.tenant_id)))
+            .join(Tenant, Tenant.id == InventoryTransaction.tenant_id)
             .filter(
                 InventoryTransaction.tenant_id.isnot(None),
                 InventoryTransaction.created_at >= cutoff,
+                Tenant.status.in_([TenantStatus.ACTIVE, TenantStatus.SUSPENDED]),
             )
             .scalar()
             or 0
@@ -536,6 +560,7 @@ class DashboardRepository:
                 activity.c.last_activity_at,
             )
             .join(activity, activity.c.tenant_id == Tenant.id)
+            .filter(Tenant.status.in_([TenantStatus.ACTIVE, TenantStatus.SUSPENDED]))
             .order_by(activity.c.last_activity_at.desc())
             .limit(limit)
             .all()

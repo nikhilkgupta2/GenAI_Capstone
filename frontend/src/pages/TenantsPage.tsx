@@ -38,6 +38,12 @@ function formatOnboardingColor(pct: number) {
 
 export function TenantsPage() {
   const queryClient = useQueryClient();
+  const [tempSearch, setTempSearch] = useState('');
+  const [tempStatusFilter, setTempStatusFilter] = useState('');
+  const selectedTenantId = useAuthStore((state) => state.selectedTenantId);
+  const setSelectedTenantId = useAuthStore((state) => state.setSelectedTenantId);
+  const [tempTenantId, setTempTenantId] = useState(selectedTenantId ?? '');
+
   const [search, setSearch] = useState('');
   const [statusFilter, setStatusFilter] = useState('');
   const [notice, setNotice] = useState<string | null>(null);
@@ -70,10 +76,17 @@ export function TenantsPage() {
     queryFn: () => getTenants(search || undefined, statusFilter || undefined),
   });
 
-  const selectedTenantId = useAuthStore((state) => state.selectedTenantId);
   const tenants = selectedTenantId
     ? rawTenants.filter((t) => t.id === selectedTenantId)
     : rawTenants;
+
+  const allTenantsQuery = useQuery({
+    queryKey: ['super-admin', 'all-tenants-list'],
+    queryFn: () => getTenants(),
+  });
+  const approvedTenants = (allTenantsQuery.data ?? []).filter(
+    (t) => t.status === 'active' || t.status === 'suspended'
+  );
 
   // Mutations
   const statusMutation = useMutation({
@@ -104,6 +117,22 @@ export function TenantsPage() {
 
   const handleStatusChange = (id: string, newStatus: string) => {
     statusMutation.mutate({ id, status: newStatus });
+  };
+
+  const handleApply = (e: React.FormEvent) => {
+    e.preventDefault();
+    setSearch(tempSearch);
+    setStatusFilter(tempStatusFilter);
+    setSelectedTenantId(tempTenantId || null);
+  };
+
+  const handleReset = () => {
+    setTempSearch('');
+    setTempStatusFilter('');
+    setTempTenantId('');
+    setSearch('');
+    setStatusFilter('');
+    setSelectedTenantId(null);
   };
 
   const openPlanModal = (tenant: TenantItem) => {
@@ -162,26 +191,42 @@ export function TenantsPage() {
       )}
 
       <Toolbar className="mb-5">
-        <div className="grid gap-4 md:grid-cols-[1fr_200px_auto] md:items-end">
-          <label className="space-y-2 text-sm font-medium">
+        <form onSubmit={handleApply} className="flex flex-row flex-wrap items-end gap-3">
+          <label className="flex-1 min-w-[200px] max-w-xs space-y-1.5 text-xs font-semibold text-slate-500">
             <span>Search</span>
             <div className="relative">
               <Search className="pointer-events-none absolute left-3 top-3 h-4 w-4 text-slate-400" />
               <Input
-                className="pl-9"
-                placeholder="Search by company name or email"
-                value={search}
-                onChange={(e) => setSearch(e.target.value)}
+                className="pl-9 h-10"
+                placeholder="Company name or email"
+                value={tempSearch}
+                onChange={(e) => setTempSearch(e.target.value)}
               />
             </div>
           </label>
 
-          <label className="space-y-2 text-sm font-medium">
+          <label className="w-48 space-y-1.5 text-xs font-semibold text-slate-500">
+            <span>Workspace Focus</span>
+            <select
+              value={tempTenantId}
+              onChange={(e) => setTempTenantId(e.target.value)}
+              className="h-10 w-full rounded-md border border-slate-200 bg-white px-3 text-sm outline-none transition focus:border-slate-400 focus:ring-2 focus:ring-slate-100 font-normal text-slate-800"
+            >
+              <option value="">Platform Overview</option>
+              {approvedTenants.map((t) => (
+                <option key={t.id} value={t.id}>
+                  {t.company_name}
+                </option>
+              ))}
+            </select>
+          </label>
+
+          <label className="w-44 space-y-1.5 text-xs font-semibold text-slate-500">
             <span>Filter Status</span>
             <select
-              value={statusFilter}
-              onChange={(e) => setStatusFilter(e.target.value)}
-              className="h-10 w-full rounded-md border border-slate-200 bg-white px-3 text-sm outline-none transition focus:border-slate-400 focus:ring-2 focus:ring-slate-100"
+              value={tempStatusFilter}
+              onChange={(e) => setTempStatusFilter(e.target.value)}
+              className="h-10 w-full rounded-md border border-slate-200 bg-white px-3 text-sm outline-none transition focus:border-slate-400 focus:ring-2 focus:ring-slate-100 font-normal text-slate-800"
             >
               <option value="">All Statuses</option>
               <option value="pending">Pending Approval</option>
@@ -191,19 +236,19 @@ export function TenantsPage() {
             </select>
           </label>
 
-          <div>
+          <div className="flex gap-2">
+            <Button type="submit" className="h-10 px-4">
+              Apply
+            </Button>
             <Button
               type="button"
-              className="border border-slate-200 bg-white text-slate-700 hover:bg-slate-50"
-              onClick={() => {
-                setSearch('');
-                setStatusFilter('');
-              }}
+              className="h-10 px-4 border border-slate-200 bg-white text-slate-700 hover:bg-slate-50"
+              onClick={handleReset}
             >
-              Reset Filters
+              Reset
             </Button>
           </div>
-        </div>
+        </form>
       </Toolbar>
 
       <section className="rounded-lg border border-slate-200 bg-white shadow-sm overflow-hidden">

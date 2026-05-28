@@ -25,9 +25,6 @@ export function TopbarLayout({ user, onOpenMobile, onLogout }: TopbarLayoutProps
   const route = getRouteLabel(location.pathname);
   const [search, setSearch] = useState('');
 
-  const selectedTenantId = useAuthStore((state) => state.selectedTenantId);
-  const setSelectedTenantId = useAuthStore((state) => state.setSelectedTenantId);
-
   // Edit Profile Modal state
   const [isEditProfileOpen, setIsEditProfileOpen] = useState(false);
   const [editName, setEditName] = useState('');
@@ -36,12 +33,6 @@ export function TopbarLayout({ user, onOpenMobile, onLogout }: TopbarLayoutProps
   const [editSuccessMessage, setEditSuccessMessage] = useState<string | null>(null);
   const [editErrorMessage, setEditErrorMessage] = useState<string | null>(null);
   const [isSaving, setIsSaving] = useState(false);
-
-  const tenantsQuery = useQuery({
-    queryKey: ['tenants', 'list'],
-    queryFn: () => getTenants(),
-    enabled: user?.role === 'super_admin',
-  });
 
   const handleGlobalSearch = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -107,8 +98,6 @@ export function TopbarLayout({ user, onOpenMobile, onLogout }: TopbarLayoutProps
     }
   };
 
-  const showWorkspaceFocus = user?.role === 'super_admin' && (location.pathname.startsWith('/tenants') || location.pathname.startsWith('/users'));
-
   return (
     <header className="sticky top-0 z-20 border-b border-slate-200 bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/85">
       <div className="flex h-14 items-center gap-2 px-3 sm:gap-3 sm:px-4 lg:px-5">
@@ -154,27 +143,9 @@ export function TopbarLayout({ user, onOpenMobile, onLogout }: TopbarLayoutProps
 
         <NotificationCenter user={user} />
 
-        {showWorkspaceFocus ? (
-          <div className="flex items-center gap-2">
-            <span className="hidden text-xs font-semibold text-slate-500 xl:inline">Workspace Focus:</span>
-            <select
-              value={selectedTenantId ?? ''}
-              onChange={(e) => setSelectedTenantId(e.target.value || null)}
-              className="h-9 rounded-md border border-slate-200 bg-white px-2.5 text-xs font-semibold text-slate-700 outline-none transition focus:border-slate-400 focus:ring-2 focus:ring-slate-100 max-w-[160px] md:max-w-[200px]"
-            >
-              <option value="">Platform Overview</option>
-              {tenantsQuery.data?.map((t) => (
-                <option key={t.id} value={t.id}>
-                  {t.company_name}
-                </option>
-              ))}
-            </select>
-          </div>
-        ) : (
-          <div className="hidden h-9 items-center gap-2 rounded-md border border-slate-200 bg-white px-3 text-sm font-medium text-slate-700 xl:flex">
-            <span className="max-w-[140px] truncate">{user?.tenant_id ? 'Retailer workspace' : 'Platform workspace'}</span>
-          </div>
-        )}
+        <div className="hidden h-9 items-center gap-2 rounded-md border border-slate-200 bg-white px-3 text-sm font-medium text-slate-700 xl:flex">
+          <span className="max-w-[140px] truncate">{user?.tenant_id ? 'Retailer workspace' : 'Platform workspace'}</span>
+        </div>
 
         <div className="group relative">
           <button

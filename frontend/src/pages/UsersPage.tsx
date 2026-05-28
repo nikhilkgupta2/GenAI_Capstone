@@ -23,6 +23,7 @@ import {
   type UserQuery,
   updateUser,
 } from '../lib/user-api';
+import { getTenants } from '../lib/super-admin-api';
 
 const DEFAULT_PAGE_SIZE = 10;
 
@@ -309,8 +310,21 @@ function UserFormModal({
 
 export function UsersPage({ tenantId }: { tenantId?: string } = {}) {
   const [modalState, setModalState] = useState<UserModalState>(null);
-  const [appliedFilters, setAppliedFilters] = useState({ search: '', role: '', is_active: '' });
-  const [searchParams, setSearchParams] = useState({ search: '', role: '', is_active: '' });
+  const storeSelectedTenantId = useAuthStore((state) => state.selectedTenantId);
+  const setSelectedTenantId = useAuthStore((state) => state.setSelectedTenantId);
+
+  const [appliedFilters, setAppliedFilters] = useState({
+    search: '',
+    role: '',
+    is_active: '',
+    tenant_id: storeSelectedTenantId ?? '',
+  });
+  const [searchParams, setSearchParams] = useState({
+    search: '',
+    role: '',
+    is_active: '',
+    tenant_id: storeSelectedTenantId ?? '',
+  });
   const [page, setPage] = useState(1);
   const [deleteTarget, setDeleteTarget] = useState<ManagedUser | null>(null);
   const [notice, setNotice] = useState<string | null>(null);
@@ -319,7 +333,16 @@ export function UsersPage({ tenantId }: { tenantId?: string } = {}) {
   const queryClient = useQueryClient();
   const currentUser = useAuthStore((state) => state.user);
   const setCurrentUser = useAuthStore((state) => state.setUser);
-  const storeSelectedTenantId = useAuthStore((state) => state.selectedTenantId);
+  
+  const tenantsQuery = useQuery({
+    queryKey: ['tenants', 'list'],
+    queryFn: () => getTenants(),
+    enabled: currentUser?.role === 'super_admin',
+  });
+  const approvedTenants = (tenantsQuery.data ?? []).filter(
+    (t) => t.status === 'active' || t.status === 'suspended'
+  );
+
   const selectedTenantId = tenantId || storeSelectedTenantId;
   const canManageUsers = currentUser?.role === 'super_admin' || currentUser?.role === 'retailer_admin';
 
@@ -381,13 +404,19 @@ export function UsersPage({ tenantId }: { tenantId?: string } = {}) {
     event.preventDefault();
     setPage(1);
     setAppliedFilters(searchParams);
+    if (!tenantId) {
+      setSelectedTenantId(searchParams.tenant_id || null);
+    }
   };
 
   const resetFilters = () => {
-    const emptyFilters = { search: '', role: '', is_active: '' };
+    const emptyFilters = { search: '', role: '', is_active: '', tenant_id: '' };
     setSearchParams(emptyFilters);
     setAppliedFilters(emptyFilters);
     setPage(1);
+    if (!tenantId) {
+      setSelectedTenantId(null);
+    }
   };
 
   const submitUserForm = (values: UserFormData, mode: 'create' | 'edit') => {
@@ -417,25 +446,44 @@ export function UsersPage({ tenantId }: { tenantId?: string } = {}) {
       ) : null}
 
       <Toolbar className="mb-5">
-        <form className="grid gap-4 md:grid-cols-[1fr_180px_160px_auto] md:items-end" onSubmit={applyFilters}>
-          <label className="space-y-2 text-sm font-medium">
+        <form className="flex flex-row flex-wrap items-end gap-3" onSubmit={applyFilters}>
+          <label className="flex-1 min-w-[200px] max-w-xs space-y-1.5 text-xs font-semibold text-slate-500">
             <span>Search</span>
             <div className="relative">
               <Search className="pointer-events-none absolute left-3 top-3 h-4 w-4 text-slate-400" />
               <Input
-                className="pl-9"
+                className="pl-9 h-10"
                 placeholder="Name or email"
                 value={searchParams.search}
                 onChange={(event) => setSearchParams((prev) => ({ ...prev, search: event.target.value }))}
               />
             </div>
           </label>
-          <label className="space-y-2 text-sm font-medium">
+
+          {!tenantId && currentUser?.role === 'super_admin' && (
+            <label className="w-48 space-y-1.5 text-xs font-semibold text-slate-500">
+              <span>Workspace Focus</span>
+              <select
+                value={searchParams.tenant_id}
+                onChange={(event) => setSearchParams((prev) => ({ ...prev, tenant_id: event.target.value }))}
+                className="h-10 w-full rounded-md border border-slate-200 bg-white px-3 text-sm outline-none transition focus:border-slate-400 focus:ring-2 focus:ring-slate-100 font-normal text-slate-800"
+              >
+                <option value="">Platform Overview</option>
+                {approvedTenants.map((t) => (
+                  <option key={t.id} value={t.id}>
+                    {t.company_name}
+                  </option>
+                ))}
+              </select>
+            </label>
+          )}
+
+          <label className="w-44 space-y-1.5 text-xs font-semibold text-slate-500">
             <span>Role</span>
             <select
               value={searchParams.role}
               onChange={(event) => setSearchParams((prev) => ({ ...prev, role: event.target.value }))}
-              className="h-10 w-full rounded-md border border-slate-200 bg-white px-3 text-sm outline-none transition focus:border-slate-400 focus:ring-2 focus:ring-slate-100"
+              className="h-10 w-full rounded-md border border-slate-200 bg-white px-3 text-sm outline-none transition focus:border-slate-400 focus:ring-2 focus:ring-slate-100 font-normal text-slate-800"
             >
               <option value="">Any role</option>
               <option value="super_admin">Super Admin</option>
@@ -446,21 +494,29 @@ export function UsersPage({ tenantId }: { tenantId?: string } = {}) {
               <option value="auditor">Auditor</option>
             </select>
           </label>
-          <label className="space-y-2 text-sm font-medium">
+
+          <label className="w-36 space-y-1.5 text-xs font-semibold text-slate-500">
             <span>Status</span>
             <select
               value={searchParams.is_active}
               onChange={(event) => setSearchParams((prev) => ({ ...prev, is_active: event.target.value }))}
-              className="h-10 w-full rounded-md border border-slate-200 bg-white px-3 text-sm outline-none transition focus:border-slate-400 focus:ring-2 focus:ring-slate-100"
+              className="h-10 w-full rounded-md border border-slate-200 bg-white px-3 text-sm outline-none transition focus:border-slate-400 focus:ring-2 focus:ring-slate-100 font-normal text-slate-800"
             >
               <option value="">Any status</option>
               <option value="true">Active</option>
               <option value="false">Inactive</option>
             </select>
           </label>
+
           <div className="flex gap-2">
-            <Button type="submit">Apply</Button>
-            <Button type="button" className="border border-slate-200 bg-white text-slate-700 hover:bg-slate-50" onClick={resetFilters}>
+            <Button type="submit" className="h-10 px-4">
+              Apply
+            </Button>
+            <Button
+              type="button"
+              className="h-10 px-4 border border-slate-200 bg-white text-slate-700 hover:bg-slate-50"
+              onClick={resetFilters}
+            >
               Reset
             </Button>
           </div>

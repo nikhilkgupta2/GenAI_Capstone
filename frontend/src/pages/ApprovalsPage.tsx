@@ -190,7 +190,7 @@ export function ApprovalsPage() {
                   onChange={(e) => setRejectionReason(e.target.value)}
                   className="mt-1 block w-full rounded-md border border-slate-200 bg-white px-3 py-2 text-sm outline-none transition focus:border-slate-400 focus:ring-2 focus:ring-slate-100"
                 >
-                  <option value="Spam/Fake registration">Spam/Fake registration</option>
+                  <option value="Spam/Fake registration ">Spam/Fake registration</option>
                   <option value="Incorrect / Invalid contact email">Incorrect / Invalid contact email</option>
                   <option value="Business verification failed">Business verification failed</option>
                   <option value="Violates Terms of Service">Violates Terms of Service</option>

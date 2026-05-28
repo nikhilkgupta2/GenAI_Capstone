@@ -1104,11 +1104,13 @@ export function DashboardPage() {
             className="h-10 w-full rounded-md border border-slate-200 bg-white px-3 text-sm font-semibold text-slate-700 outline-none transition focus:border-slate-400 focus:ring-2 focus:ring-slate-100 sm:max-w-xs"
           >
             <option value="">All Tenants (Platform Overview)</option>
-            {adminQuery.data.tenant_summaries.map((t) => (
-              <option key={t.tenant_id} value={t.tenant_id}>
-                {t.company_name} ({t.status.toUpperCase()})
-              </option>
-            ))}
+            {adminQuery.data.tenant_summaries
+              .filter((t) => t.status === 'active' || t.status === 'suspended')
+              .map((t) => (
+                <option key={t.tenant_id} value={t.tenant_id}>
+                  {t.company_name} ({t.status.toUpperCase()})
+                </option>
+              ))}
           </select>
         </div>
       )}
