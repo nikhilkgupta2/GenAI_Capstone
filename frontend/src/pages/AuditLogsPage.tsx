@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { useMemo, useState, useEffect } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { AlertCircle, ChevronLeft, ChevronRight } from 'lucide-react';
 
@@ -26,11 +26,24 @@ const emptyFilters: AuditFilterState = {
 const pageSize = 12;
 
 export function AuditLogsPage() {
-  const [filters, setFilters] = useState(emptyFilters);
-  const [page, setPage] = useState(1);
-  const [selectedLog, setSelectedLog] = useState<AuditLog | null>(null);
   const role = useAuthStore((state) => state.user?.role);
   const selectedTenantId = useAuthStore((state) => state.selectedTenantId);
+  const setSelectedTenantId = useAuthStore((state) => state.setSelectedTenantId);
+
+  const [filters, setFilters] = useState<AuditFilterState>(() => ({
+    ...emptyFilters,
+    tenantId: selectedTenantId ?? '',
+  }));
+  const [page, setPage] = useState(1);
+  const [selectedLog, setSelectedLog] = useState<AuditLog | null>(null);
+
+  // Sync filter when tenant changes globally
+  useEffect(() => {
+    setFilters((prev) => ({
+      ...prev,
+      tenantId: selectedTenantId ?? '',
+    }));
+  }, [selectedTenantId]);
 
   const logsQuery = useQuery<AuditLog[]>({
     queryKey: ['audit-logs', role, selectedTenantId],
@@ -75,6 +88,7 @@ export function AuditLogsPage() {
   const updateFilters = (nextFilters: AuditFilterState) => {
     setFilters(nextFilters);
     setPage(1);
+    setSelectedTenantId(nextFilters.tenantId || null);
   };
 
   return (

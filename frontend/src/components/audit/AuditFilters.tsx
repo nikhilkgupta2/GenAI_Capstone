@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react';
 import { Search } from 'lucide-react';
 
 import { Input } from '../Input';
@@ -26,51 +27,149 @@ export function AuditFilters({
   modules: string[];
   actions: string[];
   actorRoles: string[];
-  tenants?: { id: string; company_name: string }[];
+  tenants?: { id: string; company_name: string; status?: string }[];
   onChange: (filters: AuditFilterState) => void;
   onReset: () => void;
 }) {
+  const [localFilters, setLocalFilters] = useState<AuditFilterState>(filters);
+
+  // Sync state if filters change externally (e.g. from parent reset)
+  useEffect(() => {
+    setLocalFilters(filters);
+  }, [filters]);
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    onChange(localFilters);
+  };
+
+  const handleReset = () => {
+    onReset();
+  };
+
+  const approvedTenants = (tenants ?? []).filter(
+    (t) => !t.status || t.status === 'active' || t.status === 'suspended'
+  );
+
   return (
-    <div className="grid gap-3 border-b border-slate-200 bg-slate-50/60 p-4 lg:grid-cols-[minmax(260px,1.6fr)_repeat(5,minmax(140px,1fr))_auto]">
-      <label className="relative">
-        <Search className="pointer-events-none absolute left-3 top-2.5 h-4 w-4 text-slate-400" />
+    <form
+      onSubmit={handleSubmit}
+      className="flex flex-row flex-wrap items-end gap-3 border-b border-slate-200 bg-slate-50/60 p-4"
+    >
+      <label className="flex-1 min-w-[200px] max-w-xs space-y-1.5 text-xs font-semibold text-slate-500">
+        <span>Search</span>
+        <div className="relative">
+          <Search className="pointer-events-none absolute left-3 top-2.5 h-4 w-4 text-slate-400" />
+          <Input
+            className="pl-9"
+            placeholder="Search user, product..."
+            value={localFilters.search}
+            onChange={(event) => setLocalFilters({ ...localFilters, search: event.target.value })}
+          />
+        </div>
+      </label>
+
+      {tenants && (
+        <label className="w-48 space-y-1.5 text-xs font-semibold text-slate-500">
+          <span>Workspace Focus</span>
+          <Select
+            value={localFilters.tenantId ?? ''}
+            onChange={(event) => setLocalFilters({ ...localFilters, tenantId: event.target.value })}
+          >
+            <option value="">Platform Overview</option>
+            {approvedTenants.map((t) => (
+              <option key={t.id} value={t.id}>
+                {t.company_name}
+              </option>
+            ))}
+          </Select>
+        </label>
+      )}
+
+      <label className="w-40 space-y-1.5 text-xs font-semibold text-slate-500">
+        <span>Module</span>
+        <Select
+          value={localFilters.module}
+          onChange={(event) => setLocalFilters({ ...localFilters, module: event.target.value })}
+        >
+          <option value="">All modules</option>
+          {modules.map((module) => (
+            <option key={module} value={module}>
+              {module}
+            </option>
+          ))}
+        </Select>
+      </label>
+
+      <label className="w-40 space-y-1.5 text-xs font-semibold text-slate-500">
+        <span>Action</span>
+        <Select
+          value={localFilters.action}
+          onChange={(event) => setLocalFilters({ ...localFilters, action: event.target.value })}
+        >
+          <option value="">All actions</option>
+          {actions.map((action) => (
+            <option key={action} value={action}>
+              {action}
+            </option>
+          ))}
+        </Select>
+      </label>
+
+      <label className="w-36 space-y-1.5 text-xs font-semibold text-slate-500">
+        <span>Status</span>
+        <Select
+          value={localFilters.status}
+          onChange={(event) => setLocalFilters({ ...localFilters, status: event.target.value })}
+        >
+          <option value="">All statuses</option>
+          {['pending', 'approved', 'rejected', 'cancelled', 'completed', 'recorded'].map((status) => (
+            <option key={status} value={status}>
+              {status}
+            </option>
+          ))}
+        </Select>
+      </label>
+
+      <label className="w-36 space-y-1.5 text-xs font-semibold text-slate-500">
+        <span>Role</span>
+        <Select
+          value={localFilters.actorRole}
+          onChange={(event) => setLocalFilters({ ...localFilters, actorRole: event.target.value })}
+        >
+          <option value="">All roles</option>
+          {actorRoles.map((role) => (
+            <option key={role} value={role}>
+              {role}
+            </option>
+          ))}
+        </Select>
+      </label>
+
+      <label className="w-40 space-y-1.5 text-xs font-semibold text-slate-500">
+        <span>Date</span>
         <Input
-          className="pl-9"
-          placeholder="Search user, product, action, metadata"
-          value={filters.search}
-          onChange={(event) => onChange({ ...filters, search: event.target.value })}
+          type="date"
+          value={localFilters.date}
+          onChange={(event) => setLocalFilters({ ...localFilters, date: event.target.value })}
         />
       </label>
-      {tenants && (
-        <Select value={filters.tenantId ?? ''} onChange={(event) => onChange({ ...filters, tenantId: event.target.value })}>
-          <option value="">All tenants</option>
-          {tenants.map((t) => <option key={t.id} value={t.id}>{t.company_name}</option>)}
-        </Select>
-      )}
-      <Select value={filters.module} onChange={(event) => onChange({ ...filters, module: event.target.value })}>
-        <option value="">All modules</option>
-        {modules.map((module) => <option key={module} value={module}>{module}</option>)}
-      </Select>
-      <Select value={filters.action} onChange={(event) => onChange({ ...filters, action: event.target.value })}>
-        <option value="">All actions</option>
-        {actions.map((action) => <option key={action} value={action}>{action}</option>)}
-      </Select>
-      <Select value={filters.status} onChange={(event) => onChange({ ...filters, status: event.target.value })}>
-        <option value="">All statuses</option>
-        {['pending', 'approved', 'rejected', 'cancelled', 'completed', 'recorded'].map((status) => <option key={status} value={status}>{status}</option>)}
-      </Select>
-      <Select value={filters.actorRole} onChange={(event) => onChange({ ...filters, actorRole: event.target.value })}>
-        <option value="">All roles</option>
-        {actorRoles.map((role) => <option key={role} value={role}>{role}</option>)}
-      </Select>
-      <Input type="date" value={filters.date} onChange={(event) => onChange({ ...filters, date: event.target.value })} />
-      <button
-        type="button"
-        className="h-9 rounded-md border border-slate-200 bg-white px-3 text-sm font-semibold text-slate-700 transition hover:border-slate-300 hover:text-slate-950"
-        onClick={onReset}
-      >
-        Reset
-      </button>
-    </div>
+
+      <div className="flex gap-2">
+        <button
+          type="submit"
+          className="h-9 rounded-md bg-slate-900 px-4 text-sm font-semibold text-white transition hover:bg-slate-800"
+        >
+          Apply
+        </button>
+        <button
+          type="button"
+          className="h-9 rounded-md border border-slate-200 bg-white px-4 text-sm font-semibold text-slate-700 transition hover:bg-slate-50"
+          onClick={handleReset}
+        >
+          Reset
+        </button>
+      </div>
+    </form>
   );
 }
