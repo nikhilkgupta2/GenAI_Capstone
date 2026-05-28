@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { AlertCircle, Check, ClipboardCheck, X, UserCheck, Slash, Eye } from 'lucide-react';
 import { Link } from 'react-router-dom';
@@ -24,6 +25,7 @@ function typeLabel(type: ApprovalQueueItem['type']) {
 export function ApprovalsPage() {
   const queryClient = useQueryClient();
   const role = useAuthStore((state) => state.user?.role);
+  const selectedTenantId = useAuthStore((state) => state.selectedTenantId);
 
   // Retailer approvals queries
   const approvalsQuery = useQuery({
@@ -74,16 +76,24 @@ export function ApprovalsPage() {
     },
   });
 
+  const [rejectingTenantId, setRejectingTenantId] = useState<string | null>(null);
+  const [rejectionReason, setRejectionReason] = useState<string>('Spam/Fake registration');
+
   // Super Admin action mutation
   const tenantStatusMutation = useMutation({
-    mutationFn: ({ id, status }: { id: string; status: string }) => updateTenantStatus(id, status),
+    mutationFn: ({ id, status, rejectionReason }: { id: string; status: string; rejectionReason?: string }) =>
+      updateTenantStatus(id, status, rejectionReason),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['super-admin', 'pending-tenants'] });
+      setRejectingTenantId(null);
     },
   });
 
   if (role === 'super_admin') {
-    const pendingTenants = tenantApprovalsQuery.data ?? [];
+    const rawPendingTenants = tenantApprovalsQuery.data ?? [];
+    const pendingTenants = selectedTenantId
+      ? rawPendingTenants.filter((t) => t.id === selectedTenantId)
+      : rawPendingTenants;
     return (
       <Page>
         <PageHeader
@@ -153,7 +163,7 @@ export function ApprovalsPage() {
                         <Button
                           type="button"
                           className="h-8 bg-red-600 px-3 hover:bg-red-500 inline-flex items-center"
-                          onClick={() => tenantStatusMutation.mutate({ id: t.id, status: 'rejected' })}
+                          onClick={() => setRejectingTenantId(t.id)}
                         >
                           <Slash className="mr-1 h-3.5 w-3.5" /> Reject
                         </Button>
@@ -165,6 +175,53 @@ export function ApprovalsPage() {
             </DataTable>
           )}
         </SectionCard>
+
+        {rejectingTenantId ? (
+          <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/40 p-4">
+            <section className="w-full max-w-md rounded-lg bg-white p-5 shadow-xl">
+              <h2 className="text-lg font-semibold text-slate-950">Reject Tenant Registration</h2>
+              <p className="mt-2 text-sm text-slate-600">
+                Please specify a rejection reason. This is mandatory and will be logged and displayed to the tenant on login attempt.
+              </p>
+              <div className="mt-4">
+                <label className="block text-sm font-medium text-slate-700">Rejection Reason</label>
+                <select
+                  value={rejectionReason}
+                  onChange={(e) => setRejectionReason(e.target.value)}
+                  className="mt-1 block w-full rounded-md border border-slate-200 bg-white px-3 py-2 text-sm outline-none transition focus:border-slate-400 focus:ring-2 focus:ring-slate-100"
+                >
+                  <option value="Spam/Fake registration">Spam/Fake registration</option>
+                  <option value="Incorrect / Invalid contact email">Incorrect / Invalid contact email</option>
+                  <option value="Business verification failed">Business verification failed</option>
+                  <option value="Violates Terms of Service">Violates Terms of Service</option>
+                  <option value="Other / Security Concern">Other / Security Concern</option>
+                </select>
+              </div>
+              {tenantStatusMutation.isError ? (
+                <p className="mt-3 flex items-center gap-2 rounded-md bg-red-50 p-3 text-sm text-red-700">
+                  <AlertCircle className="h-4 w-4" /> Failed to reject tenant.
+                </p>
+              ) : null}
+              <div className="mt-5 flex flex-col-reverse gap-3 sm:flex-row sm:justify-end">
+                <Button
+                  type="button"
+                  className="border border-slate-200 bg-white text-slate-700 hover:bg-slate-50"
+                  onClick={() => setRejectingTenantId(null)}
+                >
+                  Cancel
+                </Button>
+                <Button
+                  type="button"
+                  className="bg-red-600 hover:bg-red-500"
+                  disabled={tenantStatusMutation.isPending}
+                  onClick={() => tenantStatusMutation.mutate({ id: rejectingTenantId, status: 'rejected', rejectionReason })}
+                >
+                  {tenantStatusMutation.isPending ? 'Rejecting...' : 'Reject Tenant'}
+                </Button>
+              </div>
+            </section>
+          </div>
+        ) : null}
       </Page>
     );
   }

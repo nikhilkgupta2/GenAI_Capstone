@@ -20,14 +20,17 @@ export type AuthUser = {
   is_active: boolean;
   is_email_verified?: boolean;
   assigned_warehouse?: string | null;
+  company_name?: string | null;
 };
 
 type AuthState = {
   token: string | null;
   tokenExpiresAt: number | null;
   user: AuthUser | null;
+  selectedTenantId: string | null;
   setSession: (token: string, user: AuthUser) => void;
   setUser: (user: AuthUser) => void;
+  setSelectedTenantId: (tenantId: string | null) => void;
   clearSession: () => void;
 };
 
@@ -37,9 +40,11 @@ export const useAuthStore = create<AuthState>()(
       token: null,
       tokenExpiresAt: null,
       user: null,
+      selectedTenantId: null,
       setSession: (token, user) => set({ token, tokenExpiresAt: getTokenExpiry(token), user }),
       setUser: (user) => set({ user }),
-      clearSession: () => set({ token: null, tokenExpiresAt: null, user: null }),
+      setSelectedTenantId: (tenantId) => set({ selectedTenantId: tenantId }),
+      clearSession: () => set({ token: null, tokenExpiresAt: null, user: null, selectedTenantId: null }),
     }),
     {
       name: 'ims-auth',

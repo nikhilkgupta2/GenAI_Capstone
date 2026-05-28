@@ -10,6 +10,7 @@ from app.models.supplier import Supplier
 from app.models.tenant import Tenant
 from app.models.user import User
 from app.models.warehouse import StockTransfer, StockTransferItem, Warehouse, WarehouseInventory
+from app.models.subscription_plan import SubscriptionPlan
 
 __all__ = [
     "InventoryTransaction",
@@ -30,4 +31,5 @@ __all__ = [
     "WarehouseInventory",
     "StockTransfer",
     "StockTransferItem",
+    "SubscriptionPlan",
 ]

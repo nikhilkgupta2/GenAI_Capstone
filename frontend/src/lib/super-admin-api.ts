@@ -128,9 +128,10 @@ export async function getTenant(tenantId: string) {
   return response.data.data;
 }
 
-export async function updateTenantStatus(tenantId: string, statusVal: string) {
+export async function updateTenantStatus(tenantId: string, statusVal: string, rejectionReason?: string) {
   const response = await api.post<ApiEnvelope<TenantItem>>(`/super-admin/tenants/${tenantId}/status`, {
     status: statusVal,
+    rejection_reason: rejectionReason,
   });
   return response.data.data;
 }
@@ -186,5 +187,32 @@ export async function getSupportIssues() {
 
 export async function getRolePermissions() {
   const response = await api.get<ApiEnvelope<PermissionMatrixData>>('/super-admin/permissions');
+  return response.data.data;
+}
+
+export type SubscriptionPlanItem = {
+  plan_code: string;
+  name: string;
+  price: number;
+  max_users: number;
+  max_warehouses: number;
+  max_products: number;
+  feature_barcode: boolean;
+  feature_warehouses: boolean;
+  feature_procurement: boolean;
+  feature_analytics: boolean;
+  feature_exports: boolean;
+  feature_audit_logs: boolean;
+  description: string | null;
+  storage_limit_gb: number;
+};
+
+export async function getPlans() {
+  const response = await api.get<ApiEnvelope<SubscriptionPlanItem[]>>('/super-admin/plans');
+  return response.data.data ?? [];
+}
+
+export async function updatePlan(planCode: string, planData: Omit<SubscriptionPlanItem, 'plan_code'>) {
+  const response = await api.put<ApiEnvelope<SubscriptionPlanItem>>(`/super-admin/plans/${planCode}`, planData);
   return response.data.data;
 }

@@ -74,7 +74,6 @@ export const superAdminNavigationGroups: NavigationGroup[] = [
       { to: '/app', label: 'Overview', icon: LayoutDashboard },
       { to: '/tenants', label: 'Tenants', icon: Globe },
       { to: '/approvals', label: 'Approvals', icon: ShieldCheck },
-      { to: '/platform-analytics', label: 'Platform Analytics', icon: Layers },
       { to: '/users', label: 'Users', icon: Users },
       { to: '/audit-logs', label: 'Audit Logs', icon: History },
       { to: '/notifications', label: 'Notifications', icon: Bell },

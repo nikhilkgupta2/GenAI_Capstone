@@ -19,6 +19,7 @@ export type UserQuery = {
   is_active?: boolean;
   page?: number;
   limit?: number;
+  tenant_id?: string;
 };
 
 export type UserCreate = {

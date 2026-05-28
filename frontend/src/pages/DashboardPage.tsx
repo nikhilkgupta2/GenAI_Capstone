@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { Link } from 'react-router-dom';
 import {
@@ -31,11 +32,13 @@ import {
 import { ActivityFeedPanel } from '../components/notifications/ActivityFeedPanel';
 import {
   getAdminDashboard,
+  getAdminTenantDrilldown,
   getAuditorDashboard,
   getProcurementDashboard,
   getRetailerDashboard,
   getWarehouseStaffDashboard,
   type AdminDashboard,
+  type AdminTenantDrilldown,
   type AuditorDashboard,
   type MovementSummary,
   type ProcurementDashboard,
@@ -598,9 +601,9 @@ function AdminDashboardView({ dashboard }: { dashboard: AdminDashboard }) {
                       <DataTableCell className="font-medium text-slate-900">{tenant.inventory_units}</DataTableCell>
                       <DataTableCell>{formatNullableDate(tenant.last_activity_at)}</DataTableCell>
                       <DataTableCell>
-                        <span className="rounded-full border border-slate-200 bg-slate-50 px-2 py-1 text-xs font-medium capitalize text-slate-600">
-                          {tenant.status}
-                        </span>
+                        <Badge tone={tenant.status === 'suspended' ? 'red' : tenant.status === 'active' ? 'green' : 'amber'}>
+                          {tenant.status.toUpperCase()}
+                        </Badge>
                       </DataTableCell>
                     </DataTableRow>
                   ))}
@@ -1009,6 +1012,9 @@ export function DashboardPage() {
   const isAuditor = canUseAuditorWorkflow(user?.role);
   const isProcurementManager = user?.role === ROLES.PROCUREMENT_MANAGER;
   const showProcurementWidgets = canManageProcurement(user?.role);
+  const selectedTenantId = useAuthStore((state) => state.selectedTenantId) ?? '';
+  const setSelectedTenantId = useAuthStore((state) => state.setSelectedTenantId);
+
   const retailerQuery = useQuery({
     queryKey: ['dashboard', 'retailer'],
     queryFn: getRetailerDashboard,
@@ -1023,6 +1029,11 @@ export function DashboardPage() {
     queryKey: ['dashboard', 'admin'],
     queryFn: getAdminDashboard,
     enabled: isAdmin,
+  });
+  const tenantDrilldownQuery = useQuery({
+    queryKey: ['dashboard', 'admin', 'tenant-select', selectedTenantId],
+    queryFn: () => getAdminTenantDrilldown(selectedTenantId),
+    enabled: isAdmin && Boolean(selectedTenantId),
   });
   const auditorQuery = useQuery({
     queryKey: ['dashboard', 'auditor'],
@@ -1081,7 +1092,40 @@ export function DashboardPage() {
         }
       />
 
-      {activeQuery.isLoading ? (
+      {isAdmin && adminQuery.data && (
+        <div className="mb-6 flex flex-col gap-2 sm:flex-row sm:items-center">
+          <label htmlFor="tenant-select" className="text-sm font-semibold text-slate-700">
+            Tenant View Focus:
+          </label>
+          <select
+            id="tenant-select"
+            value={selectedTenantId}
+            onChange={(e) => setSelectedTenantId(e.target.value || null)}
+            className="h-10 w-full rounded-md border border-slate-200 bg-white px-3 text-sm font-semibold text-slate-700 outline-none transition focus:border-slate-400 focus:ring-2 focus:ring-slate-100 sm:max-w-xs"
+          >
+            <option value="">All Tenants (Platform Overview)</option>
+            {adminQuery.data.tenant_summaries.map((t) => (
+              <option key={t.tenant_id} value={t.tenant_id}>
+                {t.company_name} ({t.status.toUpperCase()})
+              </option>
+            ))}
+          </select>
+        </div>
+      )}
+
+      {selectedTenantId ? (
+        tenantDrilldownQuery.isLoading ? (
+          <p className="text-sm text-slate-500">Loading tenant analytics...</p>
+        ) : tenantDrilldownQuery.isError ? (
+          <p className="flex items-center gap-2 rounded-md bg-red-50 p-3 text-sm text-red-700">
+            <AlertCircle className="h-4 w-4" /> Tenant analytics could not be loaded.
+          </p>
+        ) : tenantDrilldownQuery.data ? (
+          <TenantDashboardView data={tenantDrilldownQuery.data} />
+        ) : (
+          <p className="text-sm text-slate-500">No tenant data available.</p>
+        )
+      ) : activeQuery.isLoading ? (
         <p className="text-sm text-slate-500">Loading dashboard...</p>
       ) : activeQuery.isError ? (
         <p className="flex items-center gap-2 rounded-md bg-red-50 p-3 text-sm text-red-700">
@@ -1112,5 +1156,113 @@ export function DashboardPage() {
         <p className="text-sm text-slate-500">No dashboard data available.</p>
       )}
     </Page>
+  );
+}
+
+function TenantDashboardView({ data }: { data: AdminTenantDrilldown }) {
+  const max = Math.max(1, ...data.activity_trends.map((trend) => trend.transaction_count));
+
+  return (
+    <div className="space-y-6">
+      {data.tenant.status === 'suspended' && (
+        <div className="flex items-center gap-2 rounded-md border border-red-200 bg-red-50 p-3 text-sm text-red-700">
+          <AlertCircle className="h-4 w-4 shrink-0" />
+          <span>
+            <strong>Suspended Tenant:</strong> This tenant organization is suspended. Its users cannot log in or perform any actions.
+          </span>
+        </div>
+      )}
+
+      <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-5">
+        <StatCard title="Active users" value={data.tenant.active_users} icon={Users} />
+        <StatCard title="Products" value={data.tenant.product_count} icon={Boxes} />
+        <StatCard title="Inventory units" value={data.tenant.inventory_units} icon={PackageCheck} />
+        <StatCard title="Low-stock products" value={data.low_stock_products} icon={AlertCircle} />
+        <StatCard
+          title="Activity events"
+          value={data.activity_trends.reduce((total, trend) => total + trend.transaction_count, 0)}
+          icon={Activity}
+        />
+      </div>
+
+      <section className="rounded-lg border border-slate-200 bg-white p-5 shadow-sm">
+        <div className="flex items-center justify-between border-b border-slate-100 pb-3">
+          <div>
+            <h2 className="text-lg font-semibold text-slate-950">Tenant overview</h2>
+            <p className="text-sm text-slate-500">Read-only details for this specific tenant.</p>
+          </div>
+          <Badge tone={data.tenant.status === 'suspended' ? 'red' : data.tenant.status === 'active' ? 'green' : 'amber'}>
+            {data.tenant.status.toUpperCase()}
+          </Badge>
+        </div>
+        <dl className="mt-4 grid gap-4 text-sm sm:grid-cols-2 lg:grid-cols-4">
+          <div>
+            <dt className="font-medium text-slate-500">Tenant ID</dt>
+            <dd className="mt-1 break-all text-slate-900">{data.tenant.tenant_id}</dd>
+          </div>
+          <div>
+            <dt className="font-medium text-slate-500">Last activity</dt>
+            <dd className="mt-1 text-slate-900">{formatNullableDate(data.tenant.last_activity_at)}</dd>
+          </div>
+          <div>
+            <dt className="font-medium text-slate-500">Inbound units</dt>
+            <dd className="mt-1 text-slate-900">{data.movement_summary.stock_in.toLocaleString()}</dd>
+          </div>
+          <div>
+            <dt className="font-medium text-slate-500">Outbound units</dt>
+            <dd className="mt-1 text-slate-900">{data.movement_summary.stock_out.toLocaleString()}</dd>
+          </div>
+        </dl>
+      </section>
+
+      <div className="grid gap-6 xl:grid-cols-[minmax(280px,420px)_1fr]">
+        <section className="rounded-lg border border-slate-200 bg-white p-5 shadow-sm">
+          <SectionHeader title="Category distribution" description="Aggregate product categories only." />
+          {data.category_stats.length === 0 ? (
+            <p className="mt-4 text-sm text-slate-500">No category data.</p>
+          ) : (
+            <div className="mt-4 space-y-3">
+              {data.category_stats.map((category) => (
+                <div key={category.category} className="rounded-md border border-slate-200 p-3">
+                  <div className="flex items-center justify-between gap-3">
+                    <p className="font-medium text-slate-900">{category.category}</p>
+                    <span className="text-sm text-slate-500">{category.product_count} products</span>
+                  </div>
+                  <p className="mt-1 text-sm text-slate-500">
+                    {category.total_quantity.toLocaleString()} units
+                  </p>
+                </div>
+              ))}
+            </div>
+          )}
+        </section>
+
+        <section className="rounded-lg border border-slate-200 bg-white p-5 shadow-sm">
+          <SectionHeader title="Activity trend" description="Daily aggregate event volume. No transaction-level detail." />
+          {data.activity_trends.length === 0 ? (
+            <p className="mt-4 text-sm text-slate-500">No recent tenant activity.</p>
+          ) : (
+            <div className="mt-4 space-y-3">
+              {data.activity_trends.map((trend) => (
+                <div key={trend.period}>
+                  <div className="mb-1 flex items-center justify-between text-sm">
+                    <span className="font-medium text-slate-600">{trend.period}</span>
+                    <span className="text-slate-500">
+                      {trend.transaction_count.toLocaleString()} events · {trend.units_moved.toLocaleString()} units
+                    </span>
+                  </div>
+                  <div className="h-2 rounded-full bg-slate-100">
+                    <div
+                      className="h-2 rounded-full bg-slate-900"
+                      style={{ width: `${Math.max(6, (trend.transaction_count / max) * 100)}%` }}
+                    />
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
+        </section>
+      </div>
+    </div>
   );
 }

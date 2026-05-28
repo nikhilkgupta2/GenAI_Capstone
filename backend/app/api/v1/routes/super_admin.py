@@ -26,6 +26,7 @@ SuperAdminUser = Annotated[User, Depends(require_roles(UserRole.SUPER_ADMIN))]
 # Request payload schemas
 class TenantStatusUpdate(BaseModel):
     status: TenantStatus
+    rejection_reason: str | None = None
 
 
 class TenantPlanUpdate(BaseModel):
@@ -104,7 +105,8 @@ def get_tenant_details(db: Session, tenant: Tenant) -> dict:
         "products_count": products_count,
         "warehouses_count": warehouses_count,
         "last_activity": last_activity,
-        "onboarding_percentage": onboarding_percent
+        "onboarding_percentage": onboarding_percent,
+        "rejection_reason": tenant.rejection_reason
     }
 
 
@@ -158,6 +160,13 @@ def update_tenant_status(
     old_status = tenant.status
     tenant.status = payload.status
     
+    if payload.status == TenantStatus.REJECTED:
+        if not payload.rejection_reason:
+            raise HTTPException(status_code=400, detail="Rejection reason is required.")
+        tenant.rejection_reason = payload.rejection_reason
+    elif payload.status == TenantStatus.ACTIVE:
+        tenant.rejection_reason = None
+        
     # Audit log
     audit = AuditLog(
         tenant_id=tenant.id,
@@ -167,7 +176,7 @@ def update_tenant_status(
         entity_type="tenant",
         entity_id=tenant.id,
         old_value={"status": old_status},
-        new_value={"status": payload.status},
+        new_value={"status": payload.status, "rejection_reason": tenant.rejection_reason},
         message=f"Tenant status changed from {old_status} to {payload.status} by super admin."
     )
     db.add(audit)
@@ -562,5 +571,140 @@ def list_role_permissions(db: DbSession, current_user: SuperAdminUser):
                 {"id": "t-1", "name": "Standard Enterprise Retailer", "roles_count": 5},
                 {"id": "t-2", "name": "Lightweight Logistics / Single WH", "roles_count": 3}
             ]
+        }
+    )
+
+
+class PlanUpdatePayload(BaseModel):
+    name: str
+    price: float
+    max_users: int
+    max_warehouses: int
+    max_products: int
+    feature_barcode: bool
+    feature_warehouses: bool
+    feature_procurement: bool
+    feature_analytics: bool
+    feature_exports: bool
+    feature_audit_logs: bool
+    description: str | None = None
+    storage_limit_gb: int = 10
+
+
+# 6. Subscription Plans Management API
+@router.get("/plans", response_model=ApiResponse)
+def list_plans(db: DbSession, current_user: SuperAdminUser):
+    from app.models.subscription_plan import SubscriptionPlan
+    plans = db.query(SubscriptionPlan).order_by(SubscriptionPlan.price.asc()).all()
+    data = []
+    for plan in plans:
+        data.append({
+            "plan_code": plan.plan_code,
+            "name": plan.name,
+            "price": plan.price,
+            "max_users": plan.max_users,
+            "max_warehouses": plan.max_warehouses,
+            "max_products": plan.max_products,
+            "feature_barcode": plan.feature_barcode,
+            "feature_warehouses": plan.feature_warehouses,
+            "feature_procurement": plan.feature_procurement,
+            "feature_analytics": plan.feature_analytics,
+            "feature_exports": plan.feature_exports,
+            "feature_audit_logs": plan.feature_audit_logs,
+            "description": plan.description,
+            "storage_limit_gb": plan.storage_limit_gb,
+        })
+    return ApiResponse(message="Plans fetched successfully.", data=data)
+
+
+@router.put("/plans/{plan_code}", response_model=ApiResponse)
+def update_plan(
+    plan_code: str,
+    payload: PlanUpdatePayload,
+    db: DbSession,
+    current_user: SuperAdminUser
+):
+    from app.models.subscription_plan import SubscriptionPlan
+    plan = db.query(SubscriptionPlan).filter(SubscriptionPlan.plan_code == plan_code).first()
+    if not plan:
+        raise HTTPException(status_code=404, detail="Subscription plan not found")
+
+    old_values = {
+        "name": plan.name,
+        "price": plan.price,
+        "max_users": plan.max_users,
+        "max_warehouses": plan.max_warehouses,
+        "max_products": plan.max_products,
+        "feature_barcode": plan.feature_barcode,
+        "feature_warehouses": plan.feature_warehouses,
+        "feature_procurement": plan.feature_procurement,
+        "feature_analytics": plan.feature_analytics,
+        "feature_exports": plan.feature_exports,
+        "feature_audit_logs": plan.feature_audit_logs,
+        "description": plan.description,
+        "storage_limit_gb": plan.storage_limit_gb,
+    }
+
+    # Update the plan
+    plan.name = payload.name
+    plan.price = payload.price
+    plan.max_users = payload.max_users
+    plan.max_warehouses = payload.max_warehouses
+    plan.max_products = payload.max_products
+    plan.feature_barcode = payload.feature_barcode
+    plan.feature_warehouses = payload.feature_warehouses
+    plan.feature_procurement = payload.feature_procurement
+    plan.feature_analytics = payload.feature_analytics
+    plan.feature_exports = payload.feature_exports
+    plan.feature_audit_logs = payload.feature_audit_logs
+    plan.description = payload.description
+    plan.storage_limit_gb = payload.storage_limit_gb
+
+    # Update all tenants currently on this plan!
+    tenants = db.query(Tenant).filter(Tenant.plan == plan_code).all()
+    for tenant in tenants:
+        tenant.max_users = payload.max_users
+        tenant.max_warehouses = payload.max_warehouses
+        tenant.max_products = payload.max_products
+        tenant.feature_barcode = payload.feature_barcode
+        tenant.feature_warehouses = payload.feature_warehouses
+        tenant.feature_procurement = payload.feature_procurement
+        tenant.feature_analytics = payload.feature_analytics
+        tenant.feature_exports = payload.feature_exports
+        tenant.feature_audit_logs = payload.feature_audit_logs
+
+    db.commit()
+
+    # Log audit event
+    audit = AuditLog(
+        tenant_id=None,
+        actor_id=current_user.id,
+        module="super_admin",
+        action="update_subscription_plan",
+        entity_type="subscription_plan",
+        entity_id=plan.id,
+        old_value=old_values,
+        new_value=payload.model_dump(),
+    )
+    db.add(audit)
+    db.commit()
+
+    return ApiResponse(
+        message="Plan updated successfully and limits propagated to active tenants.",
+        data={
+            "plan_code": plan.plan_code,
+            "name": plan.name,
+            "price": plan.price,
+            "max_users": plan.max_users,
+            "max_warehouses": plan.max_warehouses,
+            "max_products": plan.max_products,
+            "feature_barcode": plan.feature_barcode,
+            "feature_warehouses": plan.feature_warehouses,
+            "feature_procurement": plan.feature_procurement,
+            "feature_analytics": plan.feature_analytics,
+            "feature_exports": plan.feature_exports,
+            "feature_audit_logs": plan.feature_audit_logs,
+            "description": plan.description,
+            "storage_limit_gb": plan.storage_limit_gb,
         }
     )

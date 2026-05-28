@@ -307,11 +307,11 @@ function UserFormModal({
   );
 }
 
-export function UsersPage() {
-  const [searchParams, setSearchParams] = useState({ search: '', role: '', is_active: '' });
-  const [appliedFilters, setAppliedFilters] = useState({ search: '', role: '', is_active: '' });
-  const [page, setPage] = useState(1);
+export function UsersPage({ tenantId }: { tenantId?: string } = {}) {
   const [modalState, setModalState] = useState<UserModalState>(null);
+  const [appliedFilters, setAppliedFilters] = useState({ search: '', role: '', is_active: '' });
+  const [searchParams, setSearchParams] = useState({ search: '', role: '', is_active: '' });
+  const [page, setPage] = useState(1);
   const [deleteTarget, setDeleteTarget] = useState<ManagedUser | null>(null);
   const [notice, setNotice] = useState<string | null>(null);
   const [formError, setFormError] = useState<string | null>(null);
@@ -319,6 +319,8 @@ export function UsersPage() {
   const queryClient = useQueryClient();
   const currentUser = useAuthStore((state) => state.user);
   const setCurrentUser = useAuthStore((state) => state.setUser);
+  const storeSelectedTenantId = useAuthStore((state) => state.selectedTenantId);
+  const selectedTenantId = tenantId || storeSelectedTenantId;
   const canManageUsers = currentUser?.role === 'super_admin' || currentUser?.role === 'retailer_admin';
 
   const queryParams: UserQuery = useMemo(
@@ -328,8 +330,9 @@ export function UsersPage() {
       is_active: appliedFilters.is_active === '' ? undefined : appliedFilters.is_active === 'true',
       page,
       limit: DEFAULT_PAGE_SIZE,
+      tenant_id: selectedTenantId || undefined,
     }),
-    [appliedFilters, page],
+    [appliedFilters, page, selectedTenantId],
   );
 
   const { data, isError, isLoading } = useQuery({
@@ -400,25 +403,8 @@ export function UsersPage() {
     }
   };
 
-  return (
-    <Page>
-      <PageHeader
-        eyebrow="Access control"
-        title="Users"
-        description={canManageUsers ? 'Manage tenant access, account status, and role assignment.' : 'View users in your tenant.'}
-        actions={canManageUsers ? (
-          <Button
-            type="button"
-            onClick={() => {
-              setFormError(null);
-              setModalState({ mode: 'create' });
-            }}
-          >
-            <Plus className="mr-2 h-4 w-4" /> New user
-          </Button>
-        ) : null}
-      />
-
+  const innerContent = (
+    <>
       {notice ? (
         <div className="mb-4 flex items-center justify-between rounded-md border border-emerald-200 bg-emerald-50 p-3 text-sm text-emerald-700">
           <span className="flex items-center gap-2">
@@ -485,9 +471,24 @@ export function UsersPage() {
         <SectionHeader
           title="User list"
           description={`${total.toLocaleString()} accounts match the current filters.`}
-          actions={<p className="text-sm text-slate-500">
-            Page {page} of {totalPages}
-          </p>}
+          actions={
+            <div className="flex items-center gap-4">
+              {tenantId && canManageUsers && (
+                <Button
+                  type="button"
+                  onClick={() => {
+                    setFormError(null);
+                    setModalState({ mode: 'create' });
+                  }}
+                >
+                  <Plus className="mr-2 h-4 w-4" /> New user
+                </Button>
+              )}
+              <p className="text-sm text-slate-500">
+                Page {page} of {totalPages}
+              </p>
+            </div>
+          }
         />
 
         {isLoading ? (
@@ -590,11 +591,41 @@ export function UsersPage() {
           </div>
         </div>
       </section>
+    </>
+  );
+
+  return (
+    <>
+      {tenantId ? (
+        <div className="space-y-4">
+          {innerContent}
+        </div>
+      ) : (
+        <Page>
+          <PageHeader
+            eyebrow="Access control"
+            title="Users"
+            description={canManageUsers ? 'Manage tenant access, account status, and role assignment.' : 'View users in your tenant.'}
+            actions={canManageUsers ? (
+              <Button
+                type="button"
+                onClick={() => {
+                  setFormError(null);
+                  setModalState({ mode: 'create' });
+                }}
+              >
+                <Plus className="mr-2 h-4 w-4" /> New user
+              </Button>
+            ) : null}
+          />
+          {innerContent}
+        </Page>
+      )}
 
       <UserFormModal
         state={modalState}
         currentRole={currentUser?.role ?? 'inventory_manager'}
-        currentTenantId={currentUser?.tenant_id ?? null}
+        currentTenantId={selectedTenantId ?? null}
         onClose={() => setModalState(null)}
         onSubmit={submitUserForm}
         isSaving={createMutation.isPending || updateMutation.isPending}
@@ -633,6 +664,6 @@ export function UsersPage() {
           </section>
         </div>
       ) : null}
-    </Page>
+    </>
   );
 }

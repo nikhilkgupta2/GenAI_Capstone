@@ -3,6 +3,7 @@ import logging
 from fastapi import HTTPException, status
 from sqlalchemy.orm import Session
 
+from app.core.enums import TenantStatus
 from app.core.security import create_access_token, hash_password, verify_password
 from app.repositories.tenant_repository import TenantRepository
 from app.repositories.user_repository import UserRepository
@@ -73,6 +74,24 @@ class AuthService:
                 status_code=status.HTTP_401_UNAUTHORIZED,
                 detail="Invalid email or password.",
             )
+        if user.tenant and user.tenant.status == TenantStatus.SUSPENDED:
+            raise HTTPException(
+                status_code=status.HTTP_403_FORBIDDEN,
+                detail="Your organization has been suspended. Please contact support.",
+            )
+        if user.tenant and user.tenant.status == TenantStatus.PENDING:
+            raise HTTPException(
+                status_code=status.HTTP_403_FORBIDDEN,
+                detail="Your organization registration is pending approval by the Super Admin.",
+            )
+        if user.tenant and user.tenant.status == TenantStatus.REJECTED:
+            msg = "Your account has been rejected by the Super Admin."
+            if user.tenant.rejection_reason:
+                msg += f" Reason: {user.tenant.rejection_reason}"
+            raise HTTPException(
+                status_code=status.HTTP_403_FORBIDDEN,
+                detail=msg,
+            )
         if not user.is_active:
             raise HTTPException(
                 status_code=status.HTTP_403_FORBIDDEN,
@@ -91,6 +110,24 @@ class AuthService:
         user = self.users.get_by_email(normalized_email)
         if user is None:
             raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="No account found. Please sign up first.")
+        if user.tenant and user.tenant.status == TenantStatus.SUSPENDED:
+            raise HTTPException(
+                status_code=status.HTTP_403_FORBIDDEN,
+                detail="Your organization has been suspended. Please contact support.",
+            )
+        if user.tenant and user.tenant.status == TenantStatus.PENDING:
+            raise HTTPException(
+                status_code=status.HTTP_403_FORBIDDEN,
+                detail="Your organization registration is pending approval by the Super Admin.",
+            )
+        if user.tenant and user.tenant.status == TenantStatus.REJECTED:
+            msg = "Your account has been rejected by the Super Admin."
+            if user.tenant.rejection_reason:
+                msg += f" Reason: {user.tenant.rejection_reason}"
+            raise HTTPException(
+                status_code=status.HTTP_403_FORBIDDEN,
+                detail=msg,
+            )
         if not user.is_active:
             raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail="This account is inactive.")
         if not user.is_email_verified:

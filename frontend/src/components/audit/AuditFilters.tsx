@@ -10,6 +10,7 @@ export type AuditFilterState = {
   status: string;
   actorRole: string;
   date: string;
+  tenantId?: string;
 };
 
 export function AuditFilters({
@@ -17,6 +18,7 @@ export function AuditFilters({
   modules,
   actions,
   actorRoles,
+  tenants,
   onChange,
   onReset,
 }: {
@@ -24,6 +26,7 @@ export function AuditFilters({
   modules: string[];
   actions: string[];
   actorRoles: string[];
+  tenants?: { id: string; company_name: string }[];
   onChange: (filters: AuditFilterState) => void;
   onReset: () => void;
 }) {
@@ -38,6 +41,12 @@ export function AuditFilters({
           onChange={(event) => onChange({ ...filters, search: event.target.value })}
         />
       </label>
+      {tenants && (
+        <Select value={filters.tenantId ?? ''} onChange={(event) => onChange({ ...filters, tenantId: event.target.value })}>
+          <option value="">All tenants</option>
+          {tenants.map((t) => <option key={t.id} value={t.id}>{t.company_name}</option>)}
+        </Select>
+      )}
       <Select value={filters.module} onChange={(event) => onChange({ ...filters, module: event.target.value })}>
         <option value="">All modules</option>
         {modules.map((module) => <option key={module} value={module}>{module}</option>)}

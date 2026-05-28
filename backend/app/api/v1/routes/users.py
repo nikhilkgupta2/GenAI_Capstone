@@ -36,6 +36,7 @@ def list_users(
     search: SearchQuery = None,
     role: RoleQuery = None,
     is_active: ActiveQuery = None,
+    tenant_id: UUID | None = Query(None),
     page: PageQuery = 1,
     limit: LimitQuery = 20,
 ) -> ApiResponse:
@@ -48,12 +49,14 @@ def list_users(
         is_active=is_active,
         limit=limit,
         offset=offset,
+        tenant_id=tenant_id,
     )
     total = service.count(
         current_user=current_user,
         search=search,
         role=role,
         is_active=is_active,
+        tenant_id=tenant_id,
     )
     return ApiResponse(
         message="Users fetched successfully.",

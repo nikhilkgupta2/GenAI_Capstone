@@ -1,8 +1,11 @@
+import { useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import { Activity, AlertCircle, ArrowLeft, Boxes, PackageCheck, Users } from 'lucide-react';
 
 import { getAdminTenantDrilldown, type ActivityTrend } from '../lib/dashboard-api';
+import { Badge } from '../components/ui/Badge';
+import { UsersPage } from './UsersPage';
 
 function formatDate(value?: string | null) {
   if (!value) {
@@ -61,6 +64,7 @@ function ActivityTrendBars({ trends }: { trends: ActivityTrend[] }) {
 
 export function TenantDrilldownPage() {
   const { tenantId } = useParams<{ tenantId: string }>();
+  const [activeTab, setActiveTab] = useState<'overview' | 'users'>('overview');
   const query = useQuery({
     queryKey: ['dashboard', 'admin', 'tenant', tenantId],
     queryFn: () => getAdminTenantDrilldown(String(tenantId)),
@@ -79,10 +83,35 @@ export function TenantDrilldownPage() {
           <p className="text-sm text-slate-500">Read-only aggregate tenant analytics for platform monitoring.</p>
         </div>
         {data ? (
-          <span className="rounded-full border border-slate-200 bg-white px-3 py-1 text-sm font-medium capitalize text-slate-600">
-            {data.tenant.status}
-          </span>
+          <Badge tone={data.tenant.status === 'suspended' ? 'red' : data.tenant.status === 'active' ? 'green' : 'amber'}>
+            {data.tenant.status.toUpperCase()}
+          </Badge>
         ) : null}
+      </div>
+
+      <div className="mb-6 border-b border-slate-200">
+        <nav className="-mb-px flex gap-6" aria-label="Tabs">
+          <button
+            onClick={() => setActiveTab('overview')}
+            className={`border-b-2 pb-4 text-sm font-medium transition ${
+              activeTab === 'overview'
+                ? 'border-slate-900 text-slate-900'
+                : 'border-transparent text-slate-500 hover:border-slate-300 hover:text-slate-700'
+            }`}
+          >
+            Overview
+          </button>
+          <button
+            onClick={() => setActiveTab('users')}
+            className={`border-b-2 pb-4 text-sm font-medium transition ${
+              activeTab === 'users'
+                ? 'border-slate-900 text-slate-900'
+                : 'border-transparent text-slate-500 hover:border-slate-300 hover:text-slate-700'
+            }`}
+          >
+            Users ({data?.tenant.active_users ?? 0})
+          </button>
+        </nav>
       </div>
 
       {query.isLoading ? (
@@ -96,68 +125,72 @@ export function TenantDrilldownPage() {
           <AlertCircle className="h-4 w-4" /> Tenant analytics could not be loaded.
         </p>
       ) : data ? (
-        <>
-          <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-5">
-            <StatCard title="Active users" value={data.tenant.active_users} icon={Users} />
-            <StatCard title="Products" value={data.tenant.product_count} icon={Boxes} />
-            <StatCard title="Inventory units" value={data.tenant.inventory_units} icon={PackageCheck} />
-            <StatCard title="Low-stock products" value={data.low_stock_products} icon={AlertCircle} />
-            <StatCard
-              title="Activity events"
-              value={
-                data.activity_trends.reduce((total, trend) => total + trend.transaction_count, 0)
-              }
-              icon={Activity}
-            />
-          </div>
+        activeTab === 'overview' ? (
+          <>
+            <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-5">
+              <StatCard title="Active users" value={data.tenant.active_users} icon={Users} />
+              <StatCard title="Products" value={data.tenant.product_count} icon={Boxes} />
+              <StatCard title="Inventory units" value={data.tenant.inventory_units} icon={PackageCheck} />
+              <StatCard title="Low-stock products" value={data.low_stock_products} icon={AlertCircle} />
+              <StatCard
+                title="Activity events"
+                value={
+                  data.activity_trends.reduce((total, trend) => total + trend.transaction_count, 0)
+                }
+                icon={Activity}
+              />
+            </div>
 
-          <section className="mt-6 rounded-lg border border-slate-200 bg-white p-5 shadow-sm">
-            <h2 className="text-lg font-semibold">Tenant overview</h2>
-            <dl className="mt-4 grid gap-4 text-sm sm:grid-cols-2 lg:grid-cols-4">
-              <div>
-                <dt className="font-medium text-slate-500">Tenant ID</dt>
-                <dd className="mt-1 break-all text-slate-900">{data.tenant.tenant_id}</dd>
-              </div>
-              <div>
-                <dt className="font-medium text-slate-500">Last activity</dt>
-                <dd className="mt-1 text-slate-900">{formatDate(data.tenant.last_activity_at)}</dd>
-              </div>
-              <div>
-                <dt className="font-medium text-slate-500">Inbound units</dt>
-                <dd className="mt-1 text-slate-900">{data.movement_summary.stock_in.toLocaleString()}</dd>
-              </div>
-              <div>
-                <dt className="font-medium text-slate-500">Outbound units</dt>
-                <dd className="mt-1 text-slate-900">{data.movement_summary.stock_out.toLocaleString()}</dd>
-              </div>
-            </dl>
-          </section>
-
-          <div className="mt-6 grid gap-6 xl:grid-cols-[minmax(280px,420px)_1fr]">
-            <section className="rounded-lg border border-slate-200 bg-white p-5 shadow-sm">
-              <h2 className="text-lg font-semibold">Category distribution</h2>
-              <p className="mt-1 text-sm text-slate-500">Aggregate product categories only.</p>
-              {data.category_stats.length === 0 ? (
-                <p className="mt-4 text-sm text-slate-500">No category data.</p>
-              ) : (
-                <div className="mt-4 space-y-3">
-                  {data.category_stats.map((category) => (
-                    <div key={category.category} className="rounded-md border border-slate-200 p-3">
-                      <div className="flex items-center justify-between gap-3">
-                        <p className="font-medium text-slate-900">{category.category}</p>
-                        <span className="text-sm text-slate-500">{category.product_count} products</span>
-                      </div>
-                      <p className="mt-1 text-sm text-slate-500">
-                        {category.total_quantity.toLocaleString()} units
-                      </p>
-                    </div>
-                  ))}
+            <section className="mt-6 rounded-lg border border-slate-200 bg-white p-5 shadow-sm">
+              <h2 className="text-lg font-semibold">Tenant overview</h2>
+              <dl className="mt-4 grid gap-4 text-sm sm:grid-cols-2 lg:grid-cols-4">
+                <div>
+                  <dt className="font-medium text-slate-500">Tenant ID</dt>
+                  <dd className="mt-1 break-all text-slate-900">{data.tenant.tenant_id}</dd>
                 </div>
-              )}
+                <div>
+                  <dt className="font-medium text-slate-500">Last activity</dt>
+                  <dd className="mt-1 text-slate-900">{formatDate(data.tenant.last_activity_at)}</dd>
+                </div>
+                <div>
+                  <dt className="font-medium text-slate-500">Inbound units</dt>
+                  <dd className="mt-1 text-slate-900">{data.movement_summary.stock_in.toLocaleString()}</dd>
+                </div>
+                <div>
+                  <dt className="font-medium text-slate-500">Outbound units</dt>
+                  <dd className="mt-1 text-slate-900">{data.movement_summary.stock_out.toLocaleString()}</dd>
+                </div>
+              </dl>
             </section>
-            <ActivityTrendBars trends={data.activity_trends} />
-          </div>
-        </>
+
+            <div className="mt-6 grid gap-6 xl:grid-cols-[minmax(280px,420px)_1fr]">
+              <section className="rounded-lg border border-slate-200 bg-white p-5 shadow-sm">
+                <h2 className="text-lg font-semibold">Category distribution</h2>
+                <p className="mt-1 text-sm text-slate-500">Aggregate product categories only.</p>
+                {data.category_stats.length === 0 ? (
+                  <p className="mt-4 text-sm text-slate-500">No category data.</p>
+                ) : (
+                  <div className="mt-4 space-y-3">
+                    {data.category_stats.map((category) => (
+                      <div key={category.category} className="rounded-md border border-slate-200 p-3">
+                        <div className="flex items-center justify-between gap-3">
+                          <p className="font-medium text-slate-900">{category.category}</p>
+                          <span className="text-sm text-slate-500">{category.product_count} products</span>
+                        </div>
+                        <p className="mt-1 text-sm text-slate-500">
+                          {category.total_quantity.toLocaleString()} units
+                        </p>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </section>
+              <ActivityTrendBars trends={data.activity_trends} />
+            </div>
+          </>
+        ) : (
+          <UsersPage tenantId={tenantId} />
+        )
       ) : (
         <p className="text-sm text-slate-500">No tenant analytics available.</p>
       )}

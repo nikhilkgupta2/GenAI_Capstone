@@ -29,4 +29,6 @@ class Tenant(UUIDPrimaryKeyMixin, TimestampMixin, Base):
     feature_exports: Mapped[bool] = mapped_column(Boolean, nullable=False, default=True)
     feature_audit_logs: Mapped[bool] = mapped_column(Boolean, nullable=False, default=True)
 
+    rejection_reason: Mapped[str] = mapped_column(String(255), nullable=True)
+
     users = relationship("User", back_populates="tenant")

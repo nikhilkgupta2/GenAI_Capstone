@@ -28,6 +28,7 @@ import {
   updateTenantFeatures,
   type TenantItem,
 } from '../lib/super-admin-api';
+import { useAuthStore } from '../lib/auth-store';
 
 function formatOnboardingColor(pct: number) {
   if (pct >= 100) return 'bg-emerald-500';
@@ -64,10 +65,15 @@ export function TenantsPage() {
   });
 
   // Fetch tenants
-  const { data: tenants = [], isLoading, isError } = useQuery({
+  const { data: rawTenants = [], isLoading, isError } = useQuery({
     queryKey: ['super-admin', 'tenants', search, statusFilter],
     queryFn: () => getTenants(search || undefined, statusFilter || undefined),
   });
+
+  const selectedTenantId = useAuthStore((state) => state.selectedTenantId);
+  const tenants = selectedTenantId
+    ? rawTenants.filter((t) => t.id === selectedTenantId)
+    : rawTenants;
 
   // Mutations
   const statusMutation = useMutation({
@@ -240,7 +246,7 @@ export function TenantsPage() {
                   if (t.status === 'active') statusTone = 'green';
                   else if (t.status === 'pending') statusTone = 'amber';
                   else if (t.status === 'rejected') statusTone = 'red';
-                  else if (t.status === 'suspended') statusTone = 'slate';
+                  else if (t.status === 'suspended') statusTone = 'red';
 
                   return (
                     <DataTableRow key={t.id}>

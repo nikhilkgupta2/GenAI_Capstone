@@ -1,5 +1,5 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
 
 import { AppShell } from './components/AppShell';
 import { GuestRoute, ProtectedRoute, RoleProtectedRoute } from './components/ProtectedRoute';
@@ -26,6 +26,7 @@ import { TenantDrilldownPage } from './pages/TenantDrilldownPage';
 import { UnauthorizedPage } from './pages/UnauthorizedPage';
 import { UsersPage } from './pages/UsersPage';
 import { WarehousesPage } from './pages/WarehousesPage';
+import { ProfilePage } from './pages/ProfilePage';
 
 // Super Admin Pages
 import { TenantsPage } from './pages/TenantsPage';
@@ -55,6 +56,7 @@ export function App() {
           <Route element={<ProtectedRoute />}>
             <Route element={<AppShell />}>
               <Route path="/app" element={<DashboardPage />} />
+              <Route path="/profile" element={<ProfilePage />} />
               <Route element={<RoleProtectedRoute allowedRoles={[ROLES.RETAILER_ADMIN, ROLES.INVENTORY_MANAGER, ROLES.WAREHOUSE_STAFF, ROLES.AUDITOR, ROLES.PROCUREMENT_MANAGER]} />}>
                 <Route path="/products" element={<ProductsPage />} />
                 <Route path="/products/:productId" element={<ProductDetailPage />} />
@@ -78,7 +80,7 @@ export function App() {
               <Route element={<RoleProtectedRoute allowedRoles={[ROLES.SUPER_ADMIN]} />}>
                 <Route path="/tenants" element={<TenantsPage />} />
                 <Route path="/tenants/:tenantId" element={<TenantDrilldownPage />} />
-                <Route path="/platform-analytics" element={<PlatformAnalyticsPage />} />
+                <Route path="/platform-analytics" element={<Navigate to="/app" replace />} />
                 <Route path="/system-health" element={<SystemHealthPage />} />
                 <Route path="/billing" element={<BillingPage />} />
                 <Route path="/permissions" element={<PermissionsPage />} />

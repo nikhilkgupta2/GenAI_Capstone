@@ -74,6 +74,7 @@ class AuthUser(BaseModel):
     is_active: bool
     is_email_verified: bool
     assigned_warehouse: str | None = None
+    company_name: str | None = None
 
     model_config = ConfigDict(from_attributes=True)
 

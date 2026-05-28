@@ -180,8 +180,8 @@ export function LoginPage() {
         </div>
         {mutation.isError ? (
           <p className="flex items-center gap-2 rounded-md border border-red-100 bg-red-50 px-3 py-2 text-sm text-red-700 dark:border-red-400/30 dark:bg-red-400/10 dark:text-red-200">
-            <AlertCircle className="h-4 w-4" />
-            Invalid email or password.
+            <AlertCircle className="h-4 w-4 shrink-0" />
+            {(mutation.error as AxiosError<{ detail?: string }>)?.response?.data?.detail ?? 'Invalid email or password.'}
           </p>
         ) : null}
         <Button

@@ -8,7 +8,7 @@ from jose import JWTError, jwt
 from sqlalchemy.orm import Session
 
 from app.core.config import settings
-from app.core.enums import UserRole
+from app.core.enums import TenantStatus, UserRole
 from app.db.session import get_db
 from app.models.user import User
 from app.repositories.user_repository import UserRepository
@@ -37,6 +37,13 @@ def get_current_user(
     user = UserRepository(db).get_by_id(user_id)
     if user is None or not user.is_active:
         raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Invalid token.")
+
+    if user.tenant and user.tenant.status == TenantStatus.SUSPENDED:
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN,
+            detail="Your organization has been suspended. Access denied.",
+        )
+
     return user
 
 

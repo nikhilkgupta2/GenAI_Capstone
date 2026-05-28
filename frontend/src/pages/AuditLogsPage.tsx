@@ -11,7 +11,7 @@ import { LoadingState } from '../components/ui/LoadingState';
 import { Page, PageHeader, SectionCard, SectionHeader } from '../components/ui/Page';
 import { listAuditLogs, type AuditLog } from '../lib/audit-api';
 import { useAuthStore } from '../lib/auth-store';
-import { getAuditLogs } from '../lib/super-admin-api';
+import { getAuditLogs, getTenants } from '../lib/super-admin-api';
 
 const emptyFilters: AuditFilterState = {
   search: '',
@@ -20,6 +20,7 @@ const emptyFilters: AuditFilterState = {
   status: '',
   actorRole: '',
   date: '',
+  tenantId: '',
 };
 
 const pageSize = 12;
@@ -29,17 +30,25 @@ export function AuditLogsPage() {
   const [page, setPage] = useState(1);
   const [selectedLog, setSelectedLog] = useState<AuditLog | null>(null);
   const role = useAuthStore((state) => state.user?.role);
+  const selectedTenantId = useAuthStore((state) => state.selectedTenantId);
 
-  const logsQuery = useQuery({
-    queryKey: ['audit-logs', role],
-    queryFn: () => {
+  const logsQuery = useQuery<AuditLog[]>({
+    queryKey: ['audit-logs', role, selectedTenantId],
+    queryFn: async () => {
       if (role === 'super_admin') {
-        return getAuditLogs();
+        const data = await getAuditLogs(selectedTenantId ? { tenant_id: selectedTenantId } : undefined);
+        return data as unknown as AuditLog[];
       }
       return listAuditLogs();
     },
   });
   const logs = logsQuery.data ?? [];
+
+  const tenantsQuery = useQuery({
+    queryKey: ['tenants', 'list-for-audit-logs'],
+    queryFn: () => getTenants(),
+    enabled: role === 'super_admin',
+  });
 
   const modules = useMemo(() => distinct(logs.map((log) => log.module)), [logs]);
   const actions = useMemo(() => distinct(logs.map((log) => log.action)), [logs]);
@@ -54,6 +63,7 @@ export function AuditLogsPage() {
       if (filters.status && statusFromLog(log) !== filters.status) return false;
       if (filters.actorRole && log.actor_role !== filters.actorRole) return false;
       if (filters.date && log.created_at.slice(0, 10) !== filters.date) return false;
+      if (filters.tenantId && log.tenant_id !== filters.tenantId) return false;
       return true;
     });
   }, [filters, logs]);
@@ -85,6 +95,7 @@ export function AuditLogsPage() {
           modules={modules}
           actions={actions}
           actorRoles={actorRoles}
+          tenants={role === 'super_admin' ? tenantsQuery.data : undefined}
           onChange={updateFilters}
           onReset={() => updateFilters(emptyFilters)}
         />

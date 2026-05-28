@@ -2,8 +2,10 @@ import { useQuery } from '@tanstack/react-query';
 import { AlertCircle, Boxes, ClipboardList, Layers, TrendingUp, Users, Warehouse } from 'lucide-react';
 import { Page, PageHeader } from '../components/ui/Page';
 import { LoadingState } from '../components/ui/LoadingState';
-import { getPlatformAnalytics } from '../lib/super-admin-api';
+import { getPlatformAnalytics, getTenant } from '../lib/super-admin-api';
+import { getAdminTenantDrilldown } from '../lib/dashboard-api';
 import { DonutChartCard, LineChartCard, VerticalBarChartCard } from '../components/dashboard/DashboardCharts';
+import { useAuthStore } from '../lib/auth-store';
 
 function StatCard({ title, value, description, icon: Icon }: { title: string; value: string | number; description?: string; icon: any }) {
   return (
@@ -19,30 +21,113 @@ function StatCard({ title, value, description, icon: Icon }: { title: string; va
 }
 
 export function PlatformAnalyticsPage() {
-  const { data, isLoading, isError } = useQuery({
+  const selectedTenantId = useAuthStore((state) => state.selectedTenantId);
+
+  // Platform Analytics Query
+  const platformQuery = useQuery({
     queryKey: ['super-admin', 'analytics'],
     queryFn: getPlatformAnalytics,
+    enabled: !selectedTenantId,
   });
+
+  // Tenant Drilldown Query
+  const drilldownQuery = useQuery({
+    queryKey: ['dashboard', 'admin', 'tenant-select', selectedTenantId],
+    queryFn: () => getAdminTenantDrilldown(selectedTenantId!),
+    enabled: !!selectedTenantId,
+  });
+
+  // Tenant General Details Query
+  const tenantDetailsQuery = useQuery({
+    queryKey: ['super-admin', 'tenant-details', selectedTenantId],
+    queryFn: () => getTenant(selectedTenantId!),
+    enabled: !!selectedTenantId,
+  });
+
+  const isLoading = selectedTenantId
+    ? (drilldownQuery.isLoading || tenantDetailsQuery.isLoading)
+    : platformQuery.isLoading;
+
+  const isError = selectedTenantId
+    ? (drilldownQuery.isError || tenantDetailsQuery.isError)
+    : platformQuery.isError;
 
   if (isLoading) {
     return (
       <Page>
-        <LoadingState label="Loading platform analytics..." />
+        <LoadingState label={selectedTenantId ? "Loading tenant analytics..." : "Loading platform analytics..."} />
       </Page>
     );
   }
 
-  if (isError || !data) {
+  if (isError) {
     return (
       <Page>
         <p className="flex items-center gap-2 rounded-md bg-red-50 p-5 text-sm text-red-700">
-          <AlertCircle className="h-4 w-4" /> Platform analytics could not be loaded.
+          <AlertCircle className="h-4 w-4" /> {selectedTenantId ? "Tenant analytics could not be loaded." : "Platform analytics could not be loaded."}
         </p>
       </Page>
     );
   }
 
-  // Format data for charts
+  // --- RENDER TENANT FOCUS MODE ---
+  if (selectedTenantId && drilldownQuery.data && tenantDetailsQuery.data) {
+    const drilldown = drilldownQuery.data;
+    const tenant = tenantDetailsQuery.data;
+
+    // Format data for charts
+    const activityTrendData = drilldown.activity_trends.map((t) => ({
+      period: t.period,
+      events: t.transaction_count,
+      units: t.units_moved,
+    }));
+
+    const categoryData = drilldown.category_stats.map((c) => ({
+      label: c.category,
+      count: c.product_count,
+    }));
+
+    return (
+      <Page>
+        <PageHeader
+          eyebrow={`Tenant Insights / ${tenant.company_name}`}
+          title={`${tenant.company_name} Analytics`}
+          description={`Workspace plan: ${tenant.plan.toUpperCase()}. Monitoring activity, user metrics, and stock distribution.`}
+        />
+
+        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+          <StatCard title="Active Users" value={tenant.users_count} icon={Users} description={`User limit: ${tenant.max_users}`} />
+          <StatCard title="Products Tracked" value={tenant.products_count} icon={Boxes} description={`Product limit: ${tenant.max_products}`} />
+          <StatCard title="Warehouses Managed" value={tenant.warehouses_count} icon={Warehouse} description={`Warehouse limit: ${tenant.max_warehouses}`} />
+          <StatCard title="Total Inventory Units" value={drilldown.tenant.inventory_units} icon={Layers} description="All-time stocked items" />
+        </div>
+
+        <div className="mt-6 grid gap-4 md:grid-cols-3">
+          <StatCard title="Low Stock Alerts" value={drilldown.low_stock_products} icon={AlertCircle} description="Products requiring replenishment" />
+          <StatCard title="Units Stocked In" value={drilldown.movement_summary.stock_in} icon={TrendingUp} />
+          <StatCard title="Units Dispatched (Out)" value={drilldown.movement_summary.stock_out} icon={ClipboardList} />
+        </div>
+
+        <div className="mt-6 grid min-w-0 gap-6 lg:grid-cols-2">
+          <LineChartCard
+            title="SaaS Workspace Activity"
+            description="Transaction events inside the tenant's workspace."
+            data={activityTrendData}
+          />
+
+          <VerticalBarChartCard
+            title="Product Category Distribution"
+            description="Quantity and type counts grouped by inventory categories."
+            data={categoryData}
+            bars={[{ key: 'count', name: 'Products', color: '#10b981' }]}
+          />
+        </div>
+      </Page>
+    );
+  }
+
+  // --- RENDER PLATFORM WIDE MODE ---
+  const data = platformQuery.data!;
   const tenantGrowthTrend = data.tenant_growth.map((g) => ({
     period: g.name,
     events: g.tenants,
@@ -83,7 +168,7 @@ export function PlatformAnalyticsPage() {
         <StatCard title="Avg. Onboarding Progress" value={`${Math.round(data.avg_onboarding_completion)}%`} icon={Layers} description="Dynamic progress across active/pending accounts" />
       </div>
 
-      <div className="mt-6 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+      <div className="mt-6 grid gap-4 md:grid-cols-3">
         <StatCard title="Total Products Tracked" value={data.total_products} icon={Boxes} />
         <StatCard title="Total Warehouses Managed" value={data.total_warehouses} icon={Warehouse} />
         <StatCard title="All-Time Move Transactions" value={data.total_transactions} icon={ClipboardList} />

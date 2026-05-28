@@ -27,8 +27,10 @@ class UserService:
         is_active: bool | None,
         limit: int,
         offset: int,
+        tenant_id: UUID | None = None,
     ) -> list[User]:
-        tenant_id = self._tenant_scope(current_user)
+        if current_user.role != UserRole.SUPER_ADMIN:
+            tenant_id = self._tenant_scope(current_user)
         return self.users.list(
             tenant_id=tenant_id,
             search=search,
@@ -45,8 +47,10 @@ class UserService:
         search: str | None,
         role: UserRole | None,
         is_active: bool | None,
+        tenant_id: UUID | None = None,
     ) -> int:
-        tenant_id = self._tenant_scope(current_user)
+        if current_user.role != UserRole.SUPER_ADMIN:
+            tenant_id = self._tenant_scope(current_user)
         return self.users.count(
             tenant_id=tenant_id,
             search=search,
