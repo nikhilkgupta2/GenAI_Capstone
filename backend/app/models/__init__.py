@@ -1,3 +1,4 @@
+from app.models.chat_conversation import ChatConversation
 from app.models.inventory_transaction import InventoryTransaction
 from app.models.audit_log import AuditLog, StockAdjustmentRequest
 from app.models.email_verification import EmailVerificationOTP
@@ -15,6 +16,7 @@ from app.models.support_request import SupportRequest
 
 
 __all__ = [
+    "ChatConversation",
     "InventoryTransaction",
     "AuditLog",
     "StockAdjustmentRequest",

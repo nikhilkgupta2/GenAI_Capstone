@@ -27,6 +27,7 @@ export function LoginPage() {
   const setSession = useAuthStore((state) => state.setSession);
   const form = useForm<LoginForm>({ resolver: zodResolver(schema) });
   const [googleError, setGoogleError] = useState('');
+  const [googleEnabled, setGoogleEnabled] = useState(true);
   const from = (location.state as { from?: { pathname?: string; search?: string }; sessionExpired?: boolean; registrationSuccess?: boolean; verificationSuccess?: boolean } | null)?.from;
   const sessionExpired = Boolean((location.state as { sessionExpired?: boolean } | null)?.sessionExpired);
   const registrationSuccess = Boolean((location.state as { registrationSuccess?: boolean } | null)?.registrationSuccess);
@@ -92,8 +93,13 @@ export function LoginPage() {
     const init = async () => {
       try {
         const clientId = await fetchGoogleClientId();
+        if (!clientId) {
+          if (!canceled) setGoogleEnabled(false);
+          return;
+        }
         await loadScript();
         if (canceled) return;
+        setGoogleEnabled(true);
 
         const google = (window as any).google;
         if (!google?.accounts?.id) {
@@ -222,15 +228,17 @@ export function LoginPage() {
             'Sign in'
           )}
         </Button>
-        {googleError ? (
+        {googleEnabled && googleError ? (
           <p className="flex items-center gap-2 rounded-md border border-red-100 bg-red-50 px-3 py-2 text-sm text-red-700 dark:border-red-400/30 dark:bg-red-400/10 dark:text-red-200">
             <AlertCircle className="h-4 w-4" />
             {googleError}
           </p>
         ) : null}
-        <div className="mt-2 flex w-full justify-center">
-          <div id="google-signin-button" />
-        </div>
+        {googleEnabled ? (
+          <div className="mt-2 flex w-full justify-center">
+            <div id="google-signin-button" />
+          </div>
+        ) : null}
       </form>
     </AuthShell>
   );

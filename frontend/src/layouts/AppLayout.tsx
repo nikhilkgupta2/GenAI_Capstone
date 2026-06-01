@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 import { Outlet, useNavigate } from 'react-router-dom';
 
+import { ChatDrawer } from '../components/ai/ChatDrawer';
+import { FloatingChatButton } from '../components/ai/FloatingChatButton';
 import { useAuthStore } from '../lib/auth-store';
 import { ContentLayout, ScrollableContent } from './ContentLayout';
 import { SidebarLayout } from './SidebarLayout';
@@ -14,6 +16,7 @@ export function AppLayout() {
   const clearSession = useAuthStore((state) => state.clearSession);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [collapsed, setCollapsed] = useState(() => localStorage.getItem(SIDEBAR_STORAGE_KEY) === 'true');
+  const [aiOpen, setAiOpen] = useState(false);
 
   useEffect(() => {
     localStorage.setItem(SIDEBAR_STORAGE_KEY, String(collapsed));
@@ -41,6 +44,12 @@ export function AppLayout() {
           <Outlet />
         </ScrollableContent>
       </ContentLayout>
+      {user ? (
+        <>
+          <FloatingChatButton onClick={() => setAiOpen(true)} />
+          <ChatDrawer open={aiOpen} user={user} onClose={() => setAiOpen(false)} />
+        </>
+      ) : null}
     </div>
   );
 }

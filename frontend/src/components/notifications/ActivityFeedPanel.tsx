@@ -39,7 +39,8 @@ export function ActivityFeedPanel() {
   const activityQuery = useQuery({
     queryKey: ['activity-feed'],
     queryFn: () => listActivityFeed(12),
-    staleTime: 30_000,
+    staleTime: 60_000,
+    retry: false,
   });
   const activity = activityQuery.data ?? [];
 

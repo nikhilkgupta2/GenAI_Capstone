@@ -53,7 +53,8 @@ export function NotificationCenter({ user }: { user: AuthUser | null }) {
     queryKey: ['notifications'],
     queryFn: () => listNotifications(),
     enabled: Boolean(user),
-    staleTime: 30_000,
+    staleTime: 60_000,
+    retry: false,
   });
 
   const markReadMutation = useMutation({

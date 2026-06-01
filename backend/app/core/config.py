@@ -43,6 +43,8 @@ class Settings(BaseSettings):
     email_verification_resend_cooldown_seconds: int = Field(default=30, alias="EMAIL_VERIFICATION_RESEND_COOLDOWN_SECONDS")
     email_verification_max_attempts: int = Field(default=5, alias="EMAIL_VERIFICATION_MAX_ATTEMPTS")
     email_verification_max_resends: int = Field(default=3, alias="EMAIL_VERIFICATION_MAX_RESENDS")
+    gemini_api_key: str | None = Field(default=None, alias="GEMINI_API_KEY")
+    gemini_model: str = Field(default="gemini-1.5-flash", alias="GEMINI_MODEL")
 
     @property
     def backend_cors_origins(self) -> list[str]:

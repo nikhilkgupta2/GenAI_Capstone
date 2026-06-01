@@ -1,5 +1,7 @@
 from fastapi import APIRouter
 
+from app.ai.router import router as ai_router
+
 from app.api.v1.routes import (
     audit,
     auth,
@@ -16,6 +18,7 @@ from app.api.v1.routes import (
 )
 
 api_router = APIRouter()
+api_router.include_router(ai_router, prefix="/ai")
 api_router.include_router(auth.router)
 api_router.include_router(audit.router)
 api_router.include_router(dashboard.router)

@@ -12,6 +12,8 @@ export function NotificationsPage() {
   const { data: notifications = [], isLoading, isError, refetch } = useQuery({
     queryKey: ['notifications', includeRead],
     queryFn: () => listNotifications(includeRead),
+    retry: false,
+    staleTime: 60_000,
   });
 
   const markReadMutation = useMutation({

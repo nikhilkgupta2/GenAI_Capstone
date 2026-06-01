@@ -60,9 +60,27 @@ export async function googleLogin(payload: { email: string }) {
   return response.data.data;
 }
 
+let googleClientIdPromise: Promise<string> | null = null;
+
 export async function fetchGoogleClientId() {
-  const response = await api.get<ApiEnvelope<{ client_id: string }>>('/auth/google-client-id');
-  return response.data.data.client_id;
+  if (googleClientIdPromise) {
+    return googleClientIdPromise;
+  }
+  googleClientIdPromise = fetchGoogleClientIdOnce();
+  return googleClientIdPromise;
+}
+
+async function fetchGoogleClientIdOnce() {
+  try {
+    const response = await api.get<ApiEnvelope<{ client_id: string }>>('/auth/google-client-id');
+    return response.data.data.client_id;
+  } catch (error) {
+    const status = (error as { response?: { status?: number } }).response?.status;
+    if (status === 503) {
+      return '';
+    }
+    throw error;
+  }
 }
 
 export async function googleVerify(payload: { credential: string }) {
