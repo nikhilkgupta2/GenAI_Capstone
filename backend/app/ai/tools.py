@@ -8,12 +8,13 @@ from sqlalchemy.orm import Session
 
 from app.ai.permissions import can_use_tool
 from app.ai.schemas import ToolResult
-from app.core.enums import PurchaseOrderStatus
+from app.core.enums import PurchaseOrderStatus, TenantStatus
 from app.models.audit_log import AuditLog, StockAdjustmentRequest
 from app.models.inventory_transaction import InventoryTransaction
 from app.models.product import Product
 from app.models.purchase_order import PurchaseOrder
 from app.models.supplier import Supplier
+from app.models.tenant import Tenant
 from app.models.user import User
 from app.models.warehouse import Warehouse, WarehouseInventory
 
@@ -249,14 +250,42 @@ def get_platform_users(db: Session, user: User) -> ToolResult:
         return _denied(name, "users")
     if user.role.value != "super_admin":
         return _denied(name, "users")
-    
-    from app.core.enums import UserRole
+
     user_counts = db.query(User.role, func.count(User.id)).group_by(User.role).all()
     data = {
         "total_users": db.query(User).count(),
         "by_role": {role.value: count for role, count in user_counts},
     }
     return ToolResult(name=name, allowed=True, source="users", data=data)
+
+
+def get_platform_tenants(db: Session, user: User) -> ToolResult:
+    name = "get_platform_tenants"
+    if not can_use_tool(user.role, name):
+        return _denied(name, "tenants")
+    if user.role.value != "super_admin":
+        return _denied(name, "tenants")
+
+    status_counts = db.query(Tenant.status, func.count(Tenant.id)).group_by(Tenant.status).all()
+    active_count = db.query(Tenant).filter(Tenant.status == TenantStatus.ACTIVE).count()
+    total_count = db.query(Tenant).count()
+    recent = db.query(Tenant).order_by(Tenant.created_at.desc()).limit(5).all()
+    data = {
+        "total_tenants": total_count,
+        "active_tenants": active_count,
+        "by_status": {status.value: count for status, count in status_counts},
+        "recent_tenants": [
+            {
+                "id": str(tenant.id),
+                "company_name": tenant.company_name,
+                "status": tenant.status.value,
+                "plan": tenant.plan,
+                "created_at": tenant.created_at.isoformat() if tenant.created_at else None,
+            }
+            for tenant in recent
+        ],
+    }
+    return ToolResult(name=name, allowed=True, source="tenants", data=data)
 
 
 TOOL_REGISTRY: dict[str, Callable[[Session, User], ToolResult]] = {
@@ -268,4 +297,5 @@ TOOL_REGISTRY: dict[str, Callable[[Session, User], ToolResult]] = {
     "get_warehouse_stock": get_warehouse_stock,
     "get_pending_approvals": get_pending_approvals,
     "get_platform_users": get_platform_users,
+    "get_platform_tenants": get_platform_tenants,
 }

@@ -44,6 +44,10 @@ def route_tools(message: str) -> list[str]:
         routes.append("get_warehouse_stock")
     if any(term in text for term in ["pending approvals", "approval queue", "approvals"]):
         routes.append("get_pending_approvals")
-    if any(term in text for term in ["how many", "count", "users", "retailer admin", "user count", "platform users"]):
+    if any(term in text for term in ["tenant", "tenants", "active tenants", "tenant count", "platform tenants"]):
+        routes.append("get_platform_tenants")
+    if any(term in text for term in ["users", "retailer admin", "user count", "platform users"]):
         routes.append("get_platform_users")
+    if "how many" in text and not routes:
+        routes.append("get_inventory_summary")
     return routes

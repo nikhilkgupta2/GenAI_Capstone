@@ -41,6 +41,7 @@ TOOL_PERMISSIONS: dict[str, set[str]] = {
     "get_warehouse_stock": {"warehouses", "inventory"},
     "get_pending_approvals": {"approvals"},
     "get_platform_users": {"users", "platform_analytics"},
+    "get_platform_tenants": {"tenants", "platform_analytics"},
 }
 
 

@@ -3,7 +3,7 @@ import logging
 from fastapi import HTTPException, status
 from sqlalchemy.orm import Session
 
-from app.core.enums import TenantStatus
+from app.core.enums import TenantStatus, UserRole
 from app.core.security import create_access_token, hash_password, verify_password
 from app.repositories.tenant_repository import TenantRepository
 from app.repositories.user_repository import UserRepository
@@ -39,6 +39,8 @@ class AuthService:
             user.password_hash = hash_password(payload.password)
             user.is_active = False
             user.is_email_verified = False
+            user.role = UserRole.RETAILER_ADMIN
+            user.assigned_warehouse = None
 
             if user.tenant_id:
                 tenant = self.tenants.get_by_id(user.tenant_id)
@@ -55,6 +57,7 @@ class AuthService:
                 email=normalized_email,
                 password_hash=hash_password(payload.password),
                 tenant_id=tenant.id,
+                role=UserRole.RETAILER_ADMIN,
                 is_active=False,
             )
 

@@ -27,7 +27,7 @@ export function ProtectedRoute({ children }: ProtectedRouteProps) {
   const clearSession = useAuthStore((state) => state.clearSession);
   const tokenExpired = isTokenExpired(token);
   const currentUserQuery = useQuery({
-    queryKey: ['auth', 'me'],
+    queryKey: ['auth', 'me', token],
     queryFn: fetchCurrentUser,
     enabled: Boolean(token) && !tokenExpired,
     retry: false,

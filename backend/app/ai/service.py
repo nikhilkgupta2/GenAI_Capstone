@@ -69,7 +69,7 @@ def chat(db: Session, user: User, *, message: str, current_module: str | None = 
             contents=user_prompt,
             config=types.GenerateContentConfig(
                 system_instruction=system_instruction,
-                temperature=0.7,
+                temperature=0.2,
             )
         )
         answer = response.text.strip() if response.text else "I could not generate a response right now."
@@ -103,7 +103,7 @@ def stream_chat(db: Session, user: User, *, message: str, current_module: str | 
             contents=user_prompt,
             config=types.GenerateContentConfig(
                 system_instruction=system_instruction,
-                temperature=0.7,
+                temperature=0.2,
             )
         )
         for chunk in response:
