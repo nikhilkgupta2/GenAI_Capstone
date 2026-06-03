@@ -13,6 +13,8 @@ from app.models.warehouse import StockTransfer, StockTransferItem, Warehouse, Wa
 from app.models.subscription_plan import SubscriptionPlan
 from app.models.subscription_payment import SubscriptionPayment
 from app.models.support_request import SupportRequest
+from app.models.chat_conversation import ChatConversation
+from app.rag.vector_store import VectorChunk
 
 
 __all__ = [
@@ -37,4 +39,6 @@ __all__ = [
     "SubscriptionPlan",
     "SubscriptionPayment",
     "SupportRequest",
+    "ChatConversation",
+    "VectorChunk",
 ]

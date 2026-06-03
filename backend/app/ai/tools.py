@@ -46,6 +46,7 @@ def get_low_stock_products(db: Session, user: User) -> ToolResult:
         return _tenant_required(name, "products")
     query = db.query(Product).filter(Product.tenant_id == tenant_id, Product.quantity <= 10)
     query = _warehouse_filter(query, user)
+    total_count = query.count()
     rows = query.order_by(Product.quantity.asc(), Product.product_name.asc()).limit(20).all()
     data = [
         {
@@ -58,7 +59,8 @@ def get_low_stock_products(db: Session, user: User) -> ToolResult:
         }
         for product in rows
     ]
-    return ToolResult(name=name, allowed=True, source="products", data=data)
+    message = f"Found {total_count} low stock products. Showing the top 20."
+    return ToolResult(name=name, allowed=True, source="products", data=data, message=message)
 
 
 def get_pending_purchase_orders(db: Session, user: User) -> ToolResult:
@@ -68,13 +70,9 @@ def get_pending_purchase_orders(db: Session, user: User) -> ToolResult:
     tenant_id = _ensure_tenant(user)
     if tenant_id is None:
         return _tenant_required(name, "purchase_orders")
-    rows = (
-        db.query(PurchaseOrder)
-        .filter(PurchaseOrder.tenant_id == tenant_id, PurchaseOrder.status == PurchaseOrderStatus.PENDING.value)
-        .order_by(PurchaseOrder.updated_at.desc())
-        .limit(20)
-        .all()
-    )
+    query = db.query(PurchaseOrder).filter(PurchaseOrder.tenant_id == tenant_id, PurchaseOrder.status == PurchaseOrderStatus.PENDING.value)
+    total_count = query.count()
+    rows = query.order_by(PurchaseOrder.updated_at.desc()).limit(20).all()
     data = [
         {
             "id": str(order.id),
@@ -86,7 +84,8 @@ def get_pending_purchase_orders(db: Session, user: User) -> ToolResult:
         }
         for order in rows
     ]
-    return ToolResult(name=name, allowed=True, source="purchase_orders", data=data)
+    message = f"Found {total_count} pending purchase orders. Showing the latest 20."
+    return ToolResult(name=name, allowed=True, source="purchase_orders", data=data, message=message)
 
 
 def get_inventory_summary(db: Session, user: User) -> ToolResult:
@@ -120,10 +119,17 @@ def get_inventory_summary(db: Session, user: User) -> ToolResult:
     total_units = sum(product.quantity for product in products)
     low_stock = sum(1 for product in products if product.quantity <= 10)
     total_value = sum(float(product.price or 0) * product.quantity for product in products)
+    
+    # NEW: Count unique categories
+    categories = set(p.category for p in products if p.category)
+    category_count = len(categories)
+
     data = {
         "total_products": total_products,
         "total_units": total_units,
         "low_stock_count": low_stock,
+        "category_count": category_count,
+        "categories": sorted(list(categories)),
         "estimated_inventory_value": round(total_value, 2),
         "warehouse_scope": user.assigned_warehouse if user.role.value == "warehouse_staff" else "all_allowed",
     }
@@ -166,13 +172,9 @@ def get_recent_audit_logs(db: Session, user: User) -> ToolResult:
     tenant_id = _ensure_tenant(user)
     if tenant_id is None:
         return _tenant_required(name, "audit_logs")
-    rows = (
-        db.query(AuditLog)
-        .filter(AuditLog.tenant_id == tenant_id)
-        .order_by(AuditLog.created_at.desc())
-        .limit(20)
-        .all()
-    )
+    query = db.query(AuditLog).filter(AuditLog.tenant_id == tenant_id)
+    total_count = query.count()
+    rows = query.order_by(AuditLog.created_at.desc()).limit(20).all()
     data = [
         {
             "id": str(log.id),
@@ -185,7 +187,8 @@ def get_recent_audit_logs(db: Session, user: User) -> ToolResult:
         }
         for log in rows
     ]
-    return ToolResult(name=name, allowed=True, source="audit_logs", data=data)
+    message = f"Found {total_count} total audit logs. Showing the latest 20."
+    return ToolResult(name=name, allowed=True, source="audit_logs", data=data, message=message)
 
 
 def get_warehouse_stock(db: Session, user: User) -> ToolResult:
@@ -362,13 +365,9 @@ def get_inventory_transactions(db: Session, user: User) -> ToolResult:
     if tenant_id is None:
         return _tenant_required(name, "inventory")
     
-    rows = (
-        db.query(InventoryTransaction)
-        .filter(InventoryTransaction.tenant_id == tenant_id)
-        .order_by(InventoryTransaction.created_at.desc())
-        .limit(20)
-        .all()
-    )
+    query = db.query(InventoryTransaction).filter(InventoryTransaction.tenant_id == tenant_id)
+    total_count = query.count()
+    rows = query.order_by(InventoryTransaction.created_at.desc()).limit(20).all()
     data = [
         {
             "id": str(tx.id),
@@ -380,7 +379,8 @@ def get_inventory_transactions(db: Session, user: User) -> ToolResult:
         }
         for tx in rows
     ]
-    return ToolResult(name=name, allowed=True, source="inventory", data=data)
+    message = f"Total inventory transactions in database: {total_count}. Showing the latest 20."
+    return ToolResult(name=name, allowed=True, source="inventory", data=data, message=message)
 
 
 def get_platform_users(db: Session, user: User) -> ToolResult:
@@ -391,7 +391,9 @@ def get_platform_users(db: Session, user: User) -> ToolResult:
     if tenant_id is None:
         return _tenant_required(name, "users")
     
-    rows = db.query(User).filter(User.tenant_id == tenant_id).all()
+    query = db.query(User).filter(User.tenant_id == tenant_id)
+    total_count = query.count()
+    rows = query.order_by(User.name.asc()).all()
     data = [
         {
             "id": str(u.id),
@@ -402,7 +404,8 @@ def get_platform_users(db: Session, user: User) -> ToolResult:
         }
         for u in rows
     ]
-    return ToolResult(name=name, allowed=True, source="users", data=data)
+    message = f"Found {total_count} total users in this tenant."
+    return ToolResult(name=name, allowed=True, source="users", data=data, message=message)
 
 
 def get_support_cases(db: Session, user: User) -> ToolResult:

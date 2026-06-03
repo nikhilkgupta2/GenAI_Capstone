@@ -9,12 +9,19 @@ from sqlalchemy.orm import Session
 
 from app.ai.memory import load_recent_history, save_conversation
 from app.ai.permissions import permissions_for_role
-from app.ai.prompts import FINAL_ANSWER_PROMPT, INTENT_ROUTING_PROMPT, SYSTEM_PROMPT_TEMPLATE, UI_INTENT_PROMPT
+from app.ai.prompts import (
+    CLASSIFICATION_PROMPT,
+    FINAL_ANSWER_PROMPT,
+    INTENT_ROUTING_PROMPT,
+    SYSTEM_PROMPT_TEMPLATE,
+    UI_INTENT_PROMPT,
+)
 from app.ai.schemas import ChatResponse, ToolResult
 from app.ai.sql_agent import route_tools, sanitize_message
 from app.ai.tools import TOOL_REGISTRY
 from app.core.config import settings
 from app.models.user import User
+from app.rag.service import RAGService
 
 
 def _get_client() -> OpenAI:
@@ -66,28 +73,29 @@ def _route_tools_semantic(client: OpenAI, message: str) -> list[str]:
 
 
 def _detect_ui_intent(client: OpenAI, message: str) -> dict | None:
-    try:
-        prompt = UI_INTENT_PROMPT.format(message=message)
-        response = client.chat.completions.create(
-            model=settings.openai_model,
-            messages=[{"role": "user", "content": prompt}],
-            temperature=0.0,
-            response_format={"type": "json_object"}
-        )
-        content = response.choices[0].message.content
-        if content:
-            return json.loads(content)
-    except Exception:
-        pass
+    # Use fast keyword matching instead of LLM to reduce latency
+    lower_msg = message.lower()
+    
+    if any(k in lower_msg for k in ["product", "item", "stock", "inventory"]):
+        return {"intent": "view_products", "module": "/products", "confidence": 0.9}
+    if any(k in lower_msg for k in ["order", "purchase", "po"]):
+        return {"intent": "view_orders", "module": "/orders", "confidence": 0.9}
+    if any(k in lower_msg for k in ["supplier", "vendor"]):
+        return {"intent": "view_suppliers", "module": "/suppliers", "confidence": 0.9}
+    if any(k in lower_msg for k in ["warehouse", "location"]):
+        return {"intent": "view_warehouses", "module": "/warehouses", "confidence": 0.9}
+    if any(k in lower_msg for k in ["billing", "price", "upgrade", "plan"]):
+        return {"intent": "view_billing", "module": "/upgrade", "confidence": 0.9}
+    if any(k in lower_msg for k in ["audit", "activity", "log"]):
+        return {"intent": "view_audit", "module": "/audit-logs", "confidence": 0.9}
+        
     return None
 
 
-def _collect_tools(client: OpenAI, db: Session, user: User, message: str) -> list[ToolResult]:
+def _collect_tools(db: Session, user: User, message: str) -> list[ToolResult]:
     results: list[ToolResult] = []
-    keyword_tools = route_tools(message)
-    semantic_tools = _route_tools_semantic(client, message)
-    
-    all_tool_names = list(set(keyword_tools + semantic_tools))
+    # Use keyword-based routing (instant)
+    all_tool_names = route_tools(message)
     
     for tool_name in all_tool_names:
         tool = TOOL_REGISTRY.get(tool_name)
@@ -96,11 +104,12 @@ def _collect_tools(client: OpenAI, db: Session, user: User, message: str) -> lis
     return results
 
 
-def _build_prompt(user: User, message: str, current_module: str | None, history: list[dict[str, str]], tools: list[ToolResult]) -> str:
+def _build_prompt(user: User, message: str, current_module: str | None, history: list[dict[str, str]], tools: list[ToolResult], context: str = "") -> str:
     tool_results = [tool.model_dump(mode="json") for tool in tools]
     tool_summary = "; ".join(f"{tool.name}: {'allowed' if tool.allowed else 'denied'}" for tool in tools)
     return FINAL_ANSWER_PROMPT.format(
         message=message,
+        context=context or "No relevant documentation found.",
         tool_summary=tool_summary,
         tool_results=json.dumps(tool_results, default=str),
         history=json.dumps(history, default=str),
@@ -109,12 +118,24 @@ def _build_prompt(user: User, message: str, current_module: str | None, history:
 
 def chat(db: Session, user: User, *, message: str, current_module: str | None = None) -> ChatResponse:
     client = _get_client()
+    rag = RAGService(db)
     clean_message = sanitize_message(message)
-    history = load_recent_history(db, user_id=user.id, tenant_id=user.tenant_id)
-    tools = _collect_tools(client, db, user, clean_message)
     
+    # 1. Proactively Retrieve context and check tools
+    # We retrieve context for all queries that aren't pure "greetings"
+    # This is fast now due to singleton embeddings
+    context = ""
+    rag_sources = []
+    if len(clean_message.split()) > 1:
+        context, retrieval_results = rag.get_context(clean_message, tenant_id=user.tenant_id)
+        rag_sources = [f"Docs: {r.title}" for r in retrieval_results]
+
+    # 2. Collect DB results
+    tools = _collect_tools(db, user, clean_message)
+    
+    history = load_recent_history(db, user_id=user.id, tenant_id=user.tenant_id)
     system_instruction = _system_prompt(user, current_module)
-    user_prompt = _build_prompt(user, clean_message, current_module, history, tools)
+    user_prompt = _build_prompt(user, clean_message, current_module, history, tools, context=context)
     
     try:
         response = client.chat.completions.create(
@@ -131,7 +152,7 @@ def chat(db: Session, user: User, *, message: str, current_module: str | None = 
         if "429" in error_str:
             return ChatResponse(
                 answer="**AI Quota Exceeded**\n* You have reached the limit for AI requests on Freemodel.\n* Please check your balance or try again later.",
-                sources=sorted({tool.source for tool in tools if tool.allowed})
+                sources=sorted(list(set([tool.source for tool in tools if tool.allowed] + rag_sources)))
             )
         raise HTTPException(
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
@@ -140,19 +161,30 @@ def chat(db: Session, user: User, *, message: str, current_module: str | None = 
     
     ui_intent = _detect_ui_intent(client, clean_message)
     save_conversation(db, user_id=user.id, tenant_id=user.tenant_id, message=clean_message, response=answer)
-    sources = sorted({tool.source for tool in tools if tool.allowed})
+    sources = sorted(list(set([tool.source for tool in tools if tool.allowed] + rag_sources)))
     return ChatResponse(answer=answer, sources=sources, ui_intent=ui_intent)
 
 
 def stream_chat(db: Session, user: User, *, message: str, current_module: str | None = None) -> Iterator[bytes]:
     client = _get_client()
+    rag = RAGService(db)
     clean_message = sanitize_message(message)
+    
+    # 1. Proactively Retrieve context if not a greet
+    context = ""
+    rag_sources = []
+    if len(clean_message.split()) > 1:
+        context, retrieval_results = rag.get_context(clean_message, tenant_id=user.tenant_id)
+        rag_sources = [f"Docs: {r.title}" for r in retrieval_results]
+
+    # 2. Collect DB results
+    tools = _collect_tools(db, user, clean_message)
+    
     history = load_recent_history(db, user_id=user.id, tenant_id=user.tenant_id)
-    tools = _collect_tools(client, db, user, clean_message)
-    sources = sorted({tool.source for tool in tools if tool.allowed})
+    sources = sorted(list(set([tool.source for tool in tools if tool.allowed] + rag_sources)))
     
     system_instruction = _system_prompt(user, current_module)
-    user_prompt = _build_prompt(user, clean_message, current_module, history, tools)
+    user_prompt = _build_prompt(user, clean_message, current_module, history, tools, context=context)
     ui_intent = _detect_ui_intent(client, clean_message)
     
     collected: list[str] = []
