@@ -233,6 +233,25 @@ class Settings(BaseSettings):
         alias="GEMINI_MODEL",
     )
 
+    # =========================================================
+    # AI ASSISTANT (OPENAI COMPATIBLE)
+    # =========================================================
+
+    openai_api_key: str | None = Field(
+        default=None,
+        alias="OPENAI_API_KEY",
+    )
+
+    openai_base_url: str = Field(
+        default="https://api.freemodel.dev/v1",
+        alias="OPENAI_BASE_URL",
+    )
+
+    openai_model: str = Field(
+        default="gpt-4o",
+        alias="OPENAI_MODEL",
+    )
+
     ai_system_prompt: str = """
 You are an AI assistant for an Inventory Management System.
 
@@ -262,6 +281,10 @@ Rules:
     @property
     def gemini_configured(self) -> bool:
         return bool(self.gemini_api_key)
+
+    @property
+    def ai_configured(self) -> bool:
+        return bool(self.openai_api_key or self.gemini_api_key)
 
     # =========================================================
     # APPLICATION FLAGS

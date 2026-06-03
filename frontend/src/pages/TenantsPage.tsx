@@ -16,6 +16,7 @@ import {
   Plus,
   Trash2
 } from 'lucide-react';
+import { useDialog } from '../context/DialogContext';
 import { Button } from '../components/Button';
 import { Input } from '../components/Input';
 import { Badge } from '../components/ui/Badge';
@@ -40,6 +41,7 @@ function formatOnboardingColor(pct: number) {
 
 export function TenantsPage() {
   const queryClient = useQueryClient();
+  const dialog = useDialog();
   const [tempSearch, setTempSearch] = useState('');
   const [tempStatusFilter, setTempStatusFilter] = useState('');
   const selectedTenantId = useAuthStore((state) => state.selectedTenantId);
@@ -141,8 +143,16 @@ export function TenantsPage() {
     statusMutation.mutate({ id, status: newStatus });
   };
 
-  const handleDelete = (id: string, name: string) => {
-    if (window.confirm(`Are you sure you want to completely remove ${name}? This action cannot be undone.`)) {
+  const handleDelete = async (id: string, name: string) => {
+    const confirmed = await dialog.confirm({
+      title: 'Remove Tenant',
+      description: `Are you sure you want to completely remove ${name}? This action cannot be undone and will delete all associated data.`,
+      confirmLabel: 'Remove Tenant',
+      cancelLabel: 'Keep Tenant',
+      tone: 'danger',
+    });
+
+    if (confirmed) {
       deleteMutation.mutate(id);
     }
   };
@@ -210,8 +220,8 @@ export function TenantsPage() {
 
       {notice && (
         <div className={`mb-4 flex items-center justify-between rounded-md border p-3 text-sm ${notice.type === 'error'
-            ? 'border-red-200 bg-red-50 text-red-700'
-            : 'border-emerald-200 bg-emerald-50 text-emerald-700'
+          ? 'border-red-200 bg-red-50 text-red-700'
+          : 'border-emerald-200 bg-emerald-50 text-emerald-700'
           }`}>
           <span className="flex items-center gap-2">
             {notice.type === 'error' ? <AlertCircle className="h-4 w-4" /> : <CheckCircle2 className="h-4 w-4" />}

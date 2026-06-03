@@ -4,8 +4,7 @@ import json
 from collections.abc import Iterator
 
 from fastapi import HTTPException, status
-from google import genai
-from google.genai import types
+from openai import OpenAI
 from sqlalchemy.orm import Session
 
 from app.ai.memory import load_recent_history, save_conversation
@@ -18,10 +17,24 @@ from app.core.config import settings
 from app.models.user import User
 
 
-def _get_client() -> genai.Client:
-    if not settings.gemini_api_key:
-        raise HTTPException(status_code=status.HTTP_503_SERVICE_UNAVAILABLE, detail="AI is not configured: GEMINI_API_KEY is missing.")
-    return genai.Client(api_key=settings.gemini_api_key)
+def _get_client() -> OpenAI:
+    if settings.openai_api_key:
+        return OpenAI(
+            api_key=settings.openai_api_key,
+            base_url=settings.openai_base_url,
+        )
+    
+    # Fallback to legacy Gemini if configured but OpenAI is not
+    if settings.gemini_api_key:
+        raise HTTPException(
+            status_code=status.HTTP_501_NOT_IMPLEMENTED,
+            detail="Legacy Gemini support is disabled. Please configure OPENAI_API_KEY for Freemodel."
+        )
+
+    raise HTTPException(
+        status_code=status.HTTP_503_SERVICE_UNAVAILABLE, 
+        detail="AI is not configured: OPENAI_API_KEY is missing."
+    )
 
 
 def _system_prompt(user: User, current_module: str | None) -> str:
@@ -34,19 +47,17 @@ def _system_prompt(user: User, current_module: str | None) -> str:
     )
 
 
-def _route_tools_semantic(client: genai.Client, message: str) -> list[str]:
+def _route_tools_semantic(client: OpenAI, message: str) -> list[str]:
     try:
         routing_prompt = INTENT_ROUTING_PROMPT.format(message=message)
-        response = client.models.generate_content(
-            model=settings.gemini_model,
-            contents=routing_prompt,
-            config=types.GenerateContentConfig(
-                temperature=0.0,  # Strict selection
-            )
+        response = client.chat.completions.create(
+            model=settings.openai_model,
+            messages=[{"role": "user", "content": routing_prompt}],
+            temperature=0.0,
         )
-        if response.text:
-            raw = response.text.strip().lower()
-            # Clean up response (some models might add text)
+        content = response.choices[0].message.content
+        if content:
+            raw = content.strip().lower()
             tool_names = [t.strip() for t in raw.split(",") if t.strip()]
             return [t for t in tool_names if t in TOOL_REGISTRY]
     except Exception:
@@ -54,27 +65,25 @@ def _route_tools_semantic(client: genai.Client, message: str) -> list[str]:
     return []
 
 
-def _detect_ui_intent(client: genai.Client, message: str) -> dict | None:
+def _detect_ui_intent(client: OpenAI, message: str) -> dict | None:
     try:
         prompt = UI_INTENT_PROMPT.format(message=message)
-        response = client.models.generate_content(
-            model=settings.gemini_model,
-            contents=prompt,
-            config=types.GenerateContentConfig(
-                temperature=0.0,
-                response_mime_type="application/json",
-            )
+        response = client.chat.completions.create(
+            model=settings.openai_model,
+            messages=[{"role": "user", "content": prompt}],
+            temperature=0.0,
+            response_format={"type": "json_object"}
         )
-        if response.text:
-            return json.loads(response.text)
+        content = response.choices[0].message.content
+        if content:
+            return json.loads(content)
     except Exception:
         pass
     return None
 
 
-def _collect_tools(client: genai.Client, db: Session, user: User, message: str) -> list[ToolResult]:
+def _collect_tools(client: OpenAI, db: Session, user: User, message: str) -> list[ToolResult]:
     results: list[ToolResult] = []
-    # Combined approach: Keywords (fast) + Semantic (smart)
     keyword_tools = route_tools(message)
     semantic_tools = _route_tools_semantic(client, message)
     
@@ -108,25 +117,25 @@ def chat(db: Session, user: User, *, message: str, current_module: str | None = 
     user_prompt = _build_prompt(user, clean_message, current_module, history, tools)
     
     try:
-        response = client.models.generate_content(
-            model=settings.gemini_model,
-            contents=user_prompt,
-            config=types.GenerateContentConfig(
-                system_instruction=system_instruction,
-                temperature=0.7,
-            )
+        response = client.chat.completions.create(
+            model=settings.openai_model,
+            messages=[
+                {"role": "system", "content": system_instruction},
+                {"role": "user", "content": user_prompt}
+            ],
+            temperature=0.7,
         )
-        answer = response.text.strip() if response.text else "I could not generate a response right now."
+        answer = response.choices[0].message.content.strip() if response.choices[0].message.content else "I could not generate a response right now."
     except Exception as e:
         error_str = str(e).lower()
-        if "429" in error_str or "resource_exhausted" in error_str:
+        if "429" in error_str:
             return ChatResponse(
-                answer="**AI Quota Exceeded (Key Points)**\n* You have reached the daily limit for AI requests.\n* Please try again in 24 hours or upgrade your plan.\n* You can still check your 'Products' and 'Inventory' modules manually for live data.",
+                answer="**AI Quota Exceeded**\n* You have reached the limit for AI requests on Freemodel.\n* Please check your balance or try again later.",
                 sources=sorted({tool.source for tool in tools if tool.allowed})
             )
         raise HTTPException(
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
-            detail=f"Gemini API error: {str(e)}"
+            detail=f"Freemodel API error: {str(e)}"
         )
     
     ui_intent = _detect_ui_intent(client, clean_message)
@@ -152,18 +161,21 @@ def stream_chat(db: Session, user: User, *, message: str, current_module: str | 
         yield f"event: ui_intent\ndata: {json.dumps(ui_intent)}\n\n".encode("utf-8")
     
     try:
-        response = client.models.generate_content_stream(
-            model=settings.gemini_model,
-            contents=user_prompt,
-            config=types.GenerateContentConfig(
-                system_instruction=system_instruction,
-                temperature=0.7,
-            )
+        response = client.chat.completions.create(
+            model=settings.openai_model,
+            messages=[
+                {"role": "system", "content": system_instruction},
+                {"role": "user", "content": user_prompt}
+            ],
+            temperature=0.7,
+            stream=True,
         )
+        
         for chunk in response:
-            if chunk.text:
-                collected.append(chunk.text)
-                yield f"event: chunk\ndata: {json.dumps(chunk.text)}\n\n".encode("utf-8")
+            if chunk.choices and chunk.choices[0].delta.content:
+                text = chunk.choices[0].delta.content
+                collected.append(text)
+                yield f"event: chunk\ndata: {json.dumps(text)}\n\n".encode("utf-8")
         
         answer = "".join(collected).strip() or "I could not generate a response right now."
         save_conversation(db, user_id=user.id, tenant_id=user.tenant_id, message=clean_message, response=answer)

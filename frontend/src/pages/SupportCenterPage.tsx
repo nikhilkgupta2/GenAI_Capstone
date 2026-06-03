@@ -15,9 +15,11 @@ import {
 import { Page, PageHeader, SectionCard, SectionHeader } from '../components/ui/Page';
 import { LoadingState } from '../components/ui/LoadingState';
 import { Badge } from '../components/ui/Badge';
+import { useDialog } from '../context/DialogContext';
 import { getSupportIssues, resolveSupportRequest, deleteSupportRequest } from '../lib/super-admin-api';
 
 export function SupportCenterPage() {
+  const dialog = useDialog();
   const { data, isLoading, isError, refetch } = useQuery({
     queryKey: ['super-admin', 'support-issues'],
     queryFn: getSupportIssues,
@@ -55,7 +57,15 @@ export function SupportCenterPage() {
   };
 
   const handleDeleteRequest = async (id: string) => {
-    if (!window.confirm('Are you sure you want to remove this support ticket from the list?')) return;
+    const confirmed = await dialog.confirm({
+      title: 'Remove Ticket',
+      description: 'Are you sure you want to permanently remove this support ticket from the list? This action is irreversible.',
+      confirmLabel: 'Remove',
+      cancelLabel: 'Keep',
+      tone: 'danger',
+    });
+
+    if (!confirmed) return;
     try {
       await deleteSupportRequest(id);
       setNotice('Support ticket removed.');
@@ -230,7 +240,12 @@ export function SupportCenterPage() {
                 <button
                   type="button"
                   className="w-full text-center rounded border border-slate-200 bg-slate-50 py-1.5 text-xs font-semibold text-slate-700 hover:bg-slate-100 transition"
-                  onClick={() => alert(`Simulated email outreach sent to ${stuck.contact_email}`)}
+                  onClick={() => dialog.alert({
+                    title: 'Email Sent',
+                    description: `A simulated onboarding assistance email has been successfully dispatched to ${stuck.contact_email}.`,
+                    confirmLabel: 'Finished',
+                    tone: 'success',
+                  })}
                 >
                   Send Onboarding Assistance Email
                 </button>

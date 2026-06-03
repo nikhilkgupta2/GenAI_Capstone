@@ -1,4 +1,5 @@
 import { MessageSquarePlus, Trash2 } from 'lucide-react';
+import { useDialog } from '../../context/DialogContext';
 
 import type { ChatSessionSummary } from './ChatDrawer';
 
@@ -17,6 +18,22 @@ export function ChatHeader({
   onSelectSession: (sessionId: string) => void;
   onDeleteSession: (sessionId: string) => void;
 }) {
+  const dialog = useDialog();
+
+  const handleDelete = async () => {
+    const confirmed = await dialog.confirm({
+      title: 'Delete Conversation',
+      description: 'Are you sure you want to permanently remove this chat history? This action cannot be undone.',
+      confirmLabel: 'Delete',
+      cancelLabel: 'Keep',
+      tone: 'danger',
+    });
+
+    if (confirmed) {
+      onDeleteSession(activeSessionId);
+    }
+  };
+
   return (
     <div className="border-b border-slate-200 px-4 py-3 dark:border-white/10">
       <div className="flex items-center justify-between gap-3">
@@ -35,11 +52,7 @@ export function ChatHeader({
           {sessions.length > 1 && (
             <button
               type="button"
-              onClick={() => {
-                if (confirm('Delete this conversation?')) {
-                  onDeleteSession(activeSessionId);
-                }
-              }}
+              onClick={handleDelete}
               className="inline-flex h-8 items-center gap-1.5 rounded-md border border-red-200 px-2 text-xs font-semibold text-red-600 transition hover:bg-red-50 dark:border-red-900/50 dark:text-red-400 dark:hover:bg-red-950/30"
               title="Delete conversation"
             >
