@@ -1,0 +1,316 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+}
+
+:root {
+  color-scheme: light;
+  --ims-radius-sm: 0.375rem;
+  --ims-radius-md: 0.5rem;
+  --ims-shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.06);
+  --ims-shadow-md: 0 1px 2px rgba(15, 23, 42, 0.06), 0 8px 24px rgba(15, 23, 42, 0.04);
+  --ims-font-sans: Inter, "Plus Jakarta Sans", "Geist", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-family:
+    var(--ims-font-sans);
+}
+
+html.dark {
+  color-scheme: dark;
+  --ims-dark-bg: #0b0b0b;
+  --ims-dark-surface: #141414;
+  --ims-dark-surface-2: #1a1a1a;
+  --ims-dark-border: #2a2a2a;
+  --ims-dark-text: #ffffff;
+  --ims-dark-text-muted: #b3b3b3;
+  --ims-dark-text-subtle: #8a8a8a;
+}
+
+body {
+  margin: 0;
+  background: #f1f5f9;
+  color: #0f172a;
+  font-family: var(--ims-font-sans);
+  font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html.dark body {
+  background: var(--ims-dark-bg);
+  color: var(--ims-dark-text);
+}
+
+::selection {
+  background: rgba(37, 99, 235, 0.16);
+}
+
+html.dark ::selection {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+@layer utilities {
+
+  .dark .bg-white,
+  .dark .bg-white\/90,
+  .dark .bg-white\/95,
+  .dark .supports-\[backdrop-filter\]\:bg-white\/85 {
+    background-color: color-mix(in oklab, var(--ims-dark-surface), black 10%);
+  }
+
+  .dark .bg-slate-100 {
+    background-color: var(--ims-dark-bg);
+  }
+
+  .dark .bg-slate-50,
+  .dark .bg-slate-50\/60,
+  .dark .bg-slate-50\/70,
+  .dark .bg-slate-50\/80,
+  .dark .bg-slate-50\/95,
+  .dark .bg-slate-50\/30 {
+    background-color: var(--ims-dark-surface-2);
+  }
+
+  .dark .bg-slate-950 {
+    background-color: var(--ims-dark-bg);
+  }
+
+  .dark .bg-slate-900 {
+    background-color: var(--ims-dark-surface);
+  }
+
+  .dark .text-slate-950,
+  .dark .text-slate-900,
+  .dark .text-slate-800,
+  .dark .text-slate-700 {
+    color: var(--ims-dark-text);
+  }
+
+  .dark .text-slate-600,
+  .dark .text-slate-500,
+  .dark .text-slate-400 {
+    color: var(--ims-dark-text-muted);
+  }
+
+  .dark .border-slate-100,
+  .dark .border-slate-200,
+  .dark .border-slate-300 {
+    border-color: var(--ims-dark-border);
+  }
+
+  .dark .divide-slate-100> :not([hidden])~ :not([hidden]),
+  .dark .divide-slate-200> :not([hidden])~ :not([hidden]) {
+    border-color: var(--ims-dark-border);
+  }
+
+  .dark .shadow-sm,
+  .dark .shadow-md,
+  .dark .shadow-lg,
+  .dark .shadow-xl,
+  .dark .shadow-2xl {
+    --tw-shadow-color: rgb(0 0 0 / 0.35);
+  }
+
+  .dark .hover\:bg-slate-50:hover,
+  .dark .hover\:bg-slate-100:hover,
+  .dark .hover\:bg-slate-50\/80:hover {
+    background-color: color-mix(in oklab, var(--ims-dark-surface-2), white 6%);
+  }
+
+  .dark input,
+  .dark select,
+  .dark textarea {
+    background-color: var(--ims-dark-surface);
+    color: var(--ims-dark-text);
+    border-color: var(--ims-dark-border);
+  }
+
+  .dark input::placeholder,
+  .dark textarea::placeholder {
+    color: var(--ims-dark-text-subtle);
+  }
+}
+
+/* Fix for Razorpay modal white background in dark theme */
+html.dark.razorpay-opened,
+html.dark.razorpay-opened body {
+  background-color: var(--ims-dark-bg) !important;
+  color: var(--ims-dark-text) !important;
+}
+
+html.dark.razorpay-opened #root {
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+html.razorpay-opened {
+  overflow: hidden;
+}
+
+.dashboard-page {
+  padding-bottom: 140px;
+}
+
+.print-label-container {
+  color: #0f172a;
+}
+
+.print-label-sheet {
+  display: grid;
+  grid-template-columns: repeat(var(--label-columns), var(--label-width));
+  gap: 4mm;
+  justify-content: center;
+}
+
+.print-label-sheet-preview {
+  grid-template-columns: repeat(auto-fit, minmax(min(var(--label-width), 100%), var(--label-width)));
+}
+
+.print-label {
+  width: var(--label-width);
+  min-height: var(--label-height);
+  break-inside: avoid;
+  page-break-inside: avoid;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  background: #ffffff;
+  padding: 3mm;
+  box-shadow: 0 1px 2px rgb(15 23 42 / 0.08);
+}
+
+.print-label-content {
+  display: flex;
+  min-height: calc(var(--label-height) - 6mm);
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 1.5mm;
+}
+
+.print-label-name {
+  margin: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 10pt;
+  font-weight: 800;
+  line-height: 1.15;
+  color: #0f172a;
+}
+
+.print-label-barcode {
+  border: 0 !important;
+  padding: 0 !important;
+}
+
+.print-label-barcode svg {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+}
+
+.print-label-sku {
+  margin: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+  font-size: 8pt;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  color: #111827;
+}
+
+.print-label-meta {
+  display: flex;
+  justify-content: space-between;
+  gap: 2mm;
+  font-size: 7pt;
+  font-weight: 600;
+  line-height: 1.2;
+  color: #475569;
+}
+
+.print-label-meta span {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+@media (max-width: 640px) {
+  .print-label-sheet-preview {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .print-label-sheet-preview .print-label {
+    width: 100%;
+  }
+}
+
+@media print {
+  @page {
+    size: A4;
+    margin: 10mm;
+  }
+
+  html,
+  body {
+    width: auto;
+    min-height: auto;
+    overflow: visible !important;
+    background: #ffffff !important;
+  }
+
+  body * {
+    visibility: hidden !important;
+  }
+
+  .no-print,
+  .no-print * {
+    display: none !important;
+    visibility: hidden !important;
+  }
+
+  .print-label-container,
+  .print-label-container * {
+    visibility: visible !important;
+  }
+
+  .print-label-container {
+    position: absolute !important;
+    inset: 0 auto auto 0 !important;
+    width: 100% !important;
+    min-height: auto !important;
+    padding: 0 !important;
+    background: #ffffff !important;
+  }
+
+  .print-label-sheet,
+  .print-label-sheet-preview {
+    display: grid !important;
+    grid-template-columns: repeat(var(--label-columns), var(--label-width)) !important;
+    gap: 4mm !important;
+    align-items: start !important;
+    justify-content: start !important;
+    background: #ffffff !important;
+  }
+
+  .print-label {
+    width: var(--label-width) !important;
+    min-height: var(--label-height) !important;
+    break-inside: avoid !important;
+    page-break-inside: avoid !important;
+    border: 1px solid #111827 !important;
+    border-radius: 4px !important;
+    box-shadow: none !important;
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+  }
+
+  .print-label-barcode svg {
+    shape-rendering: crispEdges;
+  }
+}

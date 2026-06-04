@@ -1,0 +1,2142 @@
+{
+  "/Users/as-mac-1218/Desktop/capston/ims/frontend/tsconfig.node.json": {
+    "mtime": 1779356282.1022422,
+    "ast_hash": "514d68045032e2a7f6d1ca3bd90db121",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Desktop/capston/ims/frontend/tailwind.config.ts": {
+    "mtime": 1779478923.7385259,
+    "ast_hash": "61c08b54147b36b1cc3a68cede8198dc",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Desktop/capston/ims/frontend/package.json": {
+    "mtime": 1779627611.0868428,
+    "ast_hash": "4a8ea5e5ca8bbcee1e70287c81a00557",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Desktop/capston/ims/frontend/tsconfig.json": {
+    "mtime": 1779355358.8465123,
+    "ast_hash": "7dbe80a92b653e763f75e6cda20ded39",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Desktop/capston/ims/frontend/eslint.config.js": {
+    "mtime": 1779355358.8469894,
+    "ast_hash": "22ae4cb7c1504fd64255b93bc75e7a84",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Desktop/capston/ims/frontend/vite.config.ts": {
+    "mtime": 1779355358.8474858,
+    "ast_hash": "03c72bc7c454d8706f923f8685679397",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Desktop/capston/ims/frontend/postcss.config.js": {
+    "mtime": 1779355358.848039,
+    "ast_hash": "c735540bb63936a123bc867d950c9f69",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Desktop/capston/ims/frontend/src/App.tsx": {
+    "mtime": 1779691218.7372646,
+    "ast_hash": "41faae37aa8ee809e46a52ffcff1c6ba",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Desktop/capston/ims/frontend/src/main.tsx": {
+    "mtime": 1779355358.8494844,
+    "ast_hash": "753620a31c0186f0e0b37b0fc86f7288",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Desktop/capston/ims/frontend/src/vite-env.d.ts": {
+    "mtime": 1779356233.4086204,
+    "ast_hash": "0352474ba2918efe13895edbc3780d94",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Desktop/capston/ims/frontend/src/navigation/appNavigation.ts": {
+    "mtime": 1779626366.9556618,
+    "ast_hash": "5bf4300cbfbdf0466ba26eac66160feb",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Desktop/capston/ims/frontend/src/permissions/capabilities.ts": {
+    "mtime": 1779476591.9877362,
+    "ast_hash": "90fd3bbe3f1fd3ccc37b5ab1488d388d",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Desktop/capston/ims/frontend/src/components/ProtectedRoute.tsx": {
+    "mtime": 1779628524.5144129,
+    "ast_hash": "6e51fa115652b41588060289f39c95af",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Desktop/capston/ims/frontend/src/components/AppShell.tsx": {
+    "mtime": 1779623862.8995914,
+    "ast_hash": "1e84762706a773e4c1067ab2d7073ea9",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Desktop/capston/ims/frontend/src/components/Button.tsx": {
+    "mtime": 1779628506.7895296,
+    "ast_hash": "ad0af7dbecea55de8d1302b6534628b1",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Desktop/capston/ims/frontend/src/components/Input.tsx": {
+    "mtime": 1779628506.8662007,
+    "ast_hash": "be66d542bbf07668a2d0f1ccf7e78397",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Desktop/capston/ims/frontend/src/components/ui/ConfirmDialog.tsx": {
+    "mtime": 1779478923.7426631,
+    "ast_hash": "5854a64e357304b8e281980641ac1de5",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Desktop/capston/ims/frontend/src/components/ui/Card.tsx": {
+    "mtime": 1779478923.7410774,
+    "ast_hash": "2e10fb5edd64be6e453e06ddd0ef59fa",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Desktop/capston/ims/frontend/src/components/ui/Breadcrumbs.tsx": {
+    "mtime": 1779478923.7431204,
+    "ast_hash": "b6a5fb5cde60bf41592b0122258e376b",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Desktop/capston/ims/frontend/src/components/ui/DataTable.tsx": {
+    "mtime": 1779626987.1139388,
+    "ast_hash": "4e211b864812b6cac05db5b2a930d33f",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Desktop/capston/ims/frontend/src/components/ui/Badge.tsx": {
+    "mtime": 1779477232.4237816,
+    "ast_hash": "91e80d0e889590d2de7adb8881327948",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Desktop/capston/ims/frontend/src/components/ui/index.ts": {
+    "mtime": 1779623899.162778,
+    "ast_hash": "2aa1357340554ece6dfd261531b2c9df",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Desktop/capston/ims/frontend/src/components/ui/Modal.tsx": {
+    "mtime": 1779478923.7422373,
+    "ast_hash": "87cbc45073fc0028e2d3fda741df4f69",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Desktop/capston/ims/frontend/src/components/ui/StatWidget.tsx": {
+    "mtime": 1779628507.0654888,
+    "ast_hash": "aadb764743f1d82248b4e4a4df36ceb6",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Desktop/capston/ims/frontend/src/components/ui/Page.tsx": {
+    "mtime": 1779627852.060382,
+    "ast_hash": "bedda936479aca83f893b71c6b266e3d",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Desktop/capston/ims/frontend/src/components/ui/EmptyState.tsx": {
+    "mtime": 1779477232.4249988,
+    "ast_hash": "81e6eb52cc52b2b4879a390fc5d6a7c2",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Desktop/capston/ims/frontend/src/components/ui/Select.tsx": {
+    "mtime": 1779628506.9556725,
+    "ast_hash": "f68b89c54a64856690b50794c324a44a",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Desktop/capston/ims/frontend/src/components/ui/LoadingState.tsx": {
+    "mtime": 1779478923.7418551,
+    "ast_hash": "7ade827ef9ebe39e5d61788ba7bf6c3f",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Desktop/capston/ims/frontend/src/components/landing/DashboardMockup.tsx": {
+    "mtime": 1779442214.309802,
+    "ast_hash": "afa021f7f00d3b34825f4f45366b652c",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Desktop/capston/ims/frontend/src/components/landing/SectionHeading.tsx": {
+    "mtime": 1779442009.3277593,
+    "ast_hash": "882821f26782e9cdd252a95a923bed3b",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Desktop/capston/ims/frontend/src/components/landing/LandingContainer.tsx": {
+    "mtime": 1779441591.8325374,
+    "ast_hash": "caa7fc595149058dd6e7d9cbc22c0692",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Desktop/capston/ims/frontend/src/components/landing/LandingButton.tsx": {
+    "mtime": 1779442318.4573114,
+    "ast_hash": "f97b77f58ebce2bcb4cb981e872e6d3a",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Desktop/capston/ims/frontend/src/components/landing/MetricCard.tsx": {
+    "mtime": 1779441591.8342805,
+    "ast_hash": "3c1c889ffc340c763d313043476aed22",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Desktop/capston/ims/frontend/src/components/landing/FeatureCard.tsx": {
+    "mtime": 1779441591.8337798,
+    "ast_hash": "d167a0d982b43775b12a7c49b724f8c0",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Desktop/capston/ims/frontend/src/components/auth/PasswordField.tsx": {
+    "mtime": 1779691737.1589885,
+    "ast_hash": "38d912efea01da8e5a475348cb9856ba",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Desktop/capston/ims/frontend/src/components/auth/AuthShell.tsx": {
+    "mtime": 1779691709.550755,
+    "ast_hash": "67d4616671d34d68bd679bdaf20802e8",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Desktop/capston/ims/frontend/src/components/auth/AuthField.tsx": {
+    "mtime": 1779691737.08795,
+    "ast_hash": "8770f1ca189c92fe2bcbc42e7500748d",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Desktop/capston/ims/frontend/src/components/dashboard/DashboardCharts.tsx": {
+    "mtime": 1779627838.8147264,
+    "ast_hash": "42bb947c761bf26efc72140858a62f88",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Desktop/capston/ims/frontend/src/components/notifications/NotificationCenter.tsx": {
+    "mtime": 1779627789.3940868,
+    "ast_hash": "66b71d6eff47086a62f17e726ede5da4",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Desktop/capston/ims/frontend/src/layouts/ContentLayout.tsx": {
+    "mtime": 1779623519.7469432,
+    "ast_hash": "cc0356525e29304204b1320d764fe113",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Desktop/capston/ims/frontend/src/layouts/AppLayout.tsx": {
+    "mtime": 1779623519.8394976,
+    "ast_hash": "eb458ac0acb410f39b972c7d98194761",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Desktop/capston/ims/frontend/src/layouts/SettingsLayout.tsx": {
+    "mtime": 1779623519.9053462,
+    "ast_hash": "262ee3cd6476b6f3820634cd8425084e",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Desktop/capston/ims/frontend/src/layouts/TopbarLayout.tsx": {
+    "mtime": 1779628507.2597754,
+    "ast_hash": "6c4d41139ec5fa9263e60d22bea0fd0b",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Desktop/capston/ims/frontend/src/layouts/SidebarLayout.tsx": {
+    "mtime": 1779626380.9584045,
+    "ast_hash": "04901e1c7f0fd46ad6e69f0ea12ac4b8",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Desktop/capston/ims/frontend/src/lib/inventory-api.ts": {
+    "mtime": 1779429610.4969022,
+    "ast_hash": "8d8f9652a043bef310564454c003cbb6",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Desktop/capston/ims/frontend/src/lib/cn.ts": {
+    "mtime": 1779355617.3566968,
+    "ast_hash": "8595c2f874aa1ff8c7cc28df2999f354",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Desktop/capston/ims/frontend/src/lib/user-api.ts": {
+    "mtime": 1779432775.4485512,
+    "ast_hash": "4eadebf7fdb009a394f0e13f7f3ef437",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Desktop/capston/ims/frontend/src/lib/api.ts": {
+    "mtime": 1779628405.7973125,
+    "ast_hash": "5432bbfea1b7383f44f43219ca5a8d53",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Desktop/capston/ims/frontend/src/lib/auth-api.ts": {
+    "mtime": 1779692631.8829658,
+    "ast_hash": "33158f6e31acb8fc564102b6ae7420d0",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Desktop/capston/ims/frontend/src/lib/auth-store.ts": {
+    "mtime": 1779628405.7373595,
+    "ast_hash": "04b23d0b82cc8f6c47d8a23832065e75",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Desktop/capston/ims/frontend/src/lib/procurement-api.ts": {
+    "mtime": 1779444815.6952121,
+    "ast_hash": "5cc87cab015efdcad0fac8a1d054bcf4",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Desktop/capston/ims/frontend/src/lib/product-api.ts": {
+    "mtime": 1779430595.3137314,
+    "ast_hash": "e1b045f74dcafe92b90f1901a21c68bc",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Desktop/capston/ims/frontend/src/lib/dashboard-api.ts": {
+    "mtime": 1779444405.6124396,
+    "ast_hash": "43ded357c954eacf84edbf33b7a61ff8",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Desktop/capston/ims/frontend/src/pages/RegisterPage.tsx": {
+    "mtime": 1779691737.3325553,
+    "ast_hash": "fbe0ba8860568b717e67c13c74fd0ee3",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Desktop/capston/ims/frontend/src/pages/LoginPage.tsx": {
+    "mtime": 1779691737.2265503,
+    "ast_hash": "1821d120012d55ae158e95f2e28e0d01",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Desktop/capston/ims/frontend/src/pages/ForgotPasswordPage.tsx": {
+    "mtime": 1779692684.5977483,
+    "ast_hash": "b2d9b5520bcfa288395807d20bfdf4fd",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Desktop/capston/ims/frontend/src/pages/SuppliersPage.tsx": {
+    "mtime": 1779479028.0974603,
+    "ast_hash": "bf9c47b9752ecc90795def86c2daff5e",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Desktop/capston/ims/frontend/src/pages/ProductsPage.tsx": {
+    "mtime": 1779479028.1020865,
+    "ast_hash": "4b1e736641d87590d5c001d5c5c43950",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Desktop/capston/ims/frontend/src/pages/PurchaseOrdersPage.tsx": {
+    "mtime": 1779478987.775193,
+    "ast_hash": "30b01fd114e11a86a1fc06163bd5c40d",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Desktop/capston/ims/frontend/src/pages/InventoryPage.tsx": {
+    "mtime": 1779626884.1736202,
+    "ast_hash": "e001a5f25525c18e6eebc3844650da2d",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Desktop/capston/ims/frontend/src/pages/UsersPage.tsx": {
+    "mtime": 1779477768.78525,
+    "ast_hash": "7d416eea9abe74a62906f74362432dc9",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Desktop/capston/ims/frontend/src/pages/LandingPage.tsx": {
+    "mtime": 1779441953.555017,
+    "ast_hash": "0719ac96b4edfe4b1b44becccf9a8275",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Desktop/capston/ims/frontend/src/pages/PlaceholderPage.tsx": {
+    "mtime": 1779355617.6213434,
+    "ast_hash": "a360be2affe69e12b50ee0c7bc15fdac",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Desktop/capston/ims/frontend/src/pages/PurchaseOrderDetailPage.tsx": {
+    "mtime": 1779440810.343755,
+    "ast_hash": "cb0e4f29b34718d54c387d42fa1b3982",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Desktop/capston/ims/frontend/src/pages/UnauthorizedPage.tsx": {
+    "mtime": 1779476591.988449,
+    "ast_hash": "aef1fd8a1390879f5ead89033bc1b828",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Desktop/capston/ims/frontend/src/pages/TenantDrilldownPage.tsx": {
+    "mtime": 1779441971.0943682,
+    "ast_hash": "770554198dc362a2fdfead1d064cfc0d",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Desktop/capston/ims/frontend/src/pages/ProductFormPage.tsx": {
+    "mtime": 1779479028.0987124,
+    "ast_hash": "6f86bdf125c052a2a4656556316a7f9c",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Desktop/capston/ims/frontend/src/pages/DashboardPage.tsx": {
+    "mtime": 1779627740.93767,
+    "ast_hash": "fa9f3e9fc288c009bfe5eaa05265b686",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Desktop/capston/ims/frontend/src/pages/InventoryTransactionsPage.tsx": {
+    "mtime": 1779628453.6488318,
+    "ast_hash": "dbc89effc9f26521ab2e071a306a883c",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Desktop/capston/ims/frontend/src/pages/landing/CtaSection.tsx": {
+    "mtime": 1779441953.5544274,
+    "ast_hash": "c94ed1f72ff2b4823cad29545e3745ae",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Desktop/capston/ims/frontend/src/pages/landing/LandingNavbar.tsx": {
+    "mtime": 1779441886.4635773,
+    "ast_hash": "81c16858742f1237fd10ac9ed55d78a5",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Desktop/capston/ims/frontend/src/pages/landing/DashboardPreviewSection.tsx": {
+    "mtime": 1779441953.5535107,
+    "ast_hash": "66298dbbc08604d3d8a097f098dee81c",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Desktop/capston/ims/frontend/src/pages/landing/StatsSection.tsx": {
+    "mtime": 1779441886.464606,
+    "ast_hash": "0123cdd28aca893e5b7730843666a553",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Desktop/capston/ims/frontend/src/pages/landing/BenefitsSection.tsx": {
+    "mtime": 1779441953.5538878,
+    "ast_hash": "12928c5b9befcaae7391a4227f04d138",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Desktop/capston/ims/frontend/src/pages/landing/TestimonialsSection.tsx": {
+    "mtime": 1779441953.554114,
+    "ast_hash": "66f89607b0d0afad45730ff1c860e1c8",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Desktop/capston/ims/frontend/src/pages/landing/HeroSection.tsx": {
+    "mtime": 1779442214.3093915,
+    "ast_hash": "e02be826eead173ed6dc91987d190c7e",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Desktop/capston/ims/frontend/src/pages/landing/LandingFooter.tsx": {
+    "mtime": 1779441953.5547838,
+    "ast_hash": "6cda8dbc7304ca414c3ae0282e601cf4",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Desktop/capston/ims/frontend/src/pages/landing/FeaturesSection.tsx": {
+    "mtime": 1779441886.4650123,
+    "ast_hash": "1c5a8f293033e47fdb4328ff5439b06e",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Desktop/capston/ims/backend/app/__init__.py": {
+    "mtime": 1779355358.8296156,
+    "ast_hash": "68b329da9893e34099c7d8ad5cb9c940",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Desktop/capston/ims/backend/app/main.py": {
+    "mtime": 1779371428.0754557,
+    "ast_hash": "531fd11d34ceaaf92af1af72202ef94b",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Desktop/capston/ims/backend/app/core/enums.py": {
+    "mtime": 1779440353.5477407,
+    "ast_hash": "40e6dca026e6ad6f05a9994706bcec2c",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Desktop/capston/ims/backend/app/core/config.py": {
+    "mtime": 1779692509.3234673,
+    "ast_hash": "d7bb47c6536761ed15efd2edce5fcb41",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Desktop/capston/ims/backend/app/core/otp.py": {
+    "mtime": 1779692509.3850536,
+    "ast_hash": "aa1530b8bc1efeb0569367917eaf0fc1",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Desktop/capston/ims/backend/app/core/security.py": {
+    "mtime": 1779358290.1576447,
+    "ast_hash": "f923700cbef2b0c85ed205bf8f54edb3",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Desktop/capston/ims/backend/app/core/__init__.py": {
+    "mtime": 1779355358.829056,
+    "ast_hash": "68b329da9893e34099c7d8ad5cb9c940",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Desktop/capston/ims/backend/app/repositories/inventory_repository.py": {
+    "mtime": 1779429528.4937446,
+    "ast_hash": "7def4df731c73a2f39d23275f07dbd09",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Desktop/capston/ims/backend/app/repositories/product_repository.py": {
+    "mtime": 1779430671.3881524,
+    "ast_hash": "03674436e0602a7fd56152152617255b",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Desktop/capston/ims/backend/app/repositories/tenant_repository.py": {
+    "mtime": 1779432628.0380597,
+    "ast_hash": "878c83881de58efc3d255121ac962051",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Desktop/capston/ims/backend/app/repositories/user_repository.py": {
+    "mtime": 1779432618.3416293,
+    "ast_hash": "ca5007b2edd3a829d5c11debb2ba1b2f",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Desktop/capston/ims/backend/app/repositories/dashboard_repository.py": {
+    "mtime": 1779444365.7436662,
+    "ast_hash": "4707dd700cc8d320ca506d583337905f",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Desktop/capston/ims/backend/app/models/user.py": {
+    "mtime": 1779432618.1560025,
+    "ast_hash": "5ea84a81140ec31656096fbba1b0ac25",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Desktop/capston/ims/backend/app/models/tenant.py": {
+    "mtime": 1779355537.1486728,
+    "ast_hash": "4588acb1b192e1786a04322352b04499",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Desktop/capston/ims/backend/app/models/inventory_transaction.py": {
+    "mtime": 1779365463.8167145,
+    "ast_hash": "c49023146fd3b48b5d05d1c0ba43cb9d",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Desktop/capston/ims/backend/app/models/__init__.py": {
+    "mtime": 1779692473.216331,
+    "ast_hash": "ae1715ba60fff1f0f898f08667ea31f5",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Desktop/capston/ims/backend/app/models/purchase_order.py": {
+    "mtime": 1779440543.38324,
+    "ast_hash": "4d1add9e29b65ecf5424188f460dc64e",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Desktop/capston/ims/backend/app/models/product.py": {
+    "mtime": 1779361805.1023605,
+    "ast_hash": "54d901684d3e0aa05063e3347a1b1f0c",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Desktop/capston/ims/backend/app/models/supplier.py": {
+    "mtime": 1779440353.548465,
+    "ast_hash": "44659889654d0653ce3fedf577fb7c61",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Desktop/capston/ims/backend/app/schemas/auth.py": {
+    "mtime": 1779692549.2795837,
+    "ast_hash": "d163bc9ab79c084a02c1b1d28d0e6033",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Desktop/capston/ims/backend/app/schemas/user.py": {
+    "mtime": 1779433786.457833,
+    "ast_hash": "2c111866aa0d85630dc8f36c10a85523",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Desktop/capston/ims/backend/app/schemas/procurement.py": {
+    "mtime": 1779444815.6941607,
+    "ast_hash": "6ccafaa2f38bc59f1bca92521e964189",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Desktop/capston/ims/backend/app/schemas/dashboard.py": {
+    "mtime": 1779444365.7451766,
+    "ast_hash": "40482a6cfbe079c239d1ed412de99647",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Desktop/capston/ims/backend/app/schemas/common.py": {
+    "mtime": 1779430540.8535476,
+    "ast_hash": "1cc2c79b9bfaab7c3a7dc97d6d8ca66d",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Desktop/capston/ims/backend/app/schemas/product.py": {
+    "mtime": 1779429444.402963,
+    "ast_hash": "74c252ed1b2566670c61fc39eb1e2437",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Desktop/capston/ims/backend/app/schemas/inventory.py": {
+    "mtime": 1779429521.4455316,
+    "ast_hash": "c6b8309c0f612de5868a7430b2acf5ad",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Desktop/capston/ims/backend/app/db/mixins.py": {
+    "mtime": 1779355537.0529346,
+    "ast_hash": "ccdba24e23bfda25cf99c2d60df7dea6",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Desktop/capston/ims/backend/app/db/session.py": {
+    "mtime": 1779355358.8306835,
+    "ast_hash": "ea8f13ac87e6ea7444381a56ade85c39",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Desktop/capston/ims/backend/app/db/__init__.py": {
+    "mtime": 1779355358.8312914,
+    "ast_hash": "68b329da9893e34099c7d8ad5cb9c940",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Desktop/capston/ims/backend/app/db/base.py": {
+    "mtime": 1779358247.6692648,
+    "ast_hash": "16deb2759f7de2cf86f328dce6b2d38b",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Desktop/capston/ims/backend/app/api/deps.py": {
+    "mtime": 1779476718.59828,
+    "ast_hash": "32a4ebe5ebb3e2f8399bb14298cd6a8a",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Desktop/capston/ims/backend/app/api/__init__.py": {
+    "mtime": 1779355358.8357909,
+    "ast_hash": "68b329da9893e34099c7d8ad5cb9c940",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Desktop/capston/ims/backend/app/api/v1/__init__.py": {
+    "mtime": 1779355358.8332624,
+    "ast_hash": "68b329da9893e34099c7d8ad5cb9c940",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Desktop/capston/ims/backend/app/api/v1/router.py": {
+    "mtime": 1779440511.4584475,
+    "ast_hash": "a2b44e442a4a63f63adf6a5c91e16574",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Desktop/capston/ims/backend/app/api/v1/routes/auth.py": {
+    "mtime": 1779692567.0547662,
+    "ast_hash": "2ac84b29b1a1378e6ea6270747e9f186",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Desktop/capston/ims/backend/app/api/v1/routes/procurement.py": {
+    "mtime": 1779476748.8407555,
+    "ast_hash": "4b289443adaf2aa2f6c3e01598101f10",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Desktop/capston/ims/backend/app/api/v1/routes/users.py": {
+    "mtime": 1779476868.9106715,
+    "ast_hash": "70338d0e630792b90ac487f96a44eaef",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Desktop/capston/ims/backend/app/api/v1/routes/health.py": {
+    "mtime": 1779355358.8347387,
+    "ast_hash": "f7bba9a8b37f264ae9c50ae843ff301b",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Desktop/capston/ims/backend/app/api/v1/routes/__init__.py": {
+    "mtime": 1779431225.863341,
+    "ast_hash": "5a67e94e85231395172787c181cb160a",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Desktop/capston/ims/backend/app/api/v1/routes/products.py": {
+    "mtime": 1779476718.5994318,
+    "ast_hash": "f5ab10b2ae2d1ff387ede5ffce91640a",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Desktop/capston/ims/backend/app/api/v1/routes/dashboard.py": {
+    "mtime": 1779435703.239031,
+    "ast_hash": "c4f1683ea109c296cb295b1ce13dd067",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Desktop/capston/ims/backend/app/api/v1/routes/inventory.py": {
+    "mtime": 1779435627.9386833,
+    "ast_hash": "e84b695a83185cbc9a771f0bdf069de7",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Desktop/capston/ims/backend/app/services/auth_service.py": {
+    "mtime": 1779355537.5694685,
+    "ast_hash": "6dc903d648c6801a4902ed507989cf26",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Desktop/capston/ims/backend/app/services/inventory_service.py": {
+    "mtime": 1779429546.1619089,
+    "ast_hash": "079d8a8abd3e06aa4a816a1736e16e8e",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Desktop/capston/ims/backend/app/services/dashboard_service.py": {
+    "mtime": 1779444365.7445912,
+    "ast_hash": "406ba424d3643db255395664ecd1cf18",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Desktop/capston/ims/backend/app/services/procurement_service.py": {
+    "mtime": 1779444815.6934283,
+    "ast_hash": "3d3d51075c690681ac90b87adb980c45",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Desktop/capston/ims/backend/app/services/email_service.py": {
+    "mtime": 1779693677.119572,
+    "ast_hash": "c454b3080c03433d63813d137168ace5",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Desktop/capston/ims/backend/app/services/user_service.py": {
+    "mtime": 1779432628.1066241,
+    "ast_hash": "2e705342b10cb8a57471928ecbb8c5ab",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Desktop/capston/ims/backend/app/services/product_service.py": {
+    "mtime": 1779430568.794643,
+    "ast_hash": "ce1b2bb633e0c2981972a866247f5c96",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Desktop/capston/ims/backend/scripts/seed_auth.py": {
+    "mtime": 1779358820.7359393,
+    "ast_hash": "e5aae03ae6130f01fcbf4a304cae576b",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Desktop/capston/ims/backend/scripts/seed_procurement.py": {
+    "mtime": 1779444561.9672506,
+    "ast_hash": "63cff5e94f267d9ba7249e25e7c04016",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Desktop/capston/ims/backend/scripts/__init__.py": {
+    "mtime": 1779358784.9239485,
+    "ast_hash": "68b329da9893e34099c7d8ad5cb9c940",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Desktop/capston/ims/backend/scripts/seed_products.py": {
+    "mtime": 1779429075.085052,
+    "ast_hash": "f7123a8075032185746184e833c17e97",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Desktop/capston/ims/backend/alembic/env.py": {
+    "mtime": 1779358247.8048782,
+    "ast_hash": "f65a1459bc6c6825ee804e3c56f7dbb9",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Desktop/capston/ims/backend/alembic/versions/20260522_0003_user_management_indexes.py": {
+    "mtime": 1779432618.2193375,
+    "ast_hash": "4b67c207011b6f23dbdcde1456ef8216",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Desktop/capston/ims/backend/alembic/versions/20260521_0001_auth_tables.py": {
+    "mtime": 1779358524.5610027,
+    "ast_hash": "67b1c471816c4f586c96aba2f7790f24",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Desktop/capston/ims/backend/alembic/versions/20260521_0002_product_inventory.py": {
+    "mtime": 1779361805.1026828,
+    "ast_hash": "a2c22197f7267874fae5c06a77818333",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Desktop/capston/ims/backend/alembic/versions/20260522_0004_procurement.py": {
+    "mtime": 1779440857.9325144,
+    "ast_hash": "6ccacd49e9c5dc99b57e6d74c8886dd8",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Desktop/capston/ims/README.md": {
+    "mtime": 1779358256.1423404,
+    "ast_hash": "0577f318f8275340cdd38f154b86242f",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Desktop/capston/ims/docker-compose.yml": {
+    "mtime": 1779355358.8560905,
+    "ast_hash": "4e528e33875d6e4c659e8d933d41f672",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Desktop/capston/ims/frontend/index.html": {
+    "mtime": 1779355358.844503,
+    "ast_hash": "f3fba4c51b26a6902a0820c529aa7d44",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Desktop/capston/ims/backend/requirements.txt": {
+    "mtime": 1779693748.0994608,
+    "ast_hash": "616e119353174b56de3a587fddc605d3",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Desktop/capston/ims/backend/requirements-dev.txt": {
+    "mtime": 1779359135.8282425,
+    "ast_hash": "5165dd38628975a71b498d20c89e31f5",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Desktop/capston/ims/docs/architecture.md": {
+    "mtime": 1779355358.8537507,
+    "ast_hash": "badf745dca4467032ffaea1227355918",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/backend/alembic/env.py": {
+    "mtime": 1780483290.0,
+    "ast_hash": "f65a1459bc6c6825ee804e3c56f7dbb9",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/backend/alembic/versions/20260521_0001_auth_tables.py": {
+    "mtime": 1780483290.0,
+    "ast_hash": "67b1c471816c4f586c96aba2f7790f24",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/backend/alembic/versions/20260521_0002_product_inventory.py": {
+    "mtime": 1780483290.0,
+    "ast_hash": "a2c22197f7267874fae5c06a77818333",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/backend/alembic/versions/20260522_0003_user_management_indexes.py": {
+    "mtime": 1780483290.0,
+    "ast_hash": "4b67c207011b6f23dbdcde1456ef8216",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/backend/alembic/versions/20260522_0004_procurement.py": {
+    "mtime": 1780483290.0,
+    "ast_hash": "6ccacd49e9c5dc99b57e6d74c8886dd8",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/backend/alembic/versions/20260525_0006_warehouse_staff_role.py": {
+    "mtime": 1780483290.0,
+    "ast_hash": "53f17cc3dba57ffd8b4ca858a00eb913",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/backend/alembic/versions/20260525_0007_auditor_role.py": {
+    "mtime": 1780483290.0,
+    "ast_hash": "568b78d3e29fc470bbd293c09ebdffb6",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/backend/alembic/versions/20260525_0008_procurement_manager_role.py": {
+    "mtime": 1780483290.0,
+    "ast_hash": "3ff4f0a87b46e2ea4fd134977779d9a3",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/backend/alembic/versions/20260525_0009_multi_warehouse_system.py": {
+    "mtime": 1780483290.0,
+    "ast_hash": "4e2a9c51f51e516e04d5167681f72689",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/backend/alembic/versions/20260525_0010_procurement_warehouse_destination.py": {
+    "mtime": 1780483290.0,
+    "ast_hash": "6756c64acd4a51b9ebba2bc01b8a9b32",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/backend/alembic/versions/20260525_0011_barcode_scan_logs.py": {
+    "mtime": 1780483290.0,
+    "ast_hash": "a5e9872d8fb7aa1e432e5ba3085467fa",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/backend/alembic/versions/20260525_0012_notifications.py": {
+    "mtime": 1780483290.0,
+    "ast_hash": "96f318baa281a395789e83f8cb59002c",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/backend/alembic/versions/20260525_0013_audit_approvals.py": {
+    "mtime": 1780483290.0,
+    "ast_hash": "361abe8b23273efd6019a4479ac19891",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/backend/alembic/versions/20260525_0014_transfer_items_workflow.py": {
+    "mtime": 1780483290.0,
+    "ast_hash": "be16e056742c95a5dc9e2b268da77b47",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/backend/alembic/versions/20260526_0015_email_verification_otps.py": {
+    "mtime": 1780483290.0,
+    "ast_hash": "8ce93820aba60fa41e3bd16854e1ef0c",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/backend/alembic/versions/20260527_0016_email_verification_resend_limit.py": {
+    "mtime": 1780483290.0,
+    "ast_hash": "e594e0cc45f671fec6fb21e78f7f9a39",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/backend/alembic/versions/20260602_0017_subscription_payments_and_tenant_subscription_fields.py": {
+    "mtime": 1780483290.0,
+    "ast_hash": "bde7aba9d6f12a1bbf1fee4c40281e96",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/backend/alembic/versions/5bc4a1e15321_add_rejection_reason_and_subscription_.py": {
+    "mtime": 1780483290.0,
+    "ast_hash": "34418871bd8782ebabc6fe4f71922219",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/backend/alembic/versions/690994e9c80f_add_tenant_fields.py": {
+    "mtime": 1780483290.0,
+    "ast_hash": "3a125eff40e1748e03afe81e7f41e580",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/backend/app/__init__.py": {
+    "mtime": 1780483290.0,
+    "ast_hash": "68b329da9893e34099c7d8ad5cb9c940",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/backend/app/ai/__init__.py": {
+    "mtime": 1780483290.0,
+    "ast_hash": "92adcf6f7d888d7b0eb2bd6dde893f8b",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/backend/app/ai/memory.py": {
+    "mtime": 1780483290.0,
+    "ast_hash": "e268ba209d24c9707fc58e7aa51a74c8",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/backend/app/ai/permissions.py": {
+    "mtime": 1780483290.0,
+    "ast_hash": "8dfba23e7c6e9215b846a8bc6f5fe300",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/backend/app/ai/prompts.py": {
+    "mtime": 1780483290.0,
+    "ast_hash": "2bafeffc82c6b2e1bff5df06cf17efd7",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/backend/app/ai/router.py": {
+    "mtime": 1780483290.0,
+    "ast_hash": "99a24222748a95a4cea8addd3e1555c1",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/backend/app/ai/schemas.py": {
+    "mtime": 1780483290.0,
+    "ast_hash": "24c150f73dee3d8651893f479070e31d",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/backend/app/ai/service.py": {
+    "mtime": 1780483290.0,
+    "ast_hash": "def19feb80c803b159900465e46f7b9b",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/backend/app/ai/sql_agent.py": {
+    "mtime": 1780483290.0,
+    "ast_hash": "e6a52a8dc4e4b0545164e19d95b37d01",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/backend/app/ai/tools.py": {
+    "mtime": 1780483290.0,
+    "ast_hash": "dec952a8c210261cd6a95c92b27c7eb2",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/backend/app/api/__init__.py": {
+    "mtime": 1780483290.0,
+    "ast_hash": "68b329da9893e34099c7d8ad5cb9c940",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/backend/app/api/deps.py": {
+    "mtime": 1780483290.0,
+    "ast_hash": "29ea75c972b9418e989d148455d81af0",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/backend/app/api/v1/__init__.py": {
+    "mtime": 1780483290.0,
+    "ast_hash": "68b329da9893e34099c7d8ad5cb9c940",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/backend/app/api/v1/router.py": {
+    "mtime": 1780483290.0,
+    "ast_hash": "abe1bb44b3ad742334c4a65ff9355146",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/backend/app/api/v1/routes/__init__.py": {
+    "mtime": 1780483290.0,
+    "ast_hash": "5a67e94e85231395172787c181cb160a",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/backend/app/api/v1/routes/audit.py": {
+    "mtime": 1780483290.0,
+    "ast_hash": "659be04e44764467d0ddc308934cb9d8",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/backend/app/api/v1/routes/auth.py": {
+    "mtime": 1780483290.0,
+    "ast_hash": "aa4a360001fc3aaa0fb27ea67e179054",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/backend/app/api/v1/routes/dashboard.py": {
+    "mtime": 1780483290.0,
+    "ast_hash": "97cc58ff8dbee1132e843c6f514c9551",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/backend/app/api/v1/routes/health.py": {
+    "mtime": 1780483290.0,
+    "ast_hash": "f7bba9a8b37f264ae9c50ae843ff301b",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/backend/app/api/v1/routes/imports.py": {
+    "mtime": 1780483290.0,
+    "ast_hash": "4f4417776b613ff884d6489b45ea29c5",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/backend/app/api/v1/routes/inventory.py": {
+    "mtime": 1780483290.0,
+    "ast_hash": "cd6898cd822f67aa8ce96d25789f5d93",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/backend/app/api/v1/routes/notifications.py": {
+    "mtime": 1780483290.0,
+    "ast_hash": "5cda7832576bac5cc4075e255330b955",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/backend/app/api/v1/routes/procurement.py": {
+    "mtime": 1780483290.0,
+    "ast_hash": "9fd4154c440b128dbd923f04d53a2d87",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/backend/app/api/v1/routes/products.py": {
+    "mtime": 1780483290.0,
+    "ast_hash": "5092665c9fe119ab5df8718e56aa0252",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/backend/app/api/v1/routes/subscriptions.py": {
+    "mtime": 1780483290.0,
+    "ast_hash": "4033152dd4dc4271e73088b9debd90db",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/backend/app/api/v1/routes/super_admin.py": {
+    "mtime": 1780483290.0,
+    "ast_hash": "9c1957dfe25f4bfd5cdf12ed955ade25",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/backend/app/api/v1/routes/users.py": {
+    "mtime": 1780483290.0,
+    "ast_hash": "108d7aa4119f7aacb13ce02e44962cac",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/backend/app/api/v1/routes/warehouses.py": {
+    "mtime": 1780483290.0,
+    "ast_hash": "267791f87179cb75529e844a84b9b21b",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/backend/app/core/__init__.py": {
+    "mtime": 1780483290.0,
+    "ast_hash": "68b329da9893e34099c7d8ad5cb9c940",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/backend/app/core/config.py": {
+    "mtime": 1780483290.0,
+    "ast_hash": "caf902022a0123d4c36bc8178dc796de",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/backend/app/core/enums.py": {
+    "mtime": 1780483290.0,
+    "ast_hash": "e41460ea0668ddaf94b3c2f4f5cd0b17",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/backend/app/core/otp.py": {
+    "mtime": 1780483290.0,
+    "ast_hash": "aa1530b8bc1efeb0569367917eaf0fc1",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/backend/app/core/security.py": {
+    "mtime": 1780483290.0,
+    "ast_hash": "f923700cbef2b0c85ed205bf8f54edb3",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/backend/app/db/__init__.py": {
+    "mtime": 1780483290.0,
+    "ast_hash": "68b329da9893e34099c7d8ad5cb9c940",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/backend/app/db/base.py": {
+    "mtime": 1780483290.0,
+    "ast_hash": "16deb2759f7de2cf86f328dce6b2d38b",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/backend/app/db/mixins.py": {
+    "mtime": 1780483290.0,
+    "ast_hash": "ccdba24e23bfda25cf99c2d60df7dea6",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/backend/app/db/session.py": {
+    "mtime": 1780483290.0,
+    "ast_hash": "ea8f13ac87e6ea7444381a56ade85c39",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/backend/app/main.py": {
+    "mtime": 1780483290.0,
+    "ast_hash": "6fd52bfb58373e608b7074020d9c204a",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/backend/app/models/__init__.py": {
+    "mtime": 1780483290.0,
+    "ast_hash": "9a5eb17f9fdfda5b8617ee317f19af7d",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/backend/app/models/audit_log.py": {
+    "mtime": 1780483290.0,
+    "ast_hash": "3fbd804f18a5cfd00497ef4a7232d75f",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/backend/app/models/chat_conversation.py": {
+    "mtime": 1780483290.0,
+    "ast_hash": "02a262908733b8c968961529d0d008dc",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/backend/app/models/email_verification.py": {
+    "mtime": 1780483290.0,
+    "ast_hash": "2c2f1b108e47d55fa3696751f2633447",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/backend/app/models/inventory_transaction.py": {
+    "mtime": 1780483290.0,
+    "ast_hash": "31f71ce00c58b0bde29ecb65b704faba",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/backend/app/models/notification.py": {
+    "mtime": 1780483290.0,
+    "ast_hash": "c682ac6f1f6feedfd2de17a57df75969",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/backend/app/models/product.py": {
+    "mtime": 1780483290.0,
+    "ast_hash": "1d05d12e0cb4e1263ce31dcf2c0b0067",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/backend/app/models/product_scan_log.py": {
+    "mtime": 1780483290.0,
+    "ast_hash": "f6a2a3d093f3d23edbd1633c9e4fd17f",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/backend/app/models/purchase_order.py": {
+    "mtime": 1780483290.0,
+    "ast_hash": "37faaf67cc00df53b2bc9190d6e2cbbf",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/backend/app/models/subscription_payment.py": {
+    "mtime": 1780483290.0,
+    "ast_hash": "03f48e4bee690346012d4405f1ea1853",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/backend/app/models/subscription_plan.py": {
+    "mtime": 1780483290.0,
+    "ast_hash": "63c15941078e629bb000c69d0a30334a",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/backend/app/models/supplier.py": {
+    "mtime": 1780483290.0,
+    "ast_hash": "44659889654d0653ce3fedf577fb7c61",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/backend/app/models/support_request.py": {
+    "mtime": 1780483290.0,
+    "ast_hash": "c2ed8c0d366117ee4b2c0746faa9190f",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/backend/app/models/tenant.py": {
+    "mtime": 1780483290.0,
+    "ast_hash": "e15d401a025a5fa6cafc28a9f61758de",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/backend/app/models/user.py": {
+    "mtime": 1780483290.0,
+    "ast_hash": "6fbdc30db8897f2311ce69719b7e31b3",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/backend/app/models/warehouse.py": {
+    "mtime": 1780483290.0,
+    "ast_hash": "ff2b8077b15536ae85a36ad117669f6c",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/backend/app/repositories/dashboard_repository.py": {
+    "mtime": 1780483290.0,
+    "ast_hash": "973e34ba6183e85ce9d36a6a87995f70",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/backend/app/repositories/inventory_repository.py": {
+    "mtime": 1780483290.0,
+    "ast_hash": "6e92c5190b387c109f264c36cda1f22b",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/backend/app/repositories/product_repository.py": {
+    "mtime": 1780483290.0,
+    "ast_hash": "63e1e8fcf7c6e19d1879646bf9b58b0b",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/backend/app/repositories/scan_repository.py": {
+    "mtime": 1780483290.0,
+    "ast_hash": "9da4c5b981e6088d3c5151ffaf8e3d1a",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/backend/app/repositories/tenant_repository.py": {
+    "mtime": 1780483290.0,
+    "ast_hash": "f8c7cfe17f0a51eb8a14d4823d32d668",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/backend/app/repositories/user_repository.py": {
+    "mtime": 1780483290.0,
+    "ast_hash": "16a435696a53eb5efb3e97f65a33469f",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/backend/app/repositories/warehouse_repository.py": {
+    "mtime": 1780483290.0,
+    "ast_hash": "d4b423a861e6fdb507c91c8f81ac4b8b",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/backend/app/schemas/audit.py": {
+    "mtime": 1780483290.0,
+    "ast_hash": "b18432af3141a3286c72278e68d1d9d2",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/backend/app/schemas/auth.py": {
+    "mtime": 1780483290.0,
+    "ast_hash": "d62d13931a090de4ba8f78f10d7dcebb",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/backend/app/schemas/common.py": {
+    "mtime": 1780483290.0,
+    "ast_hash": "1cc2c79b9bfaab7c3a7dc97d6d8ca66d",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/backend/app/schemas/dashboard.py": {
+    "mtime": 1780483290.0,
+    "ast_hash": "841c1dcc323d6861cb8a4726b0625018",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/backend/app/schemas/imports.py": {
+    "mtime": 1780483290.0,
+    "ast_hash": "9f2aacceea1c512a5f3726d009dbb923",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/backend/app/schemas/inventory.py": {
+    "mtime": 1780483290.0,
+    "ast_hash": "fa42c30976ce3f1f935c9d83e7331794",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/backend/app/schemas/notification.py": {
+    "mtime": 1780483290.0,
+    "ast_hash": "0c9d6925d6f928764db9a0cc4fa282bc",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/backend/app/schemas/procurement.py": {
+    "mtime": 1780483290.0,
+    "ast_hash": "c4d190a4e17cd57b2ee3185d9376b426",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/backend/app/schemas/product.py": {
+    "mtime": 1780483290.0,
+    "ast_hash": "74c252ed1b2566670c61fc39eb1e2437",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/backend/app/schemas/support.py": {
+    "mtime": 1780483290.0,
+    "ast_hash": "93b3dd6e2730d7583ce6dd91478d6383",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/backend/app/schemas/user.py": {
+    "mtime": 1780483290.0,
+    "ast_hash": "d999c146f2c607bd3062e0afe85a3fb9",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/backend/app/schemas/warehouse.py": {
+    "mtime": 1780483290.0,
+    "ast_hash": "a95467218abfbef10c06713bc94a9e71",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/backend/app/services/audit_service.py": {
+    "mtime": 1780483290.0,
+    "ast_hash": "87738672c8396e47f87b7655fffddf82",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/backend/app/services/auth_service.py": {
+    "mtime": 1780483290.0,
+    "ast_hash": "4940ddc7d94cbdddfa4010d78277696c",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/backend/app/services/dashboard_service.py": {
+    "mtime": 1780483290.0,
+    "ast_hash": "d2f18c0e2f72ac30a9506385ae28bd83",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/backend/app/services/email_service.py": {
+    "mtime": 1780483290.0,
+    "ast_hash": "c5e4028183690753ddb50112591a8bd0",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/backend/app/services/email_verification_service.py": {
+    "mtime": 1780483290.0,
+    "ast_hash": "109606373eb659d0ffe2a533c8f94177",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/backend/app/services/google_auth_service.py": {
+    "mtime": 1780483290.0,
+    "ast_hash": "67d4199d5c8886cf3449ee774d249126",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/backend/app/services/import_service.py": {
+    "mtime": 1780483290.0,
+    "ast_hash": "6040dcb622ed53266ed8bc3d14392998",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/backend/app/services/inventory_service.py": {
+    "mtime": 1780483290.0,
+    "ast_hash": "5931b917b493fff0f8bf204bd43dcdb4",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/backend/app/services/notification_service.py": {
+    "mtime": 1780483290.0,
+    "ast_hash": "02773d0c9ec7d24c40635a110d447c98",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/backend/app/services/procurement_service.py": {
+    "mtime": 1780483290.0,
+    "ast_hash": "7b6229f65bd949a563c3783a16fd0cea",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/backend/app/services/product_service.py": {
+    "mtime": 1780483290.0,
+    "ast_hash": "ba336883127eac2ba3962b127e188eb2",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/backend/app/services/user_service.py": {
+    "mtime": 1780483290.0,
+    "ast_hash": "d8a0bfc3d906fd3344563b199694a4a7",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/backend/app/services/warehouse_service.py": {
+    "mtime": 1780483290.0,
+    "ast_hash": "d5c120405278335a68d2d761fa81eba9",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/backend/scripts/__init__.py": {
+    "mtime": 1780483290.0,
+    "ast_hash": "68b329da9893e34099c7d8ad5cb9c940",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/backend/scripts/seed_all.py": {
+    "mtime": 1780483290.0,
+    "ast_hash": "9c782b908212c96215e699a955b9d48e",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/backend/scripts/seed_audit.py": {
+    "mtime": 1780483290.0,
+    "ast_hash": "cd70fb83463996d696c99f39d913f4f3",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/backend/scripts/seed_auth.py": {
+    "mtime": 1780483290.0,
+    "ast_hash": "672a18d74f5d7f6aec6b0fe189191571",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/backend/scripts/seed_procurement.py": {
+    "mtime": 1780483290.0,
+    "ast_hash": "0f7d28b75bfadcf549bad8d80c9fc284",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/backend/scripts/seed_products.py": {
+    "mtime": 1780483290.0,
+    "ast_hash": "0db96079a8e95ddf1b35bb2ad4bbfedd",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/backend/tests/test_tenant_suspension.py": {
+    "mtime": 1780483290.0,
+    "ast_hash": "425f8acea965c6d63759054a644d7360",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/frontend/eslint.config.js": {
+    "mtime": 1780483290.0,
+    "ast_hash": "22ae4cb7c1504fd64255b93bc75e7a84",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/frontend/package.json": {
+    "mtime": 1780483290.0,
+    "ast_hash": "c0e0ac1d6a331a1ca7c9be292a78b760",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/frontend/postcss.config.js": {
+    "mtime": 1780483290.0,
+    "ast_hash": "c735540bb63936a123bc867d950c9f69",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/frontend/src/App.tsx": {
+    "mtime": 1780483290.0,
+    "ast_hash": "9b165fe1bb838d3a1afe177acd225fc7",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/frontend/src/components/AppShell.tsx": {
+    "mtime": 1780483290.0,
+    "ast_hash": "1e84762706a773e4c1067ab2d7073ea9",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/frontend/src/components/Button.tsx": {
+    "mtime": 1780483290.0,
+    "ast_hash": "ad0af7dbecea55de8d1302b6534628b1",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/frontend/src/components/Input.tsx": {
+    "mtime": 1780483290.0,
+    "ast_hash": "be66d542bbf07668a2d0f1ccf7e78397",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/frontend/src/components/ProtectedRoute.tsx": {
+    "mtime": 1780483290.0,
+    "ast_hash": "ce5dfb70d4be1cbd9136167a19a047c2",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/frontend/src/components/ThemeToggle.tsx": {
+    "mtime": 1780483290.0,
+    "ast_hash": "e88676ec5678bdc788f34edb2048bce3",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/frontend/src/components/ai/ChatDrawer.tsx": {
+    "mtime": 1780492988.580167,
+    "ast_hash": "01d16bcf89cf0e0fac9d08647f4a5c7e",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/frontend/src/components/ai/ChatHeader.tsx": {
+    "mtime": 1780483290.0,
+    "ast_hash": "ae56abcbb136306a02a07a5c2e226113",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/frontend/src/components/ai/ChatInput.tsx": {
+    "mtime": 1780483290.0,
+    "ast_hash": "fd48bb7d8c4667ded3c5e2ddd390effe",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/frontend/src/components/ai/FloatingChatButton.tsx": {
+    "mtime": 1780492871.5911498,
+    "ast_hash": "d720b157439aae0bd0cd5837aca6fa58",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/frontend/src/components/ai/MessageBubble.tsx": {
+    "mtime": 1780483290.0,
+    "ast_hash": "f4ae14c399649c24b874f85cf4aaa491",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/frontend/src/components/ai/MessageList.tsx": {
+    "mtime": 1780483290.0,
+    "ast_hash": "06491ab1cc5a73d047d24b534a097d8d",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/frontend/src/components/ai/SuggestedPrompts.tsx": {
+    "mtime": 1780483290.0,
+    "ast_hash": "1e32ab90459518c63625f66fa1235b07",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/frontend/src/components/ai/TypingIndicator.tsx": {
+    "mtime": 1780483290.0,
+    "ast_hash": "f9035f1db00cd85398befa828fff5432",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/frontend/src/components/audit/AuditDetailsDrawer.tsx": {
+    "mtime": 1780483290.0,
+    "ast_hash": "da7fb39799444d5110241813182ff147",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/frontend/src/components/audit/AuditFilters.tsx": {
+    "mtime": 1780483290.0,
+    "ast_hash": "3bd2c642e6fd74dac9decea5cb0478e3",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/frontend/src/components/audit/AuditMetadataViewer.tsx": {
+    "mtime": 1780483290.0,
+    "ast_hash": "85c2ad2871858e207b744d1719fbf285",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/frontend/src/components/audit/AuditTable.tsx": {
+    "mtime": 1780483290.0,
+    "ast_hash": "e4b84f42998eb413f8496cd06e550784",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/frontend/src/components/audit/audit-utils.ts": {
+    "mtime": 1780483290.0,
+    "ast_hash": "15a02f792f4a4eb1f342506440c430ad",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/frontend/src/components/auth/AuthField.tsx": {
+    "mtime": 1780483290.0,
+    "ast_hash": "7d1f7c26f48999009bb57ceec2abcd38",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/frontend/src/components/auth/AuthShell.tsx": {
+    "mtime": 1780483290.0,
+    "ast_hash": "065857a5bbe69d73bdb7dd8ed764ad12",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/frontend/src/components/auth/PasswordField.tsx": {
+    "mtime": 1780483290.0,
+    "ast_hash": "5c0ac3465ae5358e6f24d6f7166e2ec7",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/frontend/src/components/barcode/PrintableLabels.tsx": {
+    "mtime": 1780491624.1542518,
+    "ast_hash": "1fccfb66648ec36dbc5c48936210e09a",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/frontend/src/components/barcode/ProductBarcode.tsx": {
+    "mtime": 1780491535.9693215,
+    "ast_hash": "d2ead3b7e218947cc759ffe3547be93f",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/frontend/src/components/barcode/ProductLabelSheet.tsx": {
+    "mtime": 1780491583.6265073,
+    "ast_hash": "11c737c7f938176a591133ceaacc99b9",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/frontend/src/components/barcode/ProductQrCode.tsx": {
+    "mtime": 1780483290.0,
+    "ast_hash": "69a9519dca09604ec2526a7244fb6239",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/frontend/src/components/dashboard/AIAnalyticsTabs.tsx": {
+    "mtime": 1780489371.0385354,
+    "ast_hash": "b57a1d745e5d10920032498af2b3215c",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/frontend/src/components/dashboard/AIAssistantWidget.tsx": {
+    "mtime": 1780489904.6413903,
+    "ast_hash": "e795f99cd1008598b9a54589ce442834",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/frontend/src/components/dashboard/AIDailyBrief.tsx": {
+    "mtime": 1780489825.9617684,
+    "ast_hash": "42683b7e88b758ce548d230b7a45da7a",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/frontend/src/components/dashboard/AIDashboard.tsx": {
+    "mtime": 1780494812.481024,
+    "ast_hash": "5142bf4bccc829e36c1ddaf8f768e0f1",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/frontend/src/components/dashboard/AIInsightsSummary.tsx": {
+    "mtime": 1780489371.037701,
+    "ast_hash": "a46c227e873cf25f979e854d2ab5d8e0",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/frontend/src/components/dashboard/AIPrioritiesPanel.tsx": {
+    "mtime": 1780489825.202716,
+    "ast_hash": "f7511af172309b0df9ca9aa52b5e69c3",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/frontend/src/components/dashboard/AIRecommendations.tsx": {
+    "mtime": 1780489371.0377028,
+    "ast_hash": "57fc2d65744bb99859b9b7aaaf610c8a",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/frontend/src/components/dashboard/ClassicDashboard.tsx": {
+    "mtime": 1780486985.9370458,
+    "ast_hash": "2b4535d3a5ede13c57702192776fe35c",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/frontend/src/components/dashboard/DashboardCharts.tsx": {
+    "mtime": 1780483290.0,
+    "ast_hash": "e04a2ed23a64257ab1c6a41ffc7c5c56",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/frontend/src/components/dashboard/DashboardSkeleton.tsx": {
+    "mtime": 1780489826.0877676,
+    "ast_hash": "a2f1156460603644bbc876dd22581fee",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/frontend/src/components/dashboard/DashboardToggle.tsx": {
+    "mtime": 1780493675.2522447,
+    "ast_hash": "099107b8125f258e2f4f9fde3ccef535",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/frontend/src/components/dashboard/DemandTrendsPanel.tsx": {
+    "mtime": 1780489825.654132,
+    "ast_hash": "01ace5ddd2dd75f2c39ff963c7e94fd2",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/frontend/src/components/dashboard/InventoryHealthGauge.tsx": {
+    "mtime": 1780490110.5662816,
+    "ast_hash": "14106b4728f0bf09cc91065e9be71daf",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/frontend/src/components/dashboard/InventoryOverviewChart.tsx": {
+    "mtime": 1780489371.037631,
+    "ast_hash": "aa6ff8d684249f8e6b13a9a23b892626",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/frontend/src/components/dashboard/InventoryRiskChart.tsx": {
+    "mtime": 1780489904.52112,
+    "ast_hash": "97667598c03117bb53e4ccea98bbf1aa",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/frontend/src/components/dashboard/KPICard.tsx": {
+    "mtime": 1780489825.0512173,
+    "ast_hash": "55749e29b45c8c6f557379c9d1c50920",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/frontend/src/components/dashboard/MonthlyMovementChart.tsx": {
+    "mtime": 1780489371.037583,
+    "ast_hash": "a952045b46bc479fdd4b0da603f935ca",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/frontend/src/components/dashboard/PredictedDemandForecast.tsx": {
+    "mtime": 1780489371.037716,
+    "ast_hash": "260d52e2e958fd78b0cc5adda83ee99b",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/frontend/src/components/dashboard/RecommendedActions.tsx": {
+    "mtime": 1780489825.8228288,
+    "ast_hash": "735178bc80a33ec1a9448b3c93d04587",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/frontend/src/components/dashboard/RiskAnalysisPanel.tsx": {
+    "mtime": 1780489371.0653853,
+    "ast_hash": "2fe0ed062ecfacdd7b62f4d54ce1e7b9",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/frontend/src/components/dashboard/SmartReorderPanel.tsx": {
+    "mtime": 1780489825.3513916,
+    "ast_hash": "abf33f6448c033d3c95a8099d40adc84",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/frontend/src/components/dashboard/SummaryCard.tsx": {
+    "mtime": 1780486985.9369562,
+    "ast_hash": "89804f0d360243f7e7e2e7ed819c7334",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/frontend/src/components/dashboard/SupplierHealthPanel.tsx": {
+    "mtime": 1780489825.527504,
+    "ast_hash": "e7707eafc5cf74c4cce742b6b15b821d",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/frontend/src/components/dashboard/SupplierLeaderboard.tsx": {
+    "mtime": 1780489371.037729,
+    "ast_hash": "fafb117072cf4307cc132581b0694e79",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/frontend/src/components/dashboard/WarehousePerformance.tsx": {
+    "mtime": 1780489371.0377164,
+    "ast_hash": "885eac16bd27ef2eda5b5e86f227a0d4",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/frontend/src/components/inventory/TransactionsFilters.tsx": {
+    "mtime": 1780483290.0,
+    "ast_hash": "9ea4ff3a2a913f46f9e0a3cbd0328d26",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/frontend/src/components/landing/DashboardMockup.tsx": {
+    "mtime": 1780483290.0,
+    "ast_hash": "afa021f7f00d3b34825f4f45366b652c",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/frontend/src/components/landing/FeatureCard.tsx": {
+    "mtime": 1780483290.0,
+    "ast_hash": "d167a0d982b43775b12a7c49b724f8c0",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/frontend/src/components/landing/LandingButton.tsx": {
+    "mtime": 1780483290.0,
+    "ast_hash": "f97b77f58ebce2bcb4cb981e872e6d3a",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/frontend/src/components/landing/LandingContainer.tsx": {
+    "mtime": 1780483290.0,
+    "ast_hash": "caa7fc595149058dd6e7d9cbc22c0692",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/frontend/src/components/landing/MetricCard.tsx": {
+    "mtime": 1780483290.0,
+    "ast_hash": "3c1c889ffc340c763d313043476aed22",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/frontend/src/components/landing/SectionHeading.tsx": {
+    "mtime": 1780483290.0,
+    "ast_hash": "882821f26782e9cdd252a95a923bed3b",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/frontend/src/components/notifications/ActivityFeedPanel.tsx": {
+    "mtime": 1780483290.0,
+    "ast_hash": "9e72a64c10903309e97077daddfe1592",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/frontend/src/components/notifications/NotificationCenter.tsx": {
+    "mtime": 1780483290.0,
+    "ast_hash": "660977680dc12e3c74f01d262d940471",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/frontend/src/components/premium/PremiumModal.tsx": {
+    "mtime": 1780483290.0,
+    "ast_hash": "1d730ed69b8a121b3b9ac8c2bd54e3ec",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/frontend/src/components/ui/Badge.tsx": {
+    "mtime": 1780483290.0,
+    "ast_hash": "91e80d0e889590d2de7adb8881327948",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/frontend/src/components/ui/Breadcrumbs.tsx": {
+    "mtime": 1780483290.0,
+    "ast_hash": "b6a5fb5cde60bf41592b0122258e376b",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/frontend/src/components/ui/Card.tsx": {
+    "mtime": 1780483290.0,
+    "ast_hash": "2e10fb5edd64be6e453e06ddd0ef59fa",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/frontend/src/components/ui/ConfirmDialog.tsx": {
+    "mtime": 1780483290.0,
+    "ast_hash": "5854a64e357304b8e281980641ac1de5",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/frontend/src/components/ui/DataTable.tsx": {
+    "mtime": 1780483290.0,
+    "ast_hash": "3ecc55d106425c4da3ee2782e8b7cee0",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/frontend/src/components/ui/Dialog.tsx": {
+    "mtime": 1780483290.0,
+    "ast_hash": "8ef8353c3658f2ada7b3d51bc2711c52",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/frontend/src/components/ui/EmptyState.tsx": {
+    "mtime": 1780483290.0,
+    "ast_hash": "81e6eb52cc52b2b4879a390fc5d6a7c2",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/frontend/src/components/ui/LoadingState.tsx": {
+    "mtime": 1780483290.0,
+    "ast_hash": "7ade827ef9ebe39e5d61788ba7bf6c3f",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/frontend/src/components/ui/Modal.tsx": {
+    "mtime": 1780483290.0,
+    "ast_hash": "87cbc45073fc0028e2d3fda741df4f69",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/frontend/src/components/ui/Page.tsx": {
+    "mtime": 1780492470.5864553,
+    "ast_hash": "be608358b0ddffc5e0eaa766f3f54c6d",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/frontend/src/components/ui/Select.tsx": {
+    "mtime": 1780483290.0,
+    "ast_hash": "f68b89c54a64856690b50794c324a44a",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/frontend/src/components/ui/StatWidget.tsx": {
+    "mtime": 1780483290.0,
+    "ast_hash": "aadb764743f1d82248b4e4a4df36ceb6",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/frontend/src/components/ui/TableFooter.tsx": {
+    "mtime": 1780504920.3297591,
+    "ast_hash": "e77987e067d521da800e6a61c9bbb6a4",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/frontend/src/components/ui/Toast.tsx": {
+    "mtime": 1780483290.0,
+    "ast_hash": "c5ced76b90ef6a8525fdd9ebf1d1c4c4",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/frontend/src/components/ui/index.ts": {
+    "mtime": 1780483290.0,
+    "ast_hash": "3fbcae8dba40b1d85bbb09edb84f77a5",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/frontend/src/context/DialogContext.tsx": {
+    "mtime": 1780483290.0,
+    "ast_hash": "d177b4edc5310d6abe09832b6cb37a84",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/frontend/src/hooks/dashboard/useAIBrief.ts": {
+    "mtime": 1780488166.7086775,
+    "ast_hash": "dad65ee1b9dbcc4798ef941c27550719",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/frontend/src/hooks/dashboard/useDemandTrends.ts": {
+    "mtime": 1780488166.7086558,
+    "ast_hash": "56bd6d200cb2df0138d1a136527ac32c",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/frontend/src/hooks/dashboard/useKPIs.ts": {
+    "mtime": 1780488288.1486058,
+    "ast_hash": "3ce7544e242e5d50623cb26c3bcf1731",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/frontend/src/hooks/dashboard/usePriorities.ts": {
+    "mtime": 1780488166.70861,
+    "ast_hash": "96f855f2c1399ee1807359d6f1a7276b",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/frontend/src/hooks/dashboard/useRecommendations.ts": {
+    "mtime": 1780488166.70864,
+    "ast_hash": "0b699de2e5aee036555aef4692ab1683",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/frontend/src/hooks/dashboard/useRiskOverview.ts": {
+    "mtime": 1780488166.7086735,
+    "ast_hash": "2e6337a8c7835855226b51ae07483e97",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/frontend/src/hooks/dashboard/useSupplierHealth.ts": {
+    "mtime": 1780488166.7086341,
+    "ast_hash": "3b84963a02410c20bf655c3ac596395e",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/frontend/src/layouts/AppLayout.tsx": {
+    "mtime": 1780483290.0,
+    "ast_hash": "f263b68a85d1102e2a04fcfb3dd26693",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/frontend/src/layouts/ContentLayout.tsx": {
+    "mtime": 1780483290.0,
+    "ast_hash": "51af6d4a09b4969bbb95777cc93b37bb",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/frontend/src/layouts/SettingsLayout.tsx": {
+    "mtime": 1780483290.0,
+    "ast_hash": "262ee3cd6476b6f3820634cd8425084e",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/frontend/src/layouts/SidebarLayout.tsx": {
+    "mtime": 1780483290.0,
+    "ast_hash": "8af5f636dc29f221d4c68a01fdc9b32a",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/frontend/src/layouts/TopbarLayout.tsx": {
+    "mtime": 1780493375.0438895,
+    "ast_hash": "25d3eacc627ca7fcad5911f4c00dc58c",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/frontend/src/lib/ai-api.ts": {
+    "mtime": 1780483290.0,
+    "ast_hash": "e342b17df5b8f90c948b5584d9a73eab",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/frontend/src/lib/api.ts": {
+    "mtime": 1780483290.0,
+    "ast_hash": "5432bbfea1b7383f44f43219ca5a8d53",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/frontend/src/lib/audit-api.ts": {
+    "mtime": 1780483290.0,
+    "ast_hash": "5c0129124a8c393b2a445c3137b5aefd",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/frontend/src/lib/auth-api.ts": {
+    "mtime": 1780483290.0,
+    "ast_hash": "52d9c9a43e763f3f6bf86adf6b28c54a",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/frontend/src/lib/auth-store.ts": {
+    "mtime": 1780483290.0,
+    "ast_hash": "ae7c4a493a4306e4c37c2a210226fe9a",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/frontend/src/lib/cn.ts": {
+    "mtime": 1780483290.0,
+    "ast_hash": "8595c2f874aa1ff8c7cc28df2999f354",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/frontend/src/lib/dashboard-api.ts": {
+    "mtime": 1780483290.0,
+    "ast_hash": "835203dec12a130a15839a4119e04618",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/frontend/src/lib/import-api.ts": {
+    "mtime": 1780483290.0,
+    "ast_hash": "6a6515413c743a218285843254d23260",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/frontend/src/lib/inventory-api.ts": {
+    "mtime": 1780483290.0,
+    "ast_hash": "241a6fa641c28b52a5ef479f9bfc4524",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/frontend/src/lib/notification-api.ts": {
+    "mtime": 1780483290.0,
+    "ast_hash": "cde4302897d6158da30e89ff4355e166",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/frontend/src/lib/procurement-api.ts": {
+    "mtime": 1780483290.0,
+    "ast_hash": "9a5466c736dfff18e4e633a36ea77334",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/frontend/src/lib/product-api.ts": {
+    "mtime": 1780483290.0,
+    "ast_hash": "7854df0a75dd3c03e2ce9292771dc7c0",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/frontend/src/lib/razorpay.ts": {
+    "mtime": 1780483290.0,
+    "ast_hash": "b879989f7ecda2fd57aa1640c8afb772",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/frontend/src/lib/subscription-api.ts": {
+    "mtime": 1780483290.0,
+    "ast_hash": "b42de36f47688737d3c67519c9363a5b",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/frontend/src/lib/super-admin-api.ts": {
+    "mtime": 1780483290.0,
+    "ast_hash": "d37fff7220afb9b61131e8a36bbe3bc7",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/frontend/src/lib/theme.ts": {
+    "mtime": 1780483290.0,
+    "ast_hash": "eb21df7afbb9ed1c212c98e223e55e1a",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/frontend/src/lib/user-api.ts": {
+    "mtime": 1780483290.0,
+    "ast_hash": "f673c792fcbc0c38003c6f11fc91684e",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/frontend/src/lib/warehouse-api.ts": {
+    "mtime": 1780483290.0,
+    "ast_hash": "31219367df3a5cf76fcd1ef8536c3b61",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/frontend/src/main.tsx": {
+    "mtime": 1780483290.0,
+    "ast_hash": "07214883fe8e9573c8650df5156a6864",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/frontend/src/navigation/appNavigation.ts": {
+    "mtime": 1780483290.0,
+    "ast_hash": "19d5f0ece4075b6f1b158c3462d2b0e4",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/frontend/src/pages/AiAnalysisPage.tsx": {
+    "mtime": 1780483290.0,
+    "ast_hash": "403fe5f242fc28d4fd13033b6768ff91",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/frontend/src/pages/ApprovalsPage.tsx": {
+    "mtime": 1780483290.0,
+    "ast_hash": "b088773e4d507c7318d12d8439d58460",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/frontend/src/pages/AuditLogsPage.tsx": {
+    "mtime": 1780492508.7199554,
+    "ast_hash": "9512b80135dfb6bd3adfeb77ab423074",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/frontend/src/pages/BillingPage.tsx": {
+    "mtime": 1780483290.0,
+    "ast_hash": "b9c694904f6585e616d4187fbcb91b6b",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/frontend/src/pages/ContactPage.tsx": {
+    "mtime": 1780483290.0,
+    "ast_hash": "99b7edfdf3845f6a3a7ace7392346293",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/frontend/src/pages/Dashboard/index.tsx": {
+    "mtime": 1780489904.7702641,
+    "ast_hash": "9f69a10e0dbcd005d1cba0a673f2d696",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/frontend/src/pages/DashboardPage.tsx": {
+    "mtime": 1780487280.5822773,
+    "ast_hash": "3f0b72d9b7b72df68b367af88642196a",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/frontend/src/pages/ForgotPasswordPage.tsx": {
+    "mtime": 1780483290.0,
+    "ast_hash": "b6dfa67534333af81f265c71672009f8",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/frontend/src/pages/ImportCenterPage.tsx": {
+    "mtime": 1780483290.0,
+    "ast_hash": "0e0b6cdce72dd7436b79928a48f3f395",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/frontend/src/pages/InventoryPage.tsx": {
+    "mtime": 1780483290.0,
+    "ast_hash": "87e3d9974987b37b336d7b944d52d198",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/frontend/src/pages/InventoryTransactionsPage.tsx": {
+    "mtime": 1780492508.5604513,
+    "ast_hash": "b18b929b5af7d69eeba96d584c69ced3",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/frontend/src/pages/LandingPage.tsx": {
+    "mtime": 1780483290.0,
+    "ast_hash": "e42e7f62a932d9c0cd7c3e44f4baca46",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/frontend/src/pages/LoginPage.tsx": {
+    "mtime": 1780483290.0,
+    "ast_hash": "0554c48229ac8a57452bf0a139261d20",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/frontend/src/pages/NotificationsPage.tsx": {
+    "mtime": 1780483290.0,
+    "ast_hash": "037992b925b050446a8d1345a7f53c63",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/frontend/src/pages/PermissionsPage.tsx": {
+    "mtime": 1780483290.0,
+    "ast_hash": "956acc1c67cdab9aa7c9ef6d466ef58d",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/frontend/src/pages/PlaceholderPage.tsx": {
+    "mtime": 1780483290.0,
+    "ast_hash": "a360be2affe69e12b50ee0c7bc15fdac",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/frontend/src/pages/PlatformAnalyticsPage.tsx": {
+    "mtime": 1780483290.0,
+    "ast_hash": "8bf5b3ce1bff46839f6fa314fdc45a37",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/frontend/src/pages/ProductDetailPage.tsx": {
+    "mtime": 1780483290.0,
+    "ast_hash": "01fbc177835419e4a4d0ce0cd51a864d",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/frontend/src/pages/ProductFormPage.tsx": {
+    "mtime": 1780483290.0,
+    "ast_hash": "6f86bdf125c052a2a4656556316a7f9c",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/frontend/src/pages/ProductsPage.tsx": {
+    "mtime": 1780492508.294685,
+    "ast_hash": "b495e8b96f7fe2222bafb5675b29bb61",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/frontend/src/pages/ProfilePage.tsx": {
+    "mtime": 1780483290.0,
+    "ast_hash": "e2c6570c5cb5da7cbd6a7e618b50e343",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/frontend/src/pages/PurchaseOrderDetailPage.tsx": {
+    "mtime": 1780483290.0,
+    "ast_hash": "436f5cadd9e1df5950c120b2c923215a",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/frontend/src/pages/PurchaseOrdersPage.tsx": {
+    "mtime": 1780483290.0,
+    "ast_hash": "2204ab7c7e617686bf3cb9a892426f15",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/frontend/src/pages/RegisterPage.tsx": {
+    "mtime": 1780483290.0,
+    "ast_hash": "0b588cac255b69c9c62d30937a650b2f",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/frontend/src/pages/SettingsPage.tsx": {
+    "mtime": 1780483290.0,
+    "ast_hash": "09c1f209e666bf8c3dcd991cf1dcd9ec",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/frontend/src/pages/SupplierProfilePage.tsx": {
+    "mtime": 1780483290.0,
+    "ast_hash": "0c2e86e058430212c9dd677d60da3f71",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/frontend/src/pages/SuppliersPage.tsx": {
+    "mtime": 1780483290.0,
+    "ast_hash": "dd30b20cf63c77903ca4434146c651dd",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/frontend/src/pages/SupportCenterPage.tsx": {
+    "mtime": 1780483290.0,
+    "ast_hash": "faa42a2a97abfba011deab2e2d3791db",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/frontend/src/pages/SystemHealthPage.tsx": {
+    "mtime": 1780483290.0,
+    "ast_hash": "66c468fd5ebc6fa0ee03e230989f6eb7",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/frontend/src/pages/TenantDrilldownPage.tsx": {
+    "mtime": 1780483290.0,
+    "ast_hash": "8aa40c2f3778b09d9ec29f0c3c97c707",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/frontend/src/pages/TenantsPage.tsx": {
+    "mtime": 1780483290.0,
+    "ast_hash": "a669fe10dcb746426e8b61c99151ea9e",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/frontend/src/pages/UnauthorizedPage.tsx": {
+    "mtime": 1780483290.0,
+    "ast_hash": "a87bc812a115a9e70a92a6c2cbdade53",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/frontend/src/pages/UpgradePage.tsx": {
+    "mtime": 1780483290.0,
+    "ast_hash": "c26e3ae2ef7b404f33dbf1dc3194ca7e",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/frontend/src/pages/UsersPage.tsx": {
+    "mtime": 1780492508.4214358,
+    "ast_hash": "a6d6de0ef54ed0fce04528284f4ef30a",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/frontend/src/pages/VerifyEmailPage.tsx": {
+    "mtime": 1780483290.0,
+    "ast_hash": "06496bee493d5b342051644ae07b030c",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/frontend/src/pages/WarehousesPage.tsx": {
+    "mtime": 1780483290.0,
+    "ast_hash": "c3eae538c72adfc519f80a25ae81dfc2",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/frontend/src/pages/landing/BenefitsSection.tsx": {
+    "mtime": 1780483290.0,
+    "ast_hash": "12928c5b9befcaae7391a4227f04d138",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/frontend/src/pages/landing/CtaSection.tsx": {
+    "mtime": 1780483290.0,
+    "ast_hash": "c94ed1f72ff2b4823cad29545e3745ae",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/frontend/src/pages/landing/DashboardPreviewSection.tsx": {
+    "mtime": 1780483290.0,
+    "ast_hash": "66298dbbc08604d3d8a097f098dee81c",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/frontend/src/pages/landing/FeaturesSection.tsx": {
+    "mtime": 1780483290.0,
+    "ast_hash": "1c5a8f293033e47fdb4328ff5439b06e",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/frontend/src/pages/landing/HeroSection.tsx": {
+    "mtime": 1780483290.0,
+    "ast_hash": "e02be826eead173ed6dc91987d190c7e",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/frontend/src/pages/landing/LandingFooter.tsx": {
+    "mtime": 1780483290.0,
+    "ast_hash": "cb0f3bb37990e4c85c2ef464fb3ba10d",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/frontend/src/pages/landing/LandingNavbar.tsx": {
+    "mtime": 1780483290.0,
+    "ast_hash": "7bf475608b7af4dd80b4941dc24a97c0",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/frontend/src/pages/landing/StatsSection.tsx": {
+    "mtime": 1780483290.0,
+    "ast_hash": "0123cdd28aca893e5b7730843666a553",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/frontend/src/pages/landing/TestimonialsSection.tsx": {
+    "mtime": 1780483290.0,
+    "ast_hash": "66f89607b0d0afad45730ff1c860e1c8",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/frontend/src/permissions/capabilities.ts": {
+    "mtime": 1780483290.0,
+    "ast_hash": "0b7aed47d782ec751e89acdd556550f8",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/frontend/src/store/dashboardStore.ts": {
+    "mtime": 1780488166.7086751,
+    "ast_hash": "799f967036e5b9cc228b42026d227689",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/frontend/src/vite-env.d.ts": {
+    "mtime": 1780483290.0,
+    "ast_hash": "0352474ba2918efe13895edbc3780d94",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/frontend/tailwind.config.ts": {
+    "mtime": 1780483290.0,
+    "ast_hash": "6b7d130ad49c6409b40f87a76ce8171a",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/frontend/tsconfig.json": {
+    "mtime": 1780483290.0,
+    "ast_hash": "7dbe80a92b653e763f75e6cda20ded39",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/frontend/tsconfig.node.json": {
+    "mtime": 1780483290.0,
+    "ast_hash": "514d68045032e2a7f6d1ca3bd90db121",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/frontend/vite.config.ts": {
+    "mtime": 1780483290.0,
+    "ast_hash": "03c72bc7c454d8706f923f8685679397",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/verify_gemini.py": {
+    "mtime": 1780483290.0,
+    "ast_hash": "e1a6eae0643075b0b924baf4583633a2",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/GEMINI_MIGRATION.md": {
+    "mtime": 1780483290.0,
+    "ast_hash": "378fbdaeb6959bba7013d06f783b136d",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/IMPLEMENTATION_SUMMARY.md": {
+    "mtime": 1780483290.0,
+    "ast_hash": "bcac5f62c820b860cdfef036da17b52e",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/QUICK_START.md": {
+    "mtime": 1780483290.0,
+    "ast_hash": "e2e71772c062345cc50d9006c608cdfc",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/README.md": {
+    "mtime": 1780483290.0,
+    "ast_hash": "db36d5d6d2273b1cfd22ac01879f311e",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/SUMMARY.md": {
+    "mtime": 1780483290.0,
+    "ast_hash": "3bb3976cd65fb9a245fe5ed68e254426",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/backend/requirements-dev.txt": {
+    "mtime": 1780483290.0,
+    "ast_hash": "5165dd38628975a71b498d20c89e31f5",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/backend/requirements.txt": {
+    "mtime": 1780483290.0,
+    "ast_hash": "c90e15554b746d99628192b4941a60f6",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/docs/architecture.md": {
+    "mtime": 1780483290.0,
+    "ast_hash": "badf745dca4467032ffaea1227355918",
+    "semantic_hash": ""
+  },
+  "/Users/as-mac-1218/Downloads/GenAI_Capstone-nikhil_3jun/frontend/index.html": {
+    "mtime": 1780483290.0,
+    "ast_hash": "f3fba4c51b26a6902a0820c529aa7d44",
+    "semantic_hash": ""
+  }
+}
