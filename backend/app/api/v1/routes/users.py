@@ -71,7 +71,13 @@ def create_user(payload: UserCreate, db: DbSession, current_user: UserManager) -
         tenant = db.query(Tenant).filter(Tenant.id == current_user.tenant_id).one_or_none()
         if tenant:
             service = UserService(db)
-            current_count = service.count(current_user=current_user)
+            # current_count = service.count(current_user=current_user)
+            current_count = service.count(
+                current_user=current_user,
+                search=None,
+                role=None,
+                is_active=None,
+            )
             if current_count >= tenant.max_users:
                 raise HTTPException(
                     status_code=status.HTTP_403_FORBIDDEN,
